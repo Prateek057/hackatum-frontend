@@ -1,5 +1,5 @@
-# sebamaster-movie-frontend application
-Movies example application based on AngularJS. Backend can be found [here](https://bitbucket.org/sebischair/sebamaster-movie-backend/overview)
+# sebamaster-nostradamus-frontend application
+Forked from example application based on AngularJS. Example application backend can be found [here](https://bitbucket.org/sebischair/sebamaster-movie-backend/overview)
 
 ## Prerequisites
 
