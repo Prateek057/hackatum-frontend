@@ -11,6 +11,7 @@ var filter = require('gulp-filter');
 var merge = require('merge-stream');
 var debug = require('gulp-debug');
 var plumber = require('gulp-plumber');
+var server = require('gulp-server-livereload');
 
 var s_filter_i, js_filter, js_filter_i;
 
@@ -35,6 +36,16 @@ var s_filter_i, js_filter, js_filter_i;
 
 })();
 
+gulp.task('webserver', function() {
+  gulp.src('app')
+    .pipe(server({
+	  defaultFile: 'public/index.html',
+      livereload: true,
+	  port:8080,
+      directoryListing: false,
+      open: true
+    }));
+});
 
 gulp.task('sass', function () {
     return gulp.src([
@@ -52,7 +63,6 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/css'));
 });
-
 
 gulp.task('frontend-libs-copy', function() {
 
