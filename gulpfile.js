@@ -36,7 +36,7 @@ var s_filter_i, js_filter, js_filter_i;
 
 })();
 
-gulp.task('webserver', function() {
+gulp.task('webserver',['watch'], function() {
   gulp.src('public')
     .pipe(server({
 	  defaultFile: 'index.html',
