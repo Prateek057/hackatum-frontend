@@ -37,9 +37,9 @@ var s_filter_i, js_filter, js_filter_i;
 })();
 
 gulp.task('webserver', function() {
-  gulp.src('app')
+  gulp.src('public')
     .pipe(server({
-	  defaultFile: 'public/index.html',
+	  defaultFile: 'index.html',
       livereload: true,
 	  port:8080,
       directoryListing: false,
