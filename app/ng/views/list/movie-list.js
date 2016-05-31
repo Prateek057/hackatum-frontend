@@ -28,7 +28,7 @@ angular.module('myApp.movies')
             },
 
             ncyBreadcrumb: {
-                label: "Movies"
+                label: ""
             }
 
         }
