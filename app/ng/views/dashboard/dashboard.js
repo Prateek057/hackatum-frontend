@@ -25,21 +25,25 @@ angular.module('myApp.dashboard')
     })
     .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog, $stateParams, $state, currUser,$http) {
 
-        var dashboardDetailsPromise = Dashboard.query();
-        console.log(dashboardDetailsPromise);
-        //dashboardDetailsPromise.
+        var dashboardDetailsPromise =  Dashboard.query(function(){
 
-        /*$http({
-            method: 'GET',
-            url: 'http://localhost:3000/api/dashboard'
-        }).then(function successCallback(response) {
-            console.log(response.data);
-            $scope.dashboardTable = response.data;
-            // this callback will be called asynchronously
-            // when the response is available
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });*/
+            var dashboardDetails = [];
+
+            for(var ctr=0;ctr<dashboardDetailsPromise.length;ctr++){
+                dashboardDetails.push(dashboardDetailsPromise[ctr]);
+            }
+
+            $scope.dashboardTable = dashboardDetails;
+
+        });
+
+        $scope.determinateValue = 30;
+        $scope.pieChartLabels = ["Number of Days left","Total number of days"];
+        $scope.pieChartData = [100,200];
+        $scope.pieChartColors = ["rgba(255, 0, 0, 1)","rgba(0, 255 ,0, 1)"];
+
+        $scope.subsdays = 10;
+
+
 
     });

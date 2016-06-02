@@ -1,13 +1,15 @@
-<div class="row" ng-controller="DashboardCtrl" style="margin-top: 200px;">
-    <table border="1">
-        <thead>
+<div layout="row" layout-padding>
+
+    <div flex="75">
+        <table id="table" style="width:100%;border:1px solid black;">
+            <thead>
             <th>Date</th>
             <th>Use Case</th>
             <th>Result</th>
             <th>Rating</th>
             <th>Comments</th>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <tr ng-repeat="data in dashboardTable">
                 <td></td>
                 <td>{{data.usecaseShortDesc}}</td>
@@ -24,6 +26,58 @@
                 </td>
                 <td>{{data.usecaseComment}}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+
+            <b>in place of radio buttons here, place a button.. on click of the button, make a popup where
+            user can submit rating and comment</b>
+        </table>
+    </div>
+    <div flex="25" layout-padding>
+        <div layout="column" layout-padding style="border:1px solid black;">
+            <div flex layout-padding>
+            <div layout="column">
+                <div flex layout-padding> Number of subscription days left :</div>
+                <div flex layout-padding>
+                    <div><uib-progressbar id="progressbar" color="green"></uib-progressbar></div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div layout="column" layout-padding style="border:1px solid black;">
+            <div flex layout-padding>
+                <div layout="column">
+                    <div flex layout-padding> News Feed:</div>
+                </div>
+                <div layout="column">
+                    <div flex layout-padding> New Pattern added. Click <a>here</a> to find out!</div>
+                </div>
+            </div>
+        </div>
+        <div layout="column" layout-padding style="border:1px solid black;">
+            <div flex layout-padding>
+                <div layout="column">
+                    <div flex layout-padding> Your suggested pattern has been incorporated.</div>
+                </div>
+                <div layout="column">
+                    <div flex layout-padding> Click here to find out!</div>
+                </div>
+            </div>
+        </div>
+        <div layout="column" layout-padding style="border:1px solid black;">
+            <div flex layout-padding>
+                <div layout="column">
+                    <div flex layout-padding> Nostradamus Success Ratio :</div>
+                </div>
+                <div layout="column">
+                    <div flex layout-padding>
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="pieChartData" chart-labels="pieChartLabels"
+                                colors="pieChartColors"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
