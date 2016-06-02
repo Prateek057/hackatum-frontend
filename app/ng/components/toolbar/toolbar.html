@@ -1,26 +1,13 @@
 <div class="md-toolbar-tools">
-    <div ncy-breadcrumb class="ui-breadcrumbs md-title">
-    </div>
-    <span flex></span>
+    <!--<div ncy-breadcrumb class="ui-breadcrumbs md-title"></div>-->
+    <span flex>Test</span>
 
     <!-- not logged in -->
-    <span class="md-body-2" hide-xs ng-if="!loggedIn">You are currently not logged in.</span>
+    <!-- <span class="md-body-2" hide-xs ng-if="!loggedIn"></span> -->
     <md-menu md-position-mode="target-right target" ng-if="!loggedIn">
-        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-            <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
+        <md-button class="md-icon-button" ng-click="showLoginDialog()">
+            <span class="md-body-2" hide-xs ng-if="!loggedIn">Login / Signup</span>
         </md-button>
-        <md-menu-content>
-            <md-menu-item>
-                <md-button ng-click="showLoginDialog()">
-                    Log in
-                </md-button>
-            </md-menu-item>
-            <md-menu-item>
-                <md-button ng-click="showSignupDialog()">
-                    Sign Up
-                </md-button>
-            </md-menu-item>
-        </md-menu-content>
     </md-menu>
 
 
@@ -38,7 +25,5 @@
             </md-menu-item>
         </md-menu-content>
     </md-menu>
-
-
 
 </div>

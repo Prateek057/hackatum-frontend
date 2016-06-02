@@ -12,7 +12,9 @@
     "angular-ui-router": "^0.2.18",
     "material-design-icons": "^2.2.3",
     "angular-material": "^1.0.7",
-    "angular-breadcrumb": "^0.4.1"
+    "angular-breadcrumb": "^0.4.1",
+    "angular-bootstrap": "^1.3.3",
+    "bootstrap-sass": "^3.3.6"
   },
   "overrides": {
     "angular-utils-ui-breadcrumbs": {
@@ -20,9 +22,18 @@
     },
     "material-design-icons": {
       "main": "sprites/svg-sprite/*.svg"
+    },
+    "bootstrap": {
+      "main": [
+        "less/!(variables).less",
+        "dist/fonts/*",
+        "dist/js/*"
+      ]
     }
   },
   "devDependencies": {
-    "angular-mocks": "^1.5.2"
+    "angular-mocks": "^1.5.2",
+    "angular-bootstrap": "^1.3.3",
+    "bootstrap-sass": "^3.3.6"
   }
 }

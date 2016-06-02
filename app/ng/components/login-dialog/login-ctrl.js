@@ -1,4 +1,5 @@
 angular.module('myApp')
+    .constant()
     .controller("login", function ($scope, currUser, $mdDialog) {
         $scope.username = '';
         $scope.pwd = '';
