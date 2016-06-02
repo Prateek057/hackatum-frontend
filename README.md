@@ -1,3 +1,12 @@
+#Adding Subsequent dependencies
+Installing Bootstrap using Bower
+	1) run command: bower install angular-bootstrap --save-dev
+	2) Add angular dependency from devDependencies to dependencies in bower.json
+	3) run command: npm install
+  4) run command: gulp webserver
+
+
+
 # sebamaster-nostradamus-frontend application
 Forked from example application based on AngularJS. Example application backend can be found [here](https://bitbucket.org/sebischair/sebamaster-movie-backend/overview)
 
