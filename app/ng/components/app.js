@@ -1,12 +1,12 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ui.router', 'myApp.movies', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
+angular.module('myApp', ['ui.router','myApp.movies','myApp.dashboard','templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
 
     .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $httpProvider, $breadcrumbProvider) {
 
         // For any unmatched url, redirect to /movies
-        $urlRouterProvider.otherwise("/movies");
+        $urlRouterProvider.otherwise("/dashboard");
 
 
         $stateProvider
@@ -22,7 +22,8 @@ angular.module('myApp', ['ui.router', 'myApp.movies', 'templates', 'ncy-angular-
             .iconSet('editor', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-editor.svg')
             .iconSet('navigation', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-navigation.svg');
 
-        //this overrides the defaults actiosn for all $resources
+
+        //this overrides the defaults actions for all $resources
         angular.extend($resourceProvider.defaults.actions, {
 
             update: {
