@@ -1,0 +1,29 @@
+<div class="row" ng-controller="DashboardCtrl" style="margin-top: 200px;">
+    <table border="1">
+        <thead>
+            <th>Date</th>
+            <th>Use Case</th>
+            <th>Result</th>
+            <th>Rating</th>
+            <th>Comments</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in dashboardTable">
+                <td></td>
+                <td>{{data.usecaseShortDesc}}</td>
+                <td>{{data.usecaseResult}}</td>
+                <td>
+                    <span ng-if="!data.usecaseRating">
+                        <input type="radio" name="rating5" value="5"> 5
+                        <input type="radio" name="rating4" value="4"> 4
+                        <input type="radio" name="rating3" value="3"> 3
+                        <input type="radio" name="rating2" value="2"> 2
+                        <input type="radio" name="rating1" value="1"> 1
+                    </span>
+                    {{data.usecaseRating}}
+                </td>
+                <td>{{data.usecaseComment}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
