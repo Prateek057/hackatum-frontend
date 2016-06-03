@@ -64,6 +64,18 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('public/css'));
 });
 
+var files = {
+    data_src : [
+        './files.json',
+        'data/**/*.*'
+    ],
+};
+
+gulp.task('copy-data', function() {
+    gulp.src(files.data_src, { base: './' })
+        .pipe(gulp.dest('public'));
+});
+
 gulp.task('frontend-libs-copy', function() {
 
     var all_libs = gulp.src(mainBowerFiles(), { base: 'bower_components' })
@@ -123,6 +135,7 @@ gulp.task('watch', MAIN_TASKS, function () {
     gulp.watch('app/ng/**/*.html', [ 'app-templates']);
     gulp.watch('bower.json', [ 'frontend-libs-copy']);
     gulp.watch(['app/sass/**/*.scss', 'bower.json'], ['sass']);
+    gulp.watch('data/**/*.*', ['copy-data']);
 })
 
 gulp.task('install', MAIN_TASKS);

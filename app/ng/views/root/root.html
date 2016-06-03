@@ -8,10 +8,22 @@
 
 </md-toolbar>
 
-<md-content role="main" class="mv-content" layout-padding ui-view="content"></md-content>
+<md-content layout="row" role="main" class="mv-content" layout-padding ui-view="content"></md-content>
 
 <!--stuff that belongs outside of the md-content container like fab buttons-->
+<!--<md-bottom-sheet style="background-color:#E6E6E6" >
+    <md-menu>
+        <p style="display: inline; font-weight: bold; font-size: x-small">Feedback</p>
+        <p style="display: inline; font-weight: bold; font-size: x-small">Sitemap</p>
+        <p style="display: inline; font-weight: bold; font-size: x-small">Feedback</p>
+        <p style="display: inline; font-weight: bold; font-size: x-small">Impressum</p>
+    </md-menu>
+</md-bottom-sheet>-->
+
+
 <div ui-view="outside"></div>
+
+
 
 
 

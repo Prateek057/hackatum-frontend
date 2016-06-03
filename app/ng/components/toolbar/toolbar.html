@@ -1,29 +1,61 @@
 <div class="md-toolbar-tools">
     <!--<div ncy-breadcrumb class="ui-breadcrumbs md-title"></div>-->
-    <span flex>Test</span>
+    <div class="toolbar-menuitems">
+        <img src="../../data/img/tum-logo.png"/>
+        <h1 align="left">Nostradamus</h1>
+        <span flex="25"></span>
 
-    <!-- not logged in -->
-    <!-- <span class="md-body-2" hide-xs ng-if="!loggedIn"></span> -->
-    <md-menu md-position-mode="target-right target" ng-if="!loggedIn">
-        <md-button class="md-icon-button" ng-click="showLoginDialog()">
-            <span class="md-body-2" hide-xs ng-if="!loggedIn">Login / Signup</span>
-        </md-button>
-    </md-menu>
+        <!-- not logged in -->
+        <md-menu ng-if="!loggedIn">
+            <md-button ng-click="">
+                <span class="md-body-2" hide-xs ng-if="!loggedIn">About</span>
+            </md-button>
+            <md-button ng-click="">
+                <span class="md-body-2" hide-xs ng-if="!loggedIn">Services</span>
+            </md-button>
+            <md-button ng-click="">
+                <span class="md-body-2" hide-xs ng-if="!loggedIn">Learning Center</span>
+            </md-button>
+        </md-menu>
+
+        <!-- not logged in -->
+        <md-menu ng-if="loggedIn">
+            <md-button ng-click="">
+                <span class="md-body-2" hide-xs ng-if="loggedIn">Dashboard</span>
+            </md-button>
+            <md-button ng-click="">
+                <span class="md-body-2" hide-xs ng-if="loggedIn">Identify Pattern</span>
+            </md-button>
+            <md-button ng-click="">
+                <span class="md-body-2" hide-xs ng-if="loggedIn">Identify AntiPattern</span>
+            </md-button>
+            <md-button ng-click="">
+                <span class="md-body-2" hide-xs ng-if="loggedIn">Learning Center</span>
+            </md-button>
+        </md-menu>
+
+        <!-- not logged in -->
+        <!-- <span class="md-body-2" hide-xs ng-if="!loggedIn"></span> -->
+        <md-menu md-position-mode="target-right target" ng-if="!loggedIn">
+            <md-button ng-click="showLoginDialog()">
+                <span class="md-body-2" hide-xs ng-if="!loggedIn">Login / Register</span>
+            </md-button>
+        </md-menu>
 
 
-    <!-- logged in -->
-    <span class="md-body-2" ng-if="loggedIn">Hello, {{user.username}}</span>
-    <md-menu md-position-mode="target-right target" ng-if="loggedIn">
-        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-            <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
-        </md-button>
-        <md-menu-content>
-            <md-menu-item>
-                <md-button ng-click="logout()">
-                    Log out
-                </md-button>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
-
+        <!-- logged in -->
+        <span class="md-body-2" ng-if="loggedIn">Hello, {{user.username}}</span>
+        <md-menu md-position-mode="target-right target" ng-if="loggedIn">
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item>
+                    <md-button ng-click="logout()">
+                        Log out
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
 </div>
