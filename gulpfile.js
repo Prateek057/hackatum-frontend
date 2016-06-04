@@ -128,7 +128,7 @@ gulp.task('app-templates', function () {
         .pipe(gulp.dest('./public/js'));
 });
 
-var MAIN_TASKS = ['app-js', 'app-templates', 'frontend-libs-copy', 'sass'];
+var MAIN_TASKS = ['app-js', 'app-templates', 'frontend-libs-copy', 'sass','copy-data'];
 
 gulp.task('watch', MAIN_TASKS, function () {
     gulp.watch('app/ng/**/*.js', ['app-js']);
@@ -145,7 +145,8 @@ gulp.task('clean', function () {
                         'public/js/app.js',
                         'public/js/templates.js',
                         'public/css',
-                        'public/libs'], {read: false})
+                        'public/libs',
+                        'public/data'], {read: false})
         .pipe(clean());
 });
 

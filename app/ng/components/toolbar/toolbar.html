@@ -1,25 +1,14 @@
 <div class="md-toolbar-tools">
     <!--<div ncy-breadcrumb class="ui-breadcrumbs md-title"></div>-->
     <div class="toolbar-menuitems">
-        <img src="../../data/img/tum-logo.png"/>
-        <h1 align="left">Nostradamus</h1>
-        <span flex="25"></span>
+        <div layout="row" layout-align="start center" flex="30">
+            <img src="../../data/img/tum-logo.png"/>
+            <h1 align="left">Nostradamus</h1>
+        </div>
 
         <!-- not logged in -->
-        <md-menu ng-if="!loggedIn">
-            <md-button ng-click="">
-                <span class="md-body-2" hide-xs ng-if="!loggedIn">About</span>
-            </md-button>
-            <md-button ng-click="">
-                <span class="md-body-2" hide-xs ng-if="!loggedIn">Services</span>
-            </md-button>
-            <md-button ng-click="">
-                <span class="md-body-2" hide-xs ng-if="!loggedIn">Learning Center</span>
-            </md-button>
-        </md-menu>
-
-        <!-- not logged in -->
-        <md-menu ng-if="loggedIn">
+        <!--<md-menu ng-if="loggedIn">-->
+        <div layout="row" layout-align="start center" flex="60">
             <md-button ng-click="">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Dashboard</span>
             </md-button>
@@ -32,15 +21,17 @@
             <md-button ng-click="">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Learning Center</span>
             </md-button>
-        </md-menu>
+        </div>
+        <!--</md-menu>-->
 
         <!-- not logged in -->
         <!-- <span class="md-body-2" hide-xs ng-if="!loggedIn"></span> -->
-        <md-menu md-position-mode="target-right target" ng-if="!loggedIn">
+        <!--<md-menu md-position-mode="target-right target" ng-if="!loggedIn">-->
+
             <md-button ng-click="showLoginDialog()">
                 <span class="md-body-2" hide-xs ng-if="!loggedIn">Login / Register</span>
             </md-button>
-        </md-menu>
+        <!--</md-menu>-->
 
 
         <!-- logged in -->
