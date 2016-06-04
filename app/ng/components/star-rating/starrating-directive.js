@@ -1,7 +1,8 @@
 /**
  * Created by Akash on 6/4/2016.
  */
-angular.module('myApp.dashboard').directive('starRating', function () {
+angular.module('myApp.dashboard')
+    .directive('starRating', function () {
     return {
         scope: {
             rating: '=',
@@ -64,4 +65,6 @@ angular.module('myApp.dashboard').directive('starRating', function () {
             };
         }
     };
-});
+});/**
+ * Created by Akash on 6/4/2016.
+ */
