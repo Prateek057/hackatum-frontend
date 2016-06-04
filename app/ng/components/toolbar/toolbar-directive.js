@@ -28,8 +28,8 @@ angular.module('myApp')
                 function showLoginDialog(){
                     var useFullScreen = $mdMedia('xs');
                     $mdDialog.show({
-                        controller: 'login',
-                        templateUrl: 'components/login-register/login-register.html',
+                        controller: 'login', 
+                        templateUrl: 'components/login-dialog/login-dialog.html',
                         clickOutsideToClose:true,
                         fullscreen: useFullScreen
                     });

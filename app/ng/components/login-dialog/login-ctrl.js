@@ -12,6 +12,8 @@ angular.module('myApp')
             currUser.login($scope.username, $scope.password).then(function () {
                 $mdDialog.hide();
             }, function (response) {
+                status = response.status;
+                //console.log(response.status == 400 || response.status == 401);
                 if (response.status == 400 || response.status == 401) {
                     $scope.errorText = "Wrong username or password.";
                 } else {

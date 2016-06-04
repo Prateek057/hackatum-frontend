@@ -1,15 +1,32 @@
 angular.module('myApp')
     .controller("register", function ($scope, currUser, $mdDialog) {
         $scope.username = '';
+        $scope.email = '';
         $scope.pwd = '';
-        $scope.pwdConfirm
+        $scope.pwdConfirm;
         $scope.errorText = '';
 
         $scope.register = register;
         $scope.cancel = cancel;
 
+
+        $scope.regDate = new Date();
+        $scope.regDate = new Date(
+            $scope.regDate.getFullYear(),
+            $scope.regDate.getMonth(),
+            $scope.regDate.getDate());
+        $scope.minDate = new Date(
+            $scope.regDate.getFullYear(),
+            $scope.regDate.getMonth(),
+            $scope.regDate.getDate());
+        $scope.expDate = new Date(
+            $scope.regDate.getFullYear(),
+            $scope.regDate.getMonth(),
+            $scope.regDate.getDate() + 30);
+
+
         function register() {
-            currUser.register($scope.username, $scope.pwd).then(function () {
+            currUser.register($scope.username, $scope.email, $scope.pwd, $scope.regDate, $scope.expDate).then(function () {
                 $mdDialog.hide();
             }, function (response) {
                 debugger;

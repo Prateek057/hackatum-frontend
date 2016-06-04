@@ -28,11 +28,29 @@
         <!-- <span class="md-body-2" hide-xs ng-if="!loggedIn"></span> -->
         <!--<md-menu md-position-mode="target-right target" ng-if="!loggedIn">-->
 
-            <md-button ng-click="showLoginDialog()">
-                <span class="md-body-2" hide-xs ng-if="!loggedIn">Login / Register</span>
-            </md-button>
+            <!--md-button ng-click="showSignupDialog()"-->
+                <!--span class="md-body-2" hide-xs ng-if="!loggedIn">Login / Register</span>
+            <!../md-button>
         <!--</md-menu>-->
 
+        <span class="md-body-2" hide-xs ng-if="!loggedIn">You are currently not logged in.</span>
+        <md-menu md-position-mode="target-right target" ng-if="!loggedIn">
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item>
+                    <md-button ng-click="showLoginDialog()">
+                        Log in
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="showSignupDialog()">
+                        Sign Up
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
 
         <!-- logged in -->
         <span class="md-body-2" ng-if="loggedIn">Hello, {{user.username}}</span>
