@@ -1,7 +1,7 @@
 /**
  * Created by Akash on 6/2/2016.
  */
-angular.module('myApp.dashboard', ['ngResource', 'ui.router','ui.grid'])
+angular.module('myApp.dashboard', ['ngResource', 'ui.router'])
 
     .config(function ($stateProvider, $urlRouterProvider, dashboardState) {
         $stateProvider
