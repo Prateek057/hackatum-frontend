@@ -1,0 +1,67 @@
+<md-card-title>
+
+    <md-card-title-text>
+        <span class="md-headline">Your History</span>
+        <!--<span class="md-subhead"></span>-->
+    </md-card-title-text>
+
+</md-card-title>
+
+<md-card-content>
+    <form class="form-inline">
+        <div class="form-group">
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+    </form>
+
+    <md-table-container>
+        <table class="table table-hover table-mc-light-blue table-bordered">
+            <thead >
+            <tr >
+                <th >Date</th>
+                <th >Use Case</th>
+                <th >Result</th>
+                <th >Rating</th>
+                <th >Comments</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr dir-paginate="data in dashboardTable | filter:search | itemsPerPage:15 | orderBy:-data.date">
+                <td data-title="dateOfUse">{{data.date}}</td>
+                <td data-title="shortDesc">{{data.usecaseShortDesc}}</td>
+                <td data-title="result">{{data.usecaseResult}}</td>
+                <td data-title="rating">
+                    <span ng-if="!data.usecaseRating">
+                        <div star-rating rating="starRating0" click="click3(param)"
+                             mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)"></div>
+                        <!--<div> <span class="label label-primary">Star Rating: {{starRating3}}</span>
+                            <span class="label label-primary">Hover Rating: {{hoverRating3}}</span></div>-->
+                    </span>
+                    <span ng-if="data.usecaseRating==5">
+                        <div star-rating rating="starRating5" click="click3(param)"></div>
+                    </span>
+                    <span ng-if="data.usecaseRating==4">
+                        <div star-rating rating="starRating4" click="click3(param)"></div>
+                    </span>
+                    <span ng-if="data.usecaseRating==3">
+                        <div star-rating rating="starRating3" click="click3(param)"></div>
+                    </span>
+                    <span ng-if="data.usecaseRating==2">
+                        <div star-rating rating="starRating2" click="click3(param)"></div>
+                    </span>
+                    <span ng-if="data.usecaseRating==1">
+                        <div star-rating rating="starRating1" click="click3(param)"></div>
+                    </span>
+
+                </td>
+                <td data-title="comment" >{{data.usecaseComment}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <dir-pagination-controls
+            max-size="5"
+            direction-links="true"
+            boundary-links="true" >
+    </dir-pagination-controls>
+</md-card-content>
