@@ -4,12 +4,10 @@
 'use strict';
 
 angular.module('myApp.dashboard')
-
     .constant('dashboardState', {
         name: 'dashboard.detail',
         options: {
             url: '',
-
             views: {
                 "content@root": {
                     templateUrl: 'views/dashboard/dashboard.html',
@@ -23,6 +21,9 @@ angular.module('myApp.dashboard')
             }
         }
     })
+    .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    }])
     .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia,currUser) {
 
         /*$scope.user = null;

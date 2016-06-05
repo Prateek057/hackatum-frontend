@@ -20,129 +20,73 @@
     </md-grid-tile >
 </md-grid-list>-->
 <div layout="row" layout-padding layout-wrap style="padding-bottom: 10px;" ng-cloak>
+    <div flex="70">
     <md-whiteframe style="background-color:#E6E6E6;" class="md-whiteframe-1dp" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout="row" layout-align="left">
-        <h3 >
+        <h3 style="text-align: center;padding-left: 10px;">
             What is Nostradamus?
         </h3>
-        <p style="padding-left: 40px; padding-top: 10px">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus tincidunt dolor vel lacinia. Vivamus tempus feugiat egestas. Nam fringilla finibus eros, sed dictum dolor pharetra at. Proin lobortis vestibulum elit a vehicula. Nulla mattis dolor vel massa tincidunt convallis. Quisque at ligula lacinia, congue sem non, accumsan sem. Quisque ante nunc, facilisis sit amet nulla vel, volutpat ultrices sem.
+        <p style="padding-left: 20px; padding-right: 20px;padding-top: 10px;text-align: justify">
+            The goto tool for pattern identification for your use cases. The importance of the Design Phase in every Software Lifecycle cannot be underestimated.Considering the importance of the Design Phase in every Software Lifecycle, the application can be used as asupport tool to significantly reduce the time invested in choosing the right design to be implemented.
         </p>
     </md-whiteframe>
+        <md-whiteframe style="background-color:#E6E6E6;margin-top: 10px;" class="md-whiteframe-1dp" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout="row" layout-align="left">
+            <h3 style="text-align: center;padding-left: 10px;">Why Nostradamus?</h3>
+            <p style="padding-left: 20px; padding-right: 20px;padding-top: 10px;text-align: justify">
+                In the modern day, the presence and influence of software applications in all industries is extensive. Inevitably, this
+
+                leads to the requirement of patterns to ease the design, development, deployment and maintenance of software
+
+                applications. However, with the presence of numerous technologies and methodologies, the various stakeholders
+
+                involved in a project have to ensure that the right pattern is chosen based on the results of the requirements
+
+                engineering phase.
+            </p>
+        </md-whiteframe>
+        <h3 style="text-align: center;padding-left: 10px;">The Team</h3>
+        <md-content layout-xs="column" layout="row">
+            <md-card team-card style="background-color:#E6E6E6;" ng-repeat="person in persons" flex="24"></md-card>
+        </md-content>
+    <div flex></div>
+    <div layout="row" layout-padding layout-wrap style="padding-bottom: 10px;" ng-cloak>
+
+    </div>
+    </div>
+    <div flex>
+        <!--<md-grid-list style="margin: 8px;"
+                      md-cols-xs="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2"
+                      md-row-height-gt-md="3:2" md-row-height=1:1"
+                      md-gutter="12px" md-gutter-gt-sm="8px" >
+            <md-grid-tile style="background: #84ffff"
+                          md-rowspan="1" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
+                <h5 style="padding: 20px">“Curabitur tristique felis feugiat tristique scelerisque. Fusce non varius tortor. Mauris vitae porttitor ipsum.”</h5>
+                <md-grid-tile-footer>
+                    <p>User 1</p>
+                </md-grid-tile-footer>
+            </md-grid-tile >
+            <md-grid-tile style="background: #b9f6ca;" md-rowspan="2">
+                <h5 style="padding: 20px">“Curabitur tristique felis feugiat tristique scelerisque. Fusce non varius tortor. Mauris vitae porttitor ipsum.”</h5>
+                <md-grid-tile-footer>
+                    <p>User 2</p>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+            <md-grid-tile style="background: #ffff8d;">
+                <h6 style="padding: 20px">“Sed eu tristique mi. Maecenas sodales nulla in accumsan malesuada.”</h6>
+                <md-grid-tile-footer>
+                    <p>User 3</p>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+            <md-grid-tile style="background: #ff8a80;">
+                <p style="padding: 10px">“Donec varius ligula dui, nec cursus lorem ornare quis. Ut sed pulvinar arcu, quis dignissim ante. Ut ultrices justo ac euismod mattis.”</p>
+                <md-grid-tile-footer>
+                    <p>User 4</p>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>-->
+        <md-whiteframe style="background-color:#E6E6E6;" class="md-whiteframe-1dp" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout="column" layout-align="left">
+            <h3 style="text-align: center;padding-left: 10px;">Feedbacks</h3>
+            <md-card layout="row" feedback-item style="background-color:#FFFFFF;" ng-repeat="comment in feedbacks" flex></md-card>
+        </md-whiteframe>
+    </div>
 </div>
-<div flex><h3 style="text-align: center">Why Nostradamus?</h3></div>
-<div layout="row" layout-padding layout-wrap style="padding-bottom: 10px;" ng-cloak>
-    <md-whiteframe style="background-color:#E6E6E6;" class="md-whiteframe-1dp" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout="row" layout-align="left">
-        <p style="padding-left: 40px; padding-top: 10px">
-            Sed dictum augue quis ante pulvinar, non euismod nisi fringilla. Curabitur nec rutrum elit, nec elementum magna. In hac habitasse platea dictumst. Integer vehicula quis ante at ullamcorper. Aliquam erat volutpat. Vestibulum non tristique tortor. Mauris vel enim lacus. Praesent convallis lacus vel mauris blandit, vel accumsan purus ultricies. Sed nec tempus augue. Nam ac eros massa. Donec enim nulla, consectetur non lacinia non, tincidunt eu lectus. Aliquam erat volutpat. Ut sed sem sed lorem molestie pharetra. Curabitur facilisis sed odio eget interdum. Fusce tempus nisl leo, eget pretium odio accumsan quis.
-        </p>
-    </md-whiteframe>
-</div>
-<div flex><h3 style="text-align: center">Customer Reviews</h3></div>
-<md-grid-list style="margin: 8px;"
-        md-cols-xs="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="3"
-        md-row-height-gt-md="3:1" md-row-height="3:1"
-        md-gutter="12px" md-gutter-gt-sm="8px" >
-    <md-grid-tile style="background: #84ffff"
-                  md-rowspan="1" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
-        <h5 style="padding: 20px">“Curabitur tristique felis feugiat tristique scelerisque. Fusce non varius tortor. Mauris vitae porttitor ipsum.”</h5>
-        <md-grid-tile-footer>
-            <p>User 1</p>
-        </md-grid-tile-footer>
-    </md-grid-tile >
-    <md-grid-tile style="background: #b9f6ca;" md-rowspan="2">
-        <h5 style="padding: 20px">“Curabitur tristique felis feugiat tristique scelerisque. Fusce non varius tortor. Mauris vitae porttitor ipsum.”</h5>
-        <md-grid-tile-footer>
-            <p>User 2</p>
-        </md-grid-tile-footer>
-    </md-grid-tile>
-    <md-grid-tile style="background: #ffff8d;">
-        <h6 style="padding: 20px">“Sed eu tristique mi. Maecenas sodales nulla in accumsan malesuada.”</h6>
-        <md-grid-tile-footer>
-            <p>User 3</p>
-        </md-grid-tile-footer>
-    </md-grid-tile>
-    <md-grid-tile style="background: #ff8a80;">
-        <p style="padding: 10px">“Donec varius ligula dui, nec cursus lorem ornare quis. Ut sed pulvinar arcu, quis dignissim ante. Ut ultrices justo ac euismod mattis.”</p>
-        <md-grid-tile-footer>
-            <p>User 4</p>
-        </md-grid-tile-footer>
-    </md-grid-tile>
-</md-grid-list>
-<div flex><h3 style="text-align: center">The Team</h3></div>
-<md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="25" layout="column">
-        <md-card style="background-color:#E6E6E6;">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Member 1</span>
-                    <span class="md-subhead">Developer</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <img src="../../data/img/user.png"/>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>LinkedIN</md-button>
-                <md-button>Contact</md-button>
-            </md-card-actions>
-        </md-card>
-    </div>
-    <div flex-xs flex-gt-xs="25" layout="column">
-        <md-card style="background-color:#E6E6E6;">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Member 2</span>
-                    <span class="md-subhead">Developer</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <img src="../../data/img/user.png"/>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>LinkedIN</md-button>
-                <md-button>Contact</md-button>
-            </md-card-actions>
-        </md-card>
-    </div>
-    <div flex-xs flex-gt-xs="25" layout="column">
-        <md-card style="background-color:#E6E6E6;">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Member 3</span>
-                    <span class="md-subhead">Developer</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <img src="../../data/img/user.png"/>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>LinkedIN</md-button>
-                <md-button>Contact</md-button>
-            </md-card-actions>
-        </md-card>
-    </div>
-    <div flex-xs flex-gt-xs="25" layout="column">
-        <md-card style="background-color:#E6E6E6;">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">Member 4</span>
-                    <span class="md-subhead">Developer</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <img src="../../data/img/user.png"/>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>LinkedIN</md-button>
-                <md-button>Contact</md-button>
-            </md-card-actions>
-        </md-card>
-    </div>
-</md-content>
-<div layout=""class="footer" style="background-color:#E6E6E6;width: 100%; height: 75px; position: relative;bottom: 0;" flex>
-    <md-button>About Us</md-button>
-    <md-button>Sitemap</md-button>
-    <md-button>Feedback</md-button>
-    <md-button>Impresssum</md-button>
-    <md-button>Contact</md-button>
-</div>
+<div mv-c-footer></div>

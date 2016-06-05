@@ -20,7 +20,7 @@ angular.module('myApp.landing')
             }
         }
     })
-    .controller('LandingCtrl', function($scope) {
+    .controller('LandingCtrl', function($scope,$location) {
         $scope.slides = [
             {image: '../data/img/user.png', description: 'Image 00'},
             {image: '../data/img/twitter.png', description: 'Image 01'},
@@ -42,5 +42,41 @@ angular.module('myApp.landing')
         $scope.nextSlide = function () {
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
+
+        $scope.persons = [
+            {name: 'Akash Manjunath', role: 'Developer'},
+            {name: 'Gopala Krishna', role: 'Developer'},
+            {name: 'Prateek Bagrecha', role: 'Developer'},
+            {name: 'Shankar Mohan', role: 'Developer'}
+        ];
+
+        $scope.feedbacks = [
+            {text: 'I found the website very useful!!', author: 'Krishna'},
+            {text: 'Awesome work!', author: 'Akash'},
+            {text: 'I found the website very useful!!', author: 'Prateek'},
+            {text: 'Awesome work!', author: 'Shankar'},
+            {text: 'Awesome work!', author: 'Shankar'}
+        ];
+    })
+    .animation('.slide-animation', function () {
+        return {
+            addClass: function (element, className, done) {
+                if (className == 'ng-hide') {
+                    TweenMax.to(element, 0.5, {left: -element.width(), onComplete: done });
+                }
+                else {
+                    done();
+                }
+            },
+            removeClass: function (element, className, done) {
+                if (className == 'ng-hide') {
+                    // ANIMATION CODE GOES HERE
+                }
+                else {
+                    done();
+                }
+            }
+        };
     });
+
 

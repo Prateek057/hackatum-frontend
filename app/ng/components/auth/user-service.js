@@ -3,12 +3,12 @@
     angular.module('myApp')
         .service('currUser', currUserService);
 
-    function currUserService(BASEURL, $http, auth) {
+    function currUserService(BASEURL, $http, auth, $location) {
 
         this.register = register;
         this.login = login;
         this.loggedIn = auth.isAuthed;
-        this.logout = auth.deleteToken;
+        this.logout = logout;
         this.getUser = getUser;
 
 
@@ -29,6 +29,12 @@
                 username: user,
                 password: pass
             });
+        }
+
+        function logout(){
+            auth.deleteToken();
+            console.log("Redirecting...");
+            $location.path('/landing');
         }
 
         function getUser() {

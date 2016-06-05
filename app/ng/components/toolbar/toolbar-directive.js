@@ -3,7 +3,7 @@ angular.module('myApp')
         return {
             restrict: "A",
             templateUrl: "components/toolbar/toolbar.html",
-            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast) {
+            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast, $location) {
 
                 $scope.user = null;
 
@@ -11,6 +11,10 @@ angular.module('myApp')
                 $scope.showLoginDialog = showLoginDialog;
                 $scope.showSignupDialog = showSignupDialog;
                 $scope.logout = logout;
+
+                $scope.go = function ( path ) {
+                    $location.path( path );
+                };
 
                 $scope.$watch(function(){
                     return currUser.loggedIn();
@@ -20,8 +24,6 @@ angular.module('myApp')
                         $scope.user = currUser.getUser();
                     }
                 });
-
-
 
                 /////////////////////
 

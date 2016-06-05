@@ -1,6 +1,6 @@
 angular.module('myApp')
     .constant()
-    .controller("login", function ($scope, currUser, $mdDialog) {
+    .controller("login", function ($scope, currUser, $mdDialog, $location) {
         $scope.username = '';
         $scope.pwd = '';
         $scope.errorText = '';
@@ -10,6 +10,7 @@ angular.module('myApp')
 
         function login() {
             currUser.login($scope.username, $scope.password).then(function () {
+                $location.path('/dashboard');
                 $mdDialog.hide();
             }, function (response) {
                 status = response.status;

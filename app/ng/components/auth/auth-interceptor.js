@@ -4,7 +4,7 @@
         .factory("authInterceptor", authInterceptor);
 
     function authInterceptor(BASEURL, auth) {
-
+        
         function req(config){
             // automatically attach Authorization header
             if(config.url.indexOf(BASEURL) === 0 && auth.isAuthed()) {
