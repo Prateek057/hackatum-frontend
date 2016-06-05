@@ -3,12 +3,13 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-
 <md-toolbar class="md-primary md-medium-tall" style="background-color:#2c3e50" mv-toolbar>
 
 </md-toolbar>
 
-<md-content role="main" layout-padding ui-view="content" flex></md-content>
+<md-content role="main" ui-view="content" flex>
+
+</md-content>
 
 <!--stuff that belongs outside of the md-content container like fab buttons-->
 <!--<md-bottom-sheet style="background-color:#E6E6E6" >
@@ -19,9 +20,8 @@
         <p style="display: inline; font-weight: bold; font-size: x-small">Impressum</p>
     </md-menu>
 </md-bottom-sheet>-->
-
-
 <div ui-view="outside"></div>
+
 
 
 
