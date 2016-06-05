@@ -65,6 +65,4 @@ angular.module('myApp.dashboard')
             };
         }
     };
-});/**
- * Created by Akash on 6/4/2016.
- */
+});

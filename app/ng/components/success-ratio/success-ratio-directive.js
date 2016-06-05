@@ -4,7 +4,6 @@
 'use strict';
 
 angular.module('myApp.dashboard')
-
     .directive('mvSuccessRatio', function() {
         return {
             restrict: 'A',

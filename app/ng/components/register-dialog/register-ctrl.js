@@ -11,14 +11,6 @@ angular.module('myApp')
 
 
         $scope.regDate = new Date();
-        $scope.regDate = new Date(
-            $scope.regDate.getFullYear(),
-            $scope.regDate.getMonth(),
-            $scope.regDate.getDate());
-        $scope.minDate = new Date(
-            $scope.regDate.getFullYear(),
-            $scope.regDate.getMonth(),
-            $scope.regDate.getDate());
         $scope.expDate = new Date(
             $scope.regDate.getFullYear(),
             $scope.regDate.getMonth(),
