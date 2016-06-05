@@ -6,5 +6,5 @@
 angular.module('myApp.dashboard')
 
     .factory('Dashboard', function( $resource) {
-        return $resource('http://localhost:3000/api/dashboard');
+        return $resource('http://localhost:3000/api/history');
     });
