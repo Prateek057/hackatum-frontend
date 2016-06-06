@@ -66,6 +66,7 @@ angular.module('myApp.pattern')
             console.log($scope.currentQuestion);
 
             $scope.nextQuestion = function (selectedOption) {
+                console.log("Next Question Called");
                 if (!$scope.isOptionPresent(selectedOption)) {
                     $scope.selectedOptions.push(selectedOption);
                 }
@@ -116,6 +117,7 @@ angular.module('myApp.pattern')
 
         $scope.nextTab = function (changeToIndex) {
 
+            console.log("Next Tab Called");
             if ($scope.selectedIndex >= $scope.max) {
                 console.log($scope.selectedOptions);
                 $location.path("/result");
