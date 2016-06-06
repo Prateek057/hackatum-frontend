@@ -36,7 +36,19 @@ angular.module('myApp.pattern')
 
         }
     })
-    .controller('PatternListCtrl', function ($scope, Pattern, Question, $location) {
+    .controller('PatternListCtrl', function ($scope, Pattern, Question, $location, currUser) {
+
+
+        $scope.authed = false;
+
+        $scope.$watch(function(){
+            return currUser.loggedIn();
+        }, function(loggedIn){
+            $scope.authed = loggedIn;
+            if(!$scope.authed){
+                $location.path('/landing');
+            }
+        });
 
         $scope.nextIndex = 0;
         $scope.selectedOptions = []
@@ -49,11 +61,9 @@ angular.module('myApp.pattern')
             }
 
             $scope.questions = questionDetails;
-            $scope.no_of_questions = $scope.questions.length
+            $scope.no_of_questions = $scope.questions.length;
             $scope.currentQuestion = $scope.questions[0];
             console.log($scope.currentQuestion);
-            console.log($scope.currentQuestion.questionOptions);
-            console.log($scope.currentQuestion.questionOptions.valueOf());
 
             $scope.nextQuestion = function (selectedOption) {
                 if (!$scope.isOptionPresent(selectedOption)) {
@@ -61,12 +71,15 @@ angular.module('myApp.pattern')
                 }
 
                 if ($scope.questionSelectedIndex == $scope.no_of_questions - 1) {
+                    $scope.currentQuestion = null;
                     $scope.nextTab($scope.selectedIndex);
                 }
                 else {
                     var questionIndex = $scope.questionSelectedIndex + 1;
                     $scope.questionSelectedIndex = questionIndex;
                     $scope.currentQuestion = $scope.questions[$scope.questionSelectedIndex];
+                    console.log($scope.currentQuestion);
+                    console.log($scope.questionSelectedIndex);
                 }
             };
         });

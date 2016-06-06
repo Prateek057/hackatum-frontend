@@ -3,7 +3,7 @@ angular.module('myApp')
         return {
             restrict: "A",
             templateUrl: "components/toolbar/toolbar.html",
-            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast, $location) {
+            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast, $location, $window) {
 
                 $scope.user = null;
 
@@ -20,8 +20,12 @@ angular.module('myApp')
                     return currUser.loggedIn();
                 }, function(loggedIn){
                     $scope.loggedIn = loggedIn;
-                    if (loggedIn && !$scope.user) {
+                    if (loggedIn && !$scope.user){
+
+                        console.log("JWT Token");
+                        console.log( $window.localStorage.getItem('jwtToken'));
                         $scope.user = currUser.getUser();
+                        console.log($scope.user);
                     }
                 });
 

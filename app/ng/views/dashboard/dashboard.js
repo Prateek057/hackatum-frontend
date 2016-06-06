@@ -24,7 +24,7 @@ angular.module('myApp.dashboard')
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }])
-    .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia,currUser) {
+    .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia, currUser, $location) {
 
         $scope.authed = false;
 
@@ -32,20 +32,10 @@ angular.module('myApp.dashboard')
             return currUser.loggedIn();
         }, function(loggedIn){
             $scope.authed = loggedIn;
-        });
-
-        /*$scope.user = null;
-
-        $scope.$watch(function(){
-            return currUser.loggedIn();
-        }, function(loggedIn){
-            $scope.loggedIn = loggedIn;
-            if (loggedIn && !$scope.user) {
-                $scope.user = currUser.getUser();
-
+            if(!$scope.authed){
+                $location.path('/landing');
             }
         });
-        */
 
         var dashboardDetailsPromise =  Dashboard.query(function(){
 

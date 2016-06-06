@@ -32,8 +32,11 @@
         }
 
         function logout(){
+            console.log(auth.getToken());
             auth.deleteToken();
             console.log("Redirecting...");
+            console.log(auth.getToken());
+            $scope.user = null;
             $location.path('/landing');
         }
 
