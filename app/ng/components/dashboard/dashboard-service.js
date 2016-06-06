@@ -5,6 +5,8 @@
 
 angular.module('myApp.dashboard')
 
-    .factory('Dashboard', function( $resource) {
-        return $resource('http://localhost:3000/api/history');
+    .factory('Dashboard', function($resource,currUser) {
+        var user = currUser.getUser();
+        console.log(user.username);
+        return $resource('http://localhost:3000/api/history/'+user.username);
     });
