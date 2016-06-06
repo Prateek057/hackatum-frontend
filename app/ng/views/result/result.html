@@ -1,0 +1,24 @@
+<div class="resultDiv" flex="100" layout="column" layout-align="center stretch" layout-margin="120px">
+    <h1>{{pattern.patternName}}</h1>
+    <md-tabs md-whiteframe="1" flex="100" md-border-bottom="" md-selected="selectedIndex">
+        <md-tab label="Context" id="pattern-context">
+            <md-content layout="row" flex="100" class="md-neu-content md-padding">{{pattern.patternContext}}
+            </md-content>
+        </md-tab>
+        <md-tab label="Problem" id="pattern-problem">
+            <md-content layout="row" flex="100" class="md-neu-content md-padding">{{pattern.patternProblem}}
+            </md-content>
+        </md-tab>
+        <md-tab label="Structure" id="pattern-structure">
+            <md-content layout="row" flex="100" class="md-neu-content md-padding">{{pattern.patternStructure}}
+            </md-content>
+        </md-tab>
+        <md-tab label="UML Diagram" id="pattern-uml">
+            <md-content layout="row" flex="100" class="md-neu-content md-padding">{{pattern.patternURL}}</md-content>
+        </md-tab>
+        <md-tab label="Related Patterns" id="pattern-related">
+            <md-content layout="row" flex="100" class="md-neu-content md-padding">{{pattern.patternContext}}
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>
