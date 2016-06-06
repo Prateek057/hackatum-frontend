@@ -1,8 +1,15 @@
+<style>
+    .tableCell{
+        max-height:10px;
+        width:150px;
+    }
+
+</style>
+
 <md-card-title>
 
     <md-card-title-text>
         <span class="md-headline">Your History</span>
-        <!--<span class="md-subhead"></span>-->
     </md-card-title-text>
 
 </md-card-title>
@@ -14,55 +21,52 @@
         </div>
     </form>
 
+    <br/>
+
     <md-table-container>
         <table class="table table-hover table-mc-light-blue table-bordered">
             <thead >
             <tr >
-                <th style="width:150px;">Date</th>
-                <th style="width:150px;">Use Case</th>
-                <th style="width:150px;">Result</th>
-                <th style="width:150px;">Rating</th>
-                <th style="width:150px;">Comments</th>
+                <th class="tableCell">Date</th>
+                <th class="tableCell">Use Case</th>
+                <th class="tableCell">Result</th>
+                <th class="tableCell">Rating</th>
+                <th class="tableCell">Comments</th>
             </tr>
             </thead>
             <tbody >
-            <tr dir-paginate="data in dashboardTable | filter:search | itemsPerPage:10 | orderBy:-data.date">
-                <td data-title="dateOfUse">{{data.date}}</td>
-                <td data-title="shortDesc">{{data.usecaseShortDesc}}</td>
-                <td data-title="result">{{data.usecaseResult}}</td>
-                <td data-title="rating">
-                    <span ng-if="!data.usecaseRating">
-                        <!--<div star-rating rating="starRating0" click="click3(param)"
-                             mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)"></div>-->
-                        <a href="javascript:void(0);" ng-click = "showFeedbackForm()">Click to rate!</a>
-                        <!--<div> <span class="label label-primary">Star Rating: {{starRating3}}</span>
-                            <span class="label label-primary">Hover Rating: {{hoverRating3}}</span></div>-->
+            <tr dir-paginate="data in dashboardTable | filter:search | itemsPerPage:10 | orderBy:-data.date" class="tableCell">
+                <td data-title="dateOfUse" class="tableCell">{{data.analysisDate| date : format : 'MMM d, y'}}</td>
+                <td data-title="shortDesc" class="tableCell">{{data.userStoryName}}</td>
+                <td data-title="result" class="tableCell">{{data.analysisResult}}</td>
+                <td data-title="rating" class="tableCell">
+                    <span ng-if="!data.resultRating">
+                        <a href="javascript:void(0);" ng-click = "showFeedbackForm()">Click to rate</a>
                     </span>
-                    <span ng-if="data.usecaseRating==5">
-                        <!--<div star-rating rating="starRating5"></div>-->
+                    <span ng-if="data.resultRating==5" flex>
                         <span ng-repeat="i in [1,2,3,4,5]">
-                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="36"></ng-md-icon></span>
+                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="30"></ng-md-icon></span>
                     </span>
-                    <span ng-if="data.usecaseRating==4">
+                    <span ng-if="data.resultRating==4" flex>
                         <span ng-repeat="i in [1,2,3,4]">
-                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="36"></ng-md-icon></span>
+                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="30"></ng-md-icon></span>
                     </span>
-                    <span ng-if="data.usecaseRating==3">
+                    <span ng-if="data.resultRating==3" flex>
                         <span ng-repeat="i in [1,2,3]">
-                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="36"></ng-md-icon></span>
+                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="30"></ng-md-icon></span>
                     </span>
-                    <span ng-if="data.usecaseRating==2">
+                    <span ng-if="data.resultRating==2" flex>
                         <span ng-repeat="i in [1,2]">
-                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="36"></ng-md-icon></span>
+                            <ng-md-icon icon="star_rate" style="fill:#DAA520" size="30"></ng-md-icon></span>
                     </span>
-                    <span ng-if="data.usecaseRating==1">
-                        <ng-md-icon icon="star_rate" style="fill:#DAA520" size="36"></ng-md-icon>
+                    <span ng-if="data.resultRating==1" flex>
+                        <ng-md-icon icon="star_rate" style="fill:#DAA520" size="30"></ng-md-icon>
                     </span>
 
                 </td>
                 <td data-title="comment">
-                    <span ng-if="!data.usecaseComment">To be rated.</span>
-                    <span>{{data.usecaseComment}}</span>
+                    <span ng-if="!data.userFeedback">TO BE RATED</span>
+                    <span>{{data.userFeedback}}</span>
                 </td>
             </tr>
             </tbody>

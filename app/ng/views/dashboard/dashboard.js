@@ -26,6 +26,14 @@ angular.module('myApp.dashboard')
     }])
     .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia,currUser) {
 
+        $scope.authed = false;
+
+        $scope.$watch(function(){
+            return currUser.loggedIn();
+        }, function(loggedIn){
+            $scope.authed = loggedIn;
+        });
+
         /*$scope.user = null;
 
         $scope.$watch(function(){
@@ -53,22 +61,19 @@ angular.module('myApp.dashboard')
             var one=0;var two=0;var three=0;var four=0;var five=0;
 
             for(var ctr=0;ctr<dashboardDetails.length;ctr++){
-                if(dashboardDetails[ctr].usecaseRating=='1')
+                if(dashboardDetails[ctr].resultRating=='1')
                     one++;
-                else if(dashboardDetails[ctr].usecaseRating=='2')
+                else if(dashboardDetails[ctr].resultRating=='2')
                     two++;
-                else if(dashboardDetails[ctr].usecaseRating=='3')
+                else if(dashboardDetails[ctr].resultRating=='3')
                     three++;
-                else if(dashboardDetails[ctr].usecaseRating=='4')
+                else if(dashboardDetails[ctr].resultRating=='4')
                     four++;
-                else if(dashboardDetails[ctr].usecaseRating=='5')
+                else if(dashboardDetails[ctr].resultRating=='5')
                     five++;
             }
             $scope.pieChartLabels = ["1 Star","2 Star","3 Star","4 Star","5 Star"];
             $scope.pieChartData = [one,two,three,four,five ];
-
-
-
 
         });
 

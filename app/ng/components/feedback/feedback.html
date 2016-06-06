@@ -1,6 +1,9 @@
 <md-dialog class="mv-create-dialog">
+
     <form name="movieForm">
-        <md-toolbar>
+
+        <md-toolbar style="background-color:#2c3e50;">
+
             <div class="md-toolbar-tools">
                 <h2>Feedback</h2>
                 <span flex></span>
@@ -8,66 +11,25 @@
                     <md-icon md-svg-icon="content:ic_clear_24px" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
+
         </md-toolbar>
 
         <md-dialog-content style="width:auto">
+
             <div class="md-dialog-content">
 
-                <div star-rating rating="starRating0" click="click3(param)"
-                     mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)"></div>
+                <div star-rating rating="starRating5" click="click3(param)"
+                     mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)" layout-padding></div>
 
-                <!--<div layout-gt-xs="row" >
-                    <md-input-container layout-fill layout-padding="20">
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                    </md-input-container>
-                </div>
-                <div layout-gt-xs="row">
-                    <md-input-container layout-fill layout-padding="20">
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                    </md-input-container>
-                </div>
-                <div layout-gt-xs="row">
-                    <md-input-container layout-fill layout-padding="20">
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                    </md-input-container>
-                </div>
-                <div layout-gt-xs="row">
-                    <md-input-container layout-fill layout-padding="20">
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                    </md-input-container>
-                </div>
-                <div layout-gt-xs="row">
-                    <md-input-container layout-fill layout-padding="20">
-                        <ng-md-icon icon="stars" style="fill:black" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                        <ng-md-icon icon="stars" style="fill:gray" size="36"></ng-md-icon>
-                    </md-input-container>
-                </div>-->
-
-                <md-input-container class="md-block">
-                    <label>Comment</label>
-                    <textarea ng-model="movie.synopsis" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+                <md-input-container class="md-block" layout-padding>
+                    <label layout-padding>Feedback comments</label>
+                    <textarea ng-model="movie.synopsis" md-maxlength="500" rows="5"
+                              md-select-on-focus></textarea>
                 </md-input-container>
+
             </div>
         </md-dialog-content>
+
         <md-dialog-actions layout="row">
             <md-button ng-click="cancel()">
                 Cancel
@@ -77,5 +39,7 @@
                 Save
             </md-button>
         </md-dialog-actions>
+
     </form>
+
 </md-dialog>
