@@ -28,7 +28,6 @@ angular.module('myApp.dashboard')
                 mm='0'+mm
             }
             var date = dd+'/'+mm+'/'+yyyy;
-            console.log(date);
             var fdate = new Date(date);
             return fdate;
         }

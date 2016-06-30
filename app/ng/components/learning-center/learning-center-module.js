@@ -1,13 +1,13 @@
 /**
- * Created by Akash on 6/2/2016.
+ * Created by Akash on 6/30/2016.
  */
-angular.module('myApp.dashboard', ['ngResource', 'ui.router',
-    'ngMaterial','ngResource','angularUtils.directives.dirPagination', 'ngMessages'])
+angular.module('myApp.learningcenter', ['ngResource', 'ui.router',
+        'ngMaterial','ngResource', 'ngMessages'])
 
-    .config(function ($stateProvider, $urlRouterProvider, dashboardState) {
+    .config(function ($stateProvider, $urlRouterProvider, learningcenterState) {
         $stateProvider
 
-            .state('dashboard', {
+            .state('learningcenter', {
 
                 // With abstract set to true, that means this state can not be explicitly activated.
                 // It can only be implicitly activated by activating one of its children.
@@ -15,7 +15,7 @@ angular.module('myApp.dashboard', ['ngResource', 'ui.router',
                 parent: 'root',
 
                 // This abstract state will prepend '/movies' onto the urls of all its children.
-                url: '/dashboard',
+                url: '/learningcenter',
 
                 // since we have views we do not need to define a template here
                 //template: '<div ui-view></div>',
@@ -23,13 +23,6 @@ angular.module('myApp.dashboard', ['ngResource', 'ui.router',
 
             // Using a '.' within a state name declares a child within a parent.
             // So you have a new state 'list' within the parent 'movies' state.
-            .state(dashboardState.name, dashboardState.options);
-
-            //.state(movieDetailsState.name, movieDetailsState.options);
+            .state(learningcenterState.name, learningcenterState.options);
 
     });
-
-
-
-
-

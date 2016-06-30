@@ -21,10 +21,18 @@ angular.module('myApp.dashboard')
             }
         }
     })
-    .config(['$httpProvider', function($httpProvider) {
+    .config(['$httpProvider', function($httpProvider,$mdIconProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }])
     .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia, currUser, $location) {
+
+        $scope.isDisabled = true;
+		$scope.readonly = true;
+        $scope.disabled1 = Math.floor(Math.random() * 100);
+        $scope.disabled2 = 0;
+        $scope.disabled3 = 70;
+		
+		 $scope.master = Math.floor(Math.random() * 100);
 
         $scope.authed = false;
 
