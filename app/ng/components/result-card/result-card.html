@@ -1,9 +1,24 @@
-<div class="resultDiv" flex="100" layout="column" layout-align="center stretch" layout-margin="120px">
-    <h1>The {{currentPattern.patternName}}</h1>
-    <md-card md-whiteframe="2" flex="100" md-border-bottom="" md-selected="selectedIndex">
-        <div ng-repeat="(key, value) in currentPattern" label="{{key}}" id="{{key}}">
-            <md-content layout="row" flex="100" class="md-neu-content md-padding">{{value}}
+<div class="resultDiv" flex="100" layout="column"
+     layout-align="center stretch" layout-margin="120px">
+    <span ng-if="resultType==='pattern'"><h1>Pattern :  {{result.patternName}}</h1></span>
+    <span ng-if="resultType==='antipatterns'"><h1>Anti-Pattern  :  {{result.apname}}</h1></span>
+
+    <div ng-if="resultType==='pattern'">
+        {{result.patternTopLevelType}}<br/>
+        {{result.patternParentType}}<br/>
+        {{result.patternContext}}<br/>
+        {{result.patternProblem}}<br/>
+        {{result.patternStructure}}<br/>
+        {{result.patternRelated}}<br/>
+    </div>
+
+    <div ng-if="resultType==='antipatterns'">
+        <div ng-repeat="(key, value) in result" label="{{key}}" id="{{key}}">
+            <md-content layout="row" flex style="max-width:80%"
+                        class="md-neu-content md-padding">
+                {{key}}
+                {{value}}
             </md-content>
         </div>
-    </md-card>
+    </div>
 </div>

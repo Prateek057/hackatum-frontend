@@ -25,7 +25,7 @@ angular.module('myApp.learningcenter')
         $httpProvider.interceptors.push('authInterceptor');
     }])
     .controller('LearningCenterCtrl', function($scope,  $mdToast, $mdDialog,$mdMedia, $mdSidenav,
-                                               currUser, $location) {
+                                               currUser, $location, $http, BASEURL) {
 
         $scope.authed = false;
 
@@ -38,10 +38,42 @@ angular.module('myApp.learningcenter')
             }
         });
 
-        $scope.isSidenavOpen = false;
 
-        $scope.openLeftMenu = function() {
-            $mdSidenav('left').toggle();
+        $scope.loadMenu = function(option) {
+            $scope.result = "";
+            if(option==='pattern'){
+                $scope.resultType='pattern';
+                $http.get(BASEURL+'/api/patternnamelist')
+                    .then(function successCallback(response) {
+                        $scope.sidenavheader = "Pattern List";
+                        $scope.list = response.data;
+                    }, function errorCallback(response) {
+
+                    });
+            }
+            else if (option==='antipatterns'){
+                $scope.resultType='antipatterns';
+                $http.get(BASEURL+'/api/antipatternnamelist')
+                    .then(function successCallback(response) {
+                        $scope.sidenavheader = "Antipattern List";
+                        $scope.list = response.data;
+                    }, function errorCallback(response) {
+
+                    });
+            }
         };
 
+        $scope.getDetails = function(pattern){
+            console.log(pattern);
+            $scope.pattern = pattern;
+            var url = BASEURL+'/api/'+$scope.resultType+'/byName/'+pattern;
+            console.log(url);
+            $http.get(url)
+                .then(function successCallback(response) {
+                    console.log(response.data[0]);
+                    $scope.result = response.data[0];
+                }, function errorCallback(response) {
+                    console.log("error")
+                });
+        }
     });
