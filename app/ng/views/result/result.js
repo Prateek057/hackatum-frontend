@@ -41,7 +41,7 @@ angular.module('myApp.result')
                 patternDetails.push(patternPromise[ctr]);
             }
             $scope.patterns = patternDetails;
-            $scope.pattern = $scope.patterns[0];
+            $scope.currentPattern = $scope.patterns[0];
         });
 
     })
