@@ -2,15 +2,15 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp',
-    ['ui.router', 'ui.bootstrap', 'cycleGallery','slick','chart.js', 'myApp.landing', 'myApp.dashboard', 'myApp.pattern',
-        'myApp.result', 'templates', 'myApp.learningcenter',
+    ['ui.router', 'ui.bootstrap', 'chart.js', 'myApp.landing', 'myApp.dashboard', 'myApp.pattern',
+        'myApp.result', 'templates', 'myApp.antipattern','myApp.learningcenter','myApp.stats','myApp.feedview',
         'ncy-angular-breadcrumb', 'ngMaterial', 'ngResource', 'ngMessages', 'ngMdIcons', 'md.data.table'])
 
-    .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $httpProvider, $breadcrumbProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider,
+                      $httpProvider, $breadcrumbProvider) {
 
         // For any unmatched url, redirect to /movies
         $urlRouterProvider.otherwise("/landing");
-
 
         $stateProvider
             .state('root', {

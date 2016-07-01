@@ -1,47 +1,44 @@
 <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" flex ng-cloak>
     <md-card style="background-color:#2c3e50">
         <img style="padding-left: 50px;padding-right: 50px; padding-top: 30px" src="../../data/img/user_new.png" height="20px" width="20px"/>
-        <span class="md-subhead" style="text-align: center; color:#FFFFFF;padding: 10px;" class="md-body-2" ng-if="loggedIn">{{user.username}} the Admin</span>
-            <md-list style="color:#FFFFFF;">
-                <md-list-item>
-                    <md-divider style="background-color: #FFFFFF" flex></md-divider>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                    <h5 flex>Overview</h5>
-                    <md-divider style="background-color: #FFFFFF" flex></md-divider>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                    <h5 flex>Feedbacks</h5>
-                    <md-divider style="background-color: #FFFFFF" flex></md-divider>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                    <h5 flex>New Pattern</h5>
-                    <md-divider style="background-color: #FFFFFF" flex></md-divider>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                    <h5 flex>Feedbacks</h5>
-                    <md-divider style="background-color: #FFFFFF" flex></md-divider>
-                </md-list-item>
-            </md-list>
+        <span class="md-subhead" style="text-align: center; color:#FFFFFF;padding: 10px;" class="md-body-2" ng-if="loggedIn">{{user.username}}</span>
+        <md-list style="color:#FFFFFF;">
+            <md-list-item>
+                <md-divider style="background-color: #FFFFFF" flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>Overview</h5>
+                <md-divider style="background-color: #FFFFFF" flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>Feedbacks</h5>
+                <md-divider style="background-color: #FFFFFF" flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>New Pattern</h5>
+                <md-divider style="background-color: #FFFFFF" flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>Feedbacks</h5>
+                <md-divider style="background-color: #FFFFFF" flex></md-divider>
+            </md-list-item>
+        </md-list>
     </md-card>
-    <md-content>
-            <md-card style="background-color:#E6E6E6;" layout="row" flex>
-                <canvas id="bar" class="chart chart-bar"
-                        chart-data="bdata" chart-labels="blabels" colours="bcolours" width="{{mainwidth_chart}}" height="{{height_chart}}" flex> chart-series="series"
-                </canvas>
-            </md-card>
-            <div layout="row" flex>
-                <md-card style="background-color:#E6E6E6;" layout="column" >
-                    <canvas id="pie" class="chart chart-pie" style="padding: 10px;"
-                            chart-data="data" chart-labels="labels" chart-options="options" width="{{subwidth_chart}}" height="{{height_chart}}" flex>
-                    </canvas>
-                </md-card>
-                <md-card style="background-color:#E6E6E6;" layout="column">
-                    <canvas id="line" class="chart chart-line" chart-data="ldata"
-                            chart-labels="llabels" chart-series="series" chart-options="options"
-                            chart-dataset-override="datasetOverride" chart-click="onClick" width="{{subwidth_chart}}" height="{{height_chart}}" flex
-                    </canvas>
-                </md-card>
-            </div>
-    </md-content>
+
+    <md-card >
+        <canvas id="bar" class="chart chart-bar"
+                chart-data="patterndata" chart-labels="patternlabels">
+        </canvas>
+    </md-card>
+
+    <md-card flex="100">
+        <canvas id="antipatternbar" class="chart chart-bar"
+                chart-data="antipatterndata" chart-labels="antipatternlabels">
+        </canvas>
+    </md-card>
+
+    <!--<canvas id="radar" class="chart chart-radar"
+            chart-data="patterndata" chart-labels="patternlabels">
+    </canvas>-->
+
 </div>

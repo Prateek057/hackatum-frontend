@@ -85,7 +85,6 @@ angular.module('myApp.dashboard')
                     preserveScope:true
                 })
                 .then(function(answer) {
-
                     if (answer) {
                         showSimpleToast('Thank you for the feedback');
                     } else {
@@ -103,7 +102,6 @@ angular.module('myApp.dashboard')
 
                 );
             }
-
         }
 
         $scope.starRating0 = 0;

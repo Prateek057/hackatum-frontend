@@ -1,11 +1,25 @@
-<div flex="100" ng-show="showresult">
-    <h1>Possible antipatterns present : </h1>
+<div flex="100" layout-padding>
+    <h1><b>Possible antipatterns present : </b></h1>
         <span ng-repeat="result in selected">
-            <b><i><u>{{result.apname}}</u></i></b><br/>
-            <b>Problem Context</b><br/>
-            {{result.apcontext}}<br/>
-            <b>Solution</b><br/>
-            {{result.apsolution}}<br/><br/>
+            <h1 layout-padding style="text-transform: uppercase;"><b>{{result.apname}}</b></h1>
+            <md-card mv-movie-card class="mv-result-card" layout-padding>
+                <h2><b>Statement</b></h2>
+                <h3>{{result.apstatement}}</h3>
+            </md-card>
+            <md-card class="mv-result-card" layout-padding>
+                <h2><b>Context</b></h2>
+                <h3>{{result.apcontext}}</h3>
+            </md-card>
+            <md-card class="mv-result-card" layout-padding>
+                <h2><b>Solution</b></h2>
+                <h3>{{result.apsolution}}</h3>
+            </md-card>
         </span>
-    <h6>For more information about patterns and anti-patterns, please visit the learning center</h6>
+
+    <h5>For more information about patterns and anti-patterns, please visit the
+        <a href="#/learningcenter">learning center</a></h5>
+
+    <md-button class="md-raised md-cornered" style="background-color:#2c3e50;color:white;"
+            href="#/dashboard">Finish</md-button>
+
 </div>
