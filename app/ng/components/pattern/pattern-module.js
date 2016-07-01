@@ -15,5 +15,5 @@ angular.module('myApp.pattern', ['ngResource', 'ui.router', 'ngAnimate'])
             url: '/pattern'
 
         })
-        .state(patternState.name, patternState.options)
+        .state(patternState.name, patternState.options, patternState.Phases)
 });

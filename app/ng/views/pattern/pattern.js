@@ -34,56 +34,80 @@ angular.module('myApp.pattern')
                 label: "Identify the Pattern"
             }
 
+
+        },
+        Phases: {
+            CurrentPhase: "Pattern",
+            PrevPhase: "",
+            PhaseNumber: 1,
+            PhaseValue: 0,
+            PhaseName: "Determine Pattern"
+
         }
     })
-    .controller('PatternListCtrl', function ($scope, Pattern, Question, $location, currUser) {
-
-
+    .controller('PatternListCtrl', function ($rootScope, $scope, $q, patternState, QuestionsByPatternType,
+                                             $location, currUser, BASEURL, $http) {
+        $rootScope.patternResults = [];
         $scope.authed = false;
+        $scope.showProceedButton = false;
+        $scope.showResults = false;
+        $scope.prevPhaseResults = [];
+        $scope.selectedIndex = 0;
+        $scope.phaseNumber = patternState.Phases.PhaseNumber;
+        $scope.phaseProgress = patternState.Phases.PhaseValue;
+        $scope.phasePatternType = patternState.Phases.CurrentPhase;
+        $scope.tabs = [];
+        $scope.tabs.push({
+            index: patternState.Phases.PhaseNumber,
+            title: patternState.Phases.PhaseName
+        });
+        $scope.maxTabs = $scope.tabs.length;
+        $scope.nextIndex = 0;
+        $scope.selectedOptions = [];
+        $scope.selectedOption = "";
 
-        $scope.$watch(function(){
+        $scope.$watch(function () {
             return currUser.loggedIn();
-        }, function(loggedIn){
+        }, function (loggedIn) {
             $scope.authed = loggedIn;
-            if(!$scope.authed){
+            if (!$scope.authed) {
                 $location.path('/landing');
             }
         });
 
-        $scope.nextIndex = 0;
-        $scope.selectedOptions = []
-        $scope.selectedOption = "";
+        $q.all($scope.questions);
 
-        var questionsPromise = Question.query(function () {
-            var questionDetails = [];
-            for (var ctr = 0; ctr < questionsPromise.length; ctr++) {
-                questionDetails.push(questionsPromise[ctr]);
+        $scope.submitUseCase = function () {
+            if ($scope.useCaseDesc && $scope.useCaseName) {
+                $scope.phaseProgress += 20;
+                $scope.getNextQuestions($scope.phasePatternType);
+                $scope.nextTab();
             }
+        };
 
-            $scope.questions = questionDetails;
-            $scope.no_of_questions = $scope.questions.length;
-            $scope.currentQuestion = $scope.questions[0];
-            console.log($scope.currentQuestion);
+        $scope.getNextQuestions = function (patternType) {
+            var questionPromise = QuestionsByPatternType.query(patternType).$promise;
 
-            $scope.nextQuestion = function (selectedOption) {
-                console.log("Next Question Called");
-                if (!$scope.isOptionPresent(selectedOption)) {
-                    $scope.selectedOptions.push(selectedOption);
-                }
-
-                if ($scope.questionSelectedIndex == $scope.no_of_questions - 1) {
-                    $scope.currentQuestion = null;
-                    $scope.nextTab($scope.selectedIndex);
-                }
-                else {
-                    var questionIndex = $scope.questionSelectedIndex + 1;
-                    $scope.questionSelectedIndex = questionIndex;
+            questionPromise.then(function (data) {
+                if (data.length != 0) {
+                    $scope.questions = data;
+                    $scope.noOfQuestions = data.length;
+                    $scope.questionSelectedIndex = 0;
                     $scope.currentQuestion = $scope.questions[$scope.questionSelectedIndex];
-                    console.log($scope.currentQuestion);
-                    console.log($scope.questionSelectedIndex);
+                } else {
+                    $scope.showResults = true;
+                    $scope.getResults();
                 }
-            };
-        });
+            });
+            return $scope.showResults;
+        };
+
+
+        /*
+         Check if Particular Option exists in the List of Selected Options
+         if Present : do not add again
+         if not Add to the List
+         */
         $scope.isOptionPresent = function (selectedOption) {
             var index = $scope.selectedOptions.indexOf(selectedOption);
             var isPresent = false;
@@ -92,46 +116,97 @@ angular.module('myApp.pattern')
             }
             return isPresent;
         };
-        $scope.tabs = [
-            {index: 0, title: 'Phase1'},
-            {index: 1, title: 'Phase2'}
-        ];
-        $scope.showProceedButton = false;
-        $scope.currentQuestion = null;
 
-        $scope.disableValue = [];
-        for (var i = 0; i < $scope.tabs.length; i++) {
-            $scope.disableValue[i] = true;
+        $scope.isPositiveOption = function (option) {
+            return !(option.includes("!") || option === null);
+        };
+
+
+        $scope.nextTab = function () {
+            if ($scope.showResults == true) {
+                $scope.getResults();
+            }
+            else {
+                $scope.selectedIndex = ($scope.selectedIndex == $scope.max + 1) ? $scope.max + 1 : $scope.selectedIndex + 1;
+            }
+        };
+
+
+        $scope.nextPhase = function () {
+            $scope.questions = [];
+            patternState.Phases.PrevPhase = $scope.phasePatternType;
+            $scope.prevPhaseResults = $scope.selectedOptions.filter($scope.isPositiveOption);
+            $scope.prevPhaseResults.forEach(function (selectedOption) {
+                $scope.getNextQuestions(selectedOption);
+            });
+            $scope.isShowResultsTrue = $scope.getNextQuestions($scope.phasePatternType);
+            console.log($scope.isShowResultsTrue);
+            if ($scope.isShowResultsTrue) {
+                $scope.getResults();
+            }
+            else {
+                $scope.phasePatternType = $scope.selectedOptions.shift().toString();
+                patternState.Phases.CurrentPhase = $scope.phasePatternType;
+                $scope.selectedOptions = [];
+                $scope.phaseNumber += 1;
+                $scope.phaseProgress += 20;
+                $scope.maxTabs += $scope.tabs.push({
+                    index: $scope.phaseNumber,
+                    title: "Determine " + $scope.phasePatternType
+                });
+                $scope.nextTab();
+            }
+        };
+
+        $scope.getResults = function () {
+            $rootScope.patternResults = $scope.prevPhaseResults;
+            var user = currUser.getUser();
+            var analysisResult = $rootScope.patternResults[0];
+            var userStoryName = $scope.useCaseName;
+            var userStroyDesc = $scope.useCaseDesc;
+            postFeedback(user.username, userStroyDesc, userStoryName, analysisResult);
+            console.log($rootScope.patternResults);
+            $location.path("/result");
+        };
+
+        $scope.nextQuestion = function (selectedOption) {
+            /*
+             Check if option present, else push to Selected Options Stack
+             */
+            if (!$scope.isOptionPresent(selectedOption)) {
+                $scope.selectedOptions.push(selectedOption);
+            }
+            /*
+             Check for end of list of questions
+             */
+            if ($scope.questionSelectedIndex == $scope.noOfQuestions - 1) {
+                if (!(patternState.Phases.CurrentPhase === "Pattern" ||
+                    patternState.Phases.CurrentPhase === "Design" ||
+                    patternState.Phases.CurrentPhase === "Creational" ||
+                    patternState.Phases.CurrentPhase === "Structural" ||
+                    patternState.Phases.CurrentPhase === "Behavioral")) {
+                    $scope.getResults();
+                } else {
+                    $scope.nextPhase();
+                }
+            }
+            /*
+             Check if more questions exists
+             * */
+            else if ($scope.questionSelectedIndex < $scope.noOfQuestions - 1) {
+                $scope.questionSelectedIndex += 1;
+                $scope.currentQuestion = $scope.questions[$scope.questionSelectedIndex];
+            }
+        };
+
+        function postFeedback(user, userStoryDesc, userStoryName, analysisResult) {
+            return $http.post(BASEURL + '/api/history', {
+                username: user,
+                userStoryDesc: userStoryDesc,
+                userStoryName: userStoryName,
+                analysisResult: analysisResult,
+                analysisDate: new Date()
+            });
         }
-        $scope.max = $scope.tabs.length;
-        $scope.selectedIndex = 0;
-
-        $scope.submitUseCase = function () {
-            if ($scope.useCaseDesc && $scope.useCaseName) {
-                $scope.disableValue[0] = true;
-                $scope.nextTab(0);
-                $scope.questionSelectedIndex = 0;
-                $scope.currentQuestion = $scope.questions[0];
-            }
-        };
-
-        $scope.nextTab = function (changeToIndex) {
-
-            console.log("Next Tab Called");
-            if ($scope.selectedIndex >= $scope.max) {
-                console.log($scope.selectedOptions);
-                $location.path("/result");
-            }
-            $scope.disableValue[changeToIndex] = false;
-            var index = ($scope.selectedIndex == $scope.max + 1) ? $scope.max + 1 : $scope.selectedIndex + 1;
-            $scope.selectedIndex = index;
-        };
-
-
-        $scope.patterns = Pattern.query();
-        $scope.$on('patternId', function (ev, pattern) {
-            $scope.patterns.push(pattern);
-        });
-
     })
 ;

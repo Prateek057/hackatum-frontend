@@ -22,10 +22,7 @@ angular.module('myApp')
                     $scope.loggedIn = loggedIn;
                     if (loggedIn && !$scope.user){
 
-                        console.log("JWT Token");
-                        console.log( $window.localStorage.getItem('jwtToken'));
                         $scope.user = currUser.getUser();
-                        console.log($scope.user);
                     }
                 });
 

@@ -5,8 +5,15 @@
 
 angular.module('myApp.result')
 
-    .factory('PatternByName', function( $resource) {
-        return $resource('http://localhost:3000/api/patterns');
+    .factory('PatternByName', function ($resource) {
+        return {
+            query: function (patternName) {
+                return $resource('http://localhost:3000/api/pattern/byName/' + patternName, {}, {
+                    query: {
+                        method: 'GET'
+                    }
+                }).query();
+            }
+        }
     })
-
 ;

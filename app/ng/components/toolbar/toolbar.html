@@ -10,16 +10,16 @@
         <!-- not logged in -->
         <!--<md-menu ng-if="loggedIn">-->
         <div layout="row" layout-align="start center" flex="60">
-            <md-button ng-click="go('/dashboard')" ng-if="loggedIn">
+            <md-button ng-click="go('/dashboard')" ng-if="loggedIn" aria-label="dashboard-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Dashboard</span>
             </md-button>
-            <md-button ng-click="go('/pattern')" ng-if="loggedIn">
+            <md-button ng-click="go('/pattern')" ng-if="loggedIn" aria-label="pattern-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Identify Pattern</span>
             </md-button>
-            <md-button ng-click="go('/antipattern')" ng-if="loggedIn">
+            <md-button ng-click="go('/antipattern')" ng-if="loggedIn" aria-label="antipattern-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Identify AntiPattern</span>
             </md-button>
-            <md-button ng-click="go('/learningcenter')" ng-if="loggedIn">
+            <md-button ng-click="go('/learningcenter')" ng-if="loggedIn" aria-label="lc-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Learning Center</span>
             </md-button>
         </div>
@@ -36,17 +36,17 @@
 
         <span style="margin-top: 10px;font-size: small;width: 100px" class="md-body-2" hide-xs ng-if="!loggedIn">Not logged in</span>
         <md-menu md-position-mode="target-right target" ng-if="!loggedIn">
-            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="short-menu-button">
+                <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px" aria-label="short-menu-icon"></md-icon>
             </md-button>
             <md-menu-content>
                 <md-menu-item>
-                    <md-button ng-click="showLoginDialog()">
+                    <md-button ng-click="showLoginDialog()" aria-label="login-button">
                         Log in
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="showSignupDialog()">
+                    <md-button ng-click="showSignupDialog()" aria-label="sign-up-button">
                         Sign Up
                     </md-button>
                 </md-menu-item>
@@ -56,12 +56,12 @@
         <!-- logged in -->
         <span style="font-size: small;width: 100px" class="md-body-2" ng-if="loggedIn">Hello, {{user.username}}</span>
         <md-menu md-position-mode="target-right target" ng-if="loggedIn">
-            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="short-menu-button">
                 <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
             </md-button>
             <md-menu-content>
                 <md-menu-item>
-                    <md-button ng-click="logout()">
+                    <md-button ng-click="logout()" aria-label="logout-button">
                         Log out
                     </md-button>
                 </md-menu-item>

@@ -32,18 +32,15 @@ angular.module('myApp.result')
 
         }
     })
-    .controller('ResultCtrl', function($scope, Pattern) {
-
-        var patternPromise =  Pattern.query(function(){
-            console.log(patternPromise);
-            var patternDetails = [];
-            for(var ctr=0;ctr<patternPromise.length;ctr++){
-                patternDetails.push(patternPromise[ctr]);
-            }
-            $scope.patterns = patternDetails;
-            $scope.currentPattern = $scope.patterns[0];
+    .controller('ResultCtrl', function($rootScope, $scope, PatternByName) {
+        $scope.result = null;
+        $scope.showResultDiv = true;
+        if ($rootScope.patternResults === undefined){ $rootScope.patternResults = ["Adapter"];}
+        $scope.resultType = "pattern";
+        var patternPromise =  PatternByName.query($rootScope.patternResults[0]).$promise;
+        patternPromise.then(function(data){
+            $scope.result = data;
         });
-
     })
     ;
 
