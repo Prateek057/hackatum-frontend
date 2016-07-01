@@ -163,8 +163,8 @@ angular.module('myApp.pattern')
             var user = currUser.getUser();
             var analysisResult = $rootScope.patternResults[0];
             var userStoryName = $scope.useCaseName;
-            var userStroyDesc = $scope.useCaseDesc;
-            postFeedback(user.username, userStroyDesc, userStoryName, analysisResult);
+            var userStoryDesc = $scope.useCaseDesc;
+            postFeedback(user.username, userStoryDesc, userStoryName, analysisResult);
             console.log($rootScope.patternResults);
             $location.path("/result");
         };
@@ -206,7 +206,7 @@ angular.module('myApp.pattern')
                 userStoryName: userStoryName,
                 analysisResult: analysisResult,
                 analysisDate: new Date()
-            });
+            }).success;
         }
     })
 ;

@@ -7,15 +7,15 @@
             <h2>Pattern Hierarchy</h2>
 
             <div>
-            <ul>
-                <li><h4>{{result.patternTopLevelType}}</h4></li>
                 <ul>
-                    <li><h4>{{result.patternParentType}}</h4></li>
+                    <li><h4>{{result.patternTopLevelType}}</h4></li>
                     <ul>
-                        <li><h4>{{result.patternName}}</h4></li>
+                        <li><h4>{{result.patternParentType}}</h4></li>
+                        <ul>
+                            <li><h4>{{result.patternName}}</h4></li>
+                        </ul>
                     </ul>
                 </ul>
-            </ul>
             </div>
         </md-card>
         <md-card class="mv-result-card" layout-padding>
@@ -29,11 +29,17 @@
         <md-card class="mv-result-card" layout-padding>
             <h2>Structure</h2>
             <h4>{{result.patternStructure}}</h4>
+            <div flex="50" layout-padding layout-align="center center">
+                <img alt="patternImage" height="300px"
+                     src="{{result.patternURL}}" width="300px">
+            </div>
         </md-card>
         <md-card class="mv-result-card" layout-padding>
             <h2>Related Patterns</h2>
             <div ng-repeat="res in result.patternRelated">
-                <ul><li><h4>{{res}}</h4></li></ul>
+                <ul>
+                    <li><h4>{{res}}</h4></li>
+                </ul>
             </div>
         </md-card>
     </div>
