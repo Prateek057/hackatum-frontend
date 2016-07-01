@@ -1,9 +1,13 @@
-angular.module('myApp.landing', ['ngResource', 'ui.router','cycleGallery','ngMaterial','ngAnimate', 'ui.bootstrap'])
+/**
+ * Created by Gopala on 30-Jun-16.
+ */
 
-    .config(function ($stateProvider, $urlRouterProvider, landingState) {
+angular.module('myApp.feedview', ['ngResource', 'ui.router'])
+
+    .config(function ($stateProvider, $urlRouterProvider, feedbackVState) {
         $stateProvider
 
-            .state('landing', {
+            .state('feedview', {
 
                 // With abstract set to true, that means this state can not be explicitly activated.
                 // It can only be implicitly activated by activating one of its children.
@@ -11,7 +15,7 @@ angular.module('myApp.landing', ['ngResource', 'ui.router','cycleGallery','ngMat
                 parent: 'root',
 
                 // This abstract state will prepend '/movies' onto the urls of all its children.
-                url: '/landing',
+                url: '/feedview',
 
                 // since we have views we do not need to define a template here
                 //template: '<div ui-view></div>',
@@ -19,7 +23,7 @@ angular.module('myApp.landing', ['ngResource', 'ui.router','cycleGallery','ngMat
 
             // Using a '.' within a state name declares a child within a parent.
             // So you have a new state 'list' within the parent 'movies' state.
-            .state(landingState.name, landingState.options);
+            .state(feedbackVState.name, feedbackVState.options);
 
         //.state(movieDetailsState.name, movieDetailsState.options);
 

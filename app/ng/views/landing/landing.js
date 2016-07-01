@@ -21,8 +21,18 @@ angular.module('myApp.landing')
         }
     })
     .controller('LandingCtrl', function($scope,$location) {
+
+        $scope.baseIndex = 1
+
+
+        $scope.gallery = [
+            {image: '../data/img/3288.jpg', description: 'Image 00'},
+            {image: '../data/img/twitter.png', description: 'Image 01'},
+            {image: '../data/img/facebook-logo.png', description: 'Image 02'}
+        ];
+
         $scope.slides = [
-            {image: '../data/img/user.png', description: 'Image 00'},
+            {image: '../data/img/3288.jpg', description: 'Image 00'},
             {image: '../data/img/twitter.png', description: 'Image 01'},
             {image: '../data/img/facebook-logo.png', description: 'Image 02'}
         ];
@@ -43,6 +53,9 @@ angular.module('myApp.landing')
             $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
         };
 
+        $scope.height_img = window.innerHeight;
+        $scope.mainwidth_img = window.innerWidth;
+
         $scope.persons = [
             {name: 'Akash Manjunath', role: 'Developer'},
             {name: 'Gopala Krishna', role: 'Developer'},
@@ -58,25 +71,14 @@ angular.module('myApp.landing')
             {text: 'Awesome work!', author: 'Shankar'}
         ];
     })
-    .animation('.slide-animation', function () {
+    .animation('.slide-left-animation', function ($window) {
         return {
-            addClass: function (element, className, done) {
-                if (className == 'ng-hide') {
-                    TweenMax.to(element, 0.5, {left: -element.width(), onComplete: done });
-                }
-                else {
-                    done();
-                }
+            enter: function (element, done) {
+                TweenMax.fromTo(element, 1, {left: $window.innerWidth}, {left: 0, onComplete: done});
             },
-            removeClass: function (element, className, done) {
-                if (className == 'ng-hide') {
-                    // ANIMATION CODE GOES HERE
-                }
-                else {
-                    done();
-                }
+            leave: function (element, done) {
+                TweenMax.to(element, 1, {left: -$window.innerWidth, onComplete: done});
             }
         };
     });
-
 

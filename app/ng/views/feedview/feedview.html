@@ -1,0 +1,45 @@
+<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" flex ng-cloak>
+    <md-card style="background-color:#E6E6E6;">
+        <img style="padding-left: 50px;padding-right: 50px; padding-top: 30px" src="../../data/img/user_new.png" height="20px" width="20px"/>
+        <span class="md-subhead" style="text-align: center; padding: 10px;" class="md-body-2" ng-if="loggedIn">{{user.username}} the Admin</span>
+        <md-list>
+            <md-list-item>
+                <md-divider flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>Overview</h5>
+                <md-divider flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>Feedbacks</h5>
+                <md-divider flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>New Pattern</h5>
+                <md-divider flex></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line">
+                <h5 flex>Feedbacks</h5>
+                <md-divider flex></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-content flex="80">
+        <div ng-cloak layout-gt-sm="row" layout="column">
+            <div flex-gt-sm="100" flex>
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="item in historys" ng-click="null" style="background-color:#E6E6E6;padding: 20px;">
+                            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.username}}" />
+                            <div class="md-list-item-text" layout="column">
+                                <h3>{{ item.username }}</h3>
+                                <h4>{{ item.userStoryName }}</h4>
+                                <p>{{ item.userFeedback }}</p>
+                            </div>
+                            <md-divider ></md-divider>
+                        </md-list-item>
+                    </md-list>
+            </div>
+            <md-divider></md-divider>
+        </div>
+    </md-content>
+</div>
