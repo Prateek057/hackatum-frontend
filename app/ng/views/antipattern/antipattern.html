@@ -1,15 +1,15 @@
-<div layout="row" layout-wrap layout-padding >
-    <md-card flex md-whiteframe="3">
+<div ng-show="addYourUserStory" layout="row" layout-wrap layout-padding >
+    <md-card flex="50" md-whiteframe="3">
         <h2>Please give a brief description of your use case :</h2>
-        <md-content layout-padding>
+        <md-content layout="column" layout-padding>
             <md-input-container flex="40">
                 <label>Use Case Name</label>
-                <input ng-model="usecasename">
+                <input ng-model="apUseCaseName">
             </md-input-container>
 
             <md-input-container>
                 <label>Use Case Description</label>
-                <input ng-model="usecasedesc">
+                <input ng-model="apUseCaseDesc">
             </md-input-container>
 
             <md-input-container>
@@ -18,9 +18,6 @@
                     <h5><b>Proceed!</b></h5></md-button>
             </md-input-container>
         </md-content>
-
-        {{alert}}
-
     </md-card>
 </div>
 

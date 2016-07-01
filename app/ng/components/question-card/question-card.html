@@ -1,0 +1,9 @@
+<h3 class="md-display-2">{{currentQuestion.question}}</h3>
+<md-radio-group ng-required="true" ng-model="selectedOption">
+    <md-radio-button ng-repeat="option in currentQuestion.questionOptions" ng-value="option.value" aria-label="{{option.name}}">
+        {{ option.name }}
+    </md-radio-button>
+</md-radio-group>
+<div layout="row" layout-align="end end">
+    <md-button ng-if="selectedOption" class="md-raised md-primary" ng-click="nextQuestion(selectedOption)">Next</md-button>
+</div>
