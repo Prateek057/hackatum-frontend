@@ -1,24 +1,57 @@
-<div class="resultDiv" flex="100" layout="column"
-     layout-align="center stretch" layout-margin="120px">
-    <span ng-if="resultType==='pattern'"><h1>Pattern :  {{result.patternName}}</h1></span>
-    <span ng-if="resultType==='antipatterns'"><h1>Anti-Pattern  :  {{result.apname}}</h1></span>
+<div class="resultDiv" layout="column"
+     layout-align="center stretch">
 
-    <div ng-if="resultType==='pattern'">
-        {{result.patternTopLevelType}}<br/>
-        {{result.patternParentType}}<br/>
-        {{result.patternContext}}<br/>
-        {{result.patternProblem}}<br/>
-        {{result.patternStructure}}<br/>
-        {{result.patternRelated}}<br/>
+    <div ng-if="resultType==='pattern'" ng-show="showResultDiv">
+        <h1 layout-padding style="text-transform: uppercase;"><b>{{result.patternName}}</b></h1>
+        <md-card class="mv-result-card" layout-padding>
+            <h2>Pattern Hierarchy</h2>
+
+            <div>
+            <ul>
+                <li><h4>{{result.patternTopLevelType}}</h4></li>
+                <ul>
+                    <li><h4>{{result.patternParentType}}</h4></li>
+                    <ul>
+                        <li><h4>{{result.patternName}}</h4></li>
+                    </ul>
+                </ul>
+            </ul>
+            </div>
+        </md-card>
+        <md-card class="mv-result-card" layout-padding>
+            <h2>Context</h2>
+            <h4>{{result.patternContext}}</h4>
+        </md-card>
+        <md-card class="mv-result-card" layout-padding>
+            <h2>Problem Statement</h2>
+            <h4>{{result.patternProblem}}</h4>
+        </md-card>
+        <md-card class="mv-result-card" layout-padding>
+            <h2>Structure</h2>
+            <h4>{{result.patternStructure}}</h4>
+        </md-card>
+        <md-card class="mv-result-card" layout-padding>
+            <h2>Related Patterns</h2>
+            <div ng-repeat="res in result.patternRelated">
+                <ul><li><h4>{{res}}</h4></li></ul>
+            </div>
+        </md-card>
     </div>
 
-    <div ng-if="resultType==='antipatterns'">
-        <div ng-repeat="(key, value) in result" label="{{key}}" id="{{key}}">
-            <md-content layout="row" flex style="max-width:80%"
-                        class="md-neu-content md-padding">
-                {{key}}
-                {{value}}
-            </md-content>
-        </div>
+    <div ng-if="resultType==='antipatterns'" ng-show="showResultDiv">
+        <h1 layout-padding style="text-transform: uppercase;"><b>{{result.apname}}</b></h1>
+        <md-card mv-movie-card class="mv-result-card" layout-padding>
+            <h2>Statement</h2>
+            <h4>{{result.apstatement}}</h4>
+        </md-card>
+        <md-card class="mv-result-card" layout-padding>
+            <h2>Context</h2>
+            <h4>{{result.apcontext}}</h4>
+        </md-card>
+        <md-card class="mv-result-card" layout-padding>
+            <h2>Solution</h2>
+            <h4>{{result.apsolution}}</h4>
+        </md-card>
     </div>
+
 </div>

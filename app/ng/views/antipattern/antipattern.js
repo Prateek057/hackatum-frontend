@@ -24,7 +24,8 @@ angular.module('myApp.antipattern')
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }])
-    .controller('AntipatternCtrl', function($scope, Antipattern, $mdToast, $mdDialog,$mdMedia, currUser, $location) {
+    .controller('AntipatternCtrl', function($scope, Antipattern, $mdToast, $mdDialog,$mdMedia,
+                                            currUser, $location) {
 
         $scope.authed = false;
 
@@ -65,9 +66,23 @@ angular.module('myApp.antipattern')
 
         });
 
-        $scope.showantipattern = function(){
+        $scope.showantipattern = function(ev){
+            var useFullScreen = ( $mdMedia('xs'));
+            var elementWrapper = {};
+            elementWrapper.target = document.getElementById('antipatterndiv');
+            $mdDialog.show({
+                templateUrl:'components/ap-result/ap-result.html'
+            });
+
             console.log($scope.selected);
+            $scope.result = "Blob";
+            console.log("inside antipattern controller");
+            console.log($scope.result);
             $scope.showresult = true;
+
+
+
         }
+
 
     });

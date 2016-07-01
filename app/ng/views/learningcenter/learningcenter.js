@@ -25,7 +25,7 @@ angular.module('myApp.learningcenter')
         $httpProvider.interceptors.push('authInterceptor');
     }])
     .controller('LearningCenterCtrl', function($scope,  $mdToast, $mdDialog,$mdMedia, $mdSidenav,
-                                               currUser, $location, $http, BASEURL) {
+                                               currUser, $location, $http, BASEURL,$rootScope) {
 
         $scope.authed = false;
 
@@ -38,9 +38,11 @@ angular.module('myApp.learningcenter')
             }
         });
 
+        $scope.showResultDiv = false;
 
         $scope.loadMenu = function(option) {
-            $scope.result = "";
+            //$scope.result = "";
+            $scope.showResultDiv = false;
             if(option==='pattern'){
                 $scope.resultType='pattern';
                 $http.get(BASEURL+'/api/patternnamelist')
@@ -64,13 +66,11 @@ angular.module('myApp.learningcenter')
         };
 
         $scope.getDetails = function(pattern){
-            console.log(pattern);
+            $scope.showResultDiv = true;
             $scope.pattern = pattern;
             var url = BASEURL+'/api/'+$scope.resultType+'/byName/'+pattern;
-            console.log(url);
             $http.get(url)
                 .then(function successCallback(response) {
-                    console.log(response.data[0]);
                     $scope.result = response.data[0];
                 }, function errorCallback(response) {
                     console.log("error")

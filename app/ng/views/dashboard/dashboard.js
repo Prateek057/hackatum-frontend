@@ -15,13 +15,11 @@ angular.module('myApp.dashboard')
                 }
             },
             ncyBreadcrumb: {
-                // a bit ugly (and not stable), but ncybreadcrumbs doesn't support direct access
-                // to a view controller yet if there are multiple views
                 label: "Dashboard"
             }
         }
     })
-    .config(['$httpProvider', function($httpProvider,$mdIconProvider) {
+    .config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }])
     .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia, currUser, $location) {
@@ -114,6 +112,7 @@ angular.module('myApp.dashboard')
         $scope.starRating3 = 3;
         $scope.starRating4 = 4;
         $scope.starRating5 = 5;
+
         /*//$scope.hoverRating1 = $scope.hoverRating2 = $scope.hoverRating3 = 0;
 
         $scope.click1 = function (param) {

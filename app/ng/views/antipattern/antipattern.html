@@ -1,28 +1,32 @@
-<md-card style="font-size:24px;">
+<div layout="row" layout-wrap layout-padding id="antipatterndiv">
 
+    <div layout="column">
     <h2>Choose the options related to your current scenario : </h2>
-
-    <br/>
-
-    <div layout="row" layout-wrap flex>
-        <div flex="50" ng-repeat="antipattern in antipatterns">
-            <md-checkbox ng-checked="exists(antipattern, selected)" ng-click="toggle(antipattern, selected)">
-                {{ antipattern.apstatement }}
-            </md-checkbox>
-        </div>
     </div>
 
-    <div flex="100" ng-show="showresult">
-        <h1>Possible antipatterns present : </h1>
-        <span ng-repeat="result in selected">
-            <b><i><u>{{result.apname}}</u></i></b><br/>
-            <b>Problem Context</b><br/>
-            {{result.apcontext}}<br/>
-            <b>Solution</b><br/>
-            {{result.apsolution}}<br/><br/>
-        </span>
+
+    <div layout="column">
+
+    <div layout="row" layout-wrap>
+    <md-card mv-movie-card class="mv-card"  ng-repeat="antipattern in antipatterns" layout-padding>
+        <md-checkbox ng-checked="exists(antipattern, selected)" ng-click="toggle(antipattern, selected)">
+            <h5>{{ antipattern.apstatement }}</h5>
+        </md-checkbox>
+    </md-card>
+    </div>
     </div>
 
-    <md-button ng-click="showantipattern()">Submit</md-button>
+    <div layout="column">
+    <md-button class="md-raised md-cornered" style="background-color:#2c3e50;color:white;"
+               ng-click="showantipattern()" layout-padding>
+        <h5><b>Find the Anti-pattern!</b></h5></md-button>
+    </div>
 
-</md-card>
+</div>
+
+<!--
+<mv-ap-result></mv-ap-result>
+
+<div flex="100" ng-show="showresult">
+
+</div>-->

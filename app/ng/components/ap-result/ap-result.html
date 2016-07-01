@@ -1,0 +1,11 @@
+<div flex="100" ng-show="showresult">
+    <h1>Possible antipatterns present : </h1>
+        <span ng-repeat="result in selected">
+            <b><i><u>{{result.apname}}</u></i></b><br/>
+            <b>Problem Context</b><br/>
+            {{result.apcontext}}<br/>
+            <b>Solution</b><br/>
+            {{result.apsolution}}<br/><br/>
+        </span>
+    <h6>For more information about patterns and anti-patterns, please visit the learning center</h6>
+</div>
