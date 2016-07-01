@@ -41,7 +41,7 @@
                 <td data-title="result" class="tableCell">{{data.analysisResult}}</td>
                 <td data-title="rating" class="tableCell">
                     <span ng-if="!data.resultRating">
-                        <a href="javascript:void(0);" ng-click = "showFeedbackForm()">Click to rate</a>
+                        <a href="javascript:void(0);" ng-click = "showFeedbackForm($event, data)">Click to rate</a>
                     </span>
                     <span ng-if="data.resultRating==5" flex>
                         <span ng-repeat="i in [1,2,3,4,5]">

@@ -1,45 +1,41 @@
-<md-dialog class="mv-create-dialog">
+<md-dialog class="mv-create-dialog" aria-label="feedback-dialog">
 
-    <form name="movieForm">
+    <md-toolbar style="background-color:#2c3e50;">
 
-        <md-toolbar style="background-color:#2c3e50;">
-
-            <div class="md-toolbar-tools">
-                <h2>Feedback</h2>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-icon="content:ic_clear_24px" aria-label="Close dialog"></md-icon>
-                </md-button>
-            </div>
-
-        </md-toolbar>
-
-        <md-dialog-content style="width:auto">
-
-            <div class="md-dialog-content">
-
-                <div star-rating rating="starRating5" click="click3(param)"
-                     mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)" layout-padding></div>
-
-                <md-input-container class="md-block" layout-padding>
-                    <label layout-padding>Feedback comments</label>
-                    <textarea ng-model="movie.synopsis" md-maxlength="500" rows="5"
-                              md-select-on-focus></textarea>
-                </md-input-container>
-
-            </div>
-        </md-dialog-content>
-
-        <md-dialog-actions layout="row">
-            <md-button ng-click="cancel()">
-                Cancel
-            </md-button>
+        <div class="md-toolbar-tools">
+            <h2>Feedback</h2>
             <span flex></span>
-            <md-button ng-click="save()" ng-disabled="movieForm.$invalid" md-auto-focus>
-                Save
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-icon="content:ic_clear_24px" aria-label="Close dialog"></md-icon>
             </md-button>
-        </md-dialog-actions>
+        </div>
 
-    </form>
+    </md-toolbar>
+
+    <md-dialog-content style="width:auto">
+
+        <div class="md-dialog-content">
+
+            <div star-rating id="rating" rating="starRating5" click="click3(param)"
+                 mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)" layout-padding></div>
+
+            <md-input-container class="md-block" layout-padding>
+                <label layout-padding>Feedback comments</label>
+                    <textarea id="feed" ng-model="history.feedback" md-maxlength="500" rows="5"
+                              md-select-on-focus></textarea>
+            </md-input-container>
+
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-click="closeDialog()">
+            Cancel
+        </md-button>
+        <span flex></span>
+        <md-button ng-controller="FeedbackCtrl" ng-click="saveSome()" md-auto-focus>
+            Save
+        </md-button>
+    </md-dialog-actions>
 
 </md-dialog>

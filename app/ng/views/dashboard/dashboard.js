@@ -22,7 +22,7 @@ angular.module('myApp.dashboard')
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }])
-    .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia, currUser, $location, $http, BASEURL) {
+    .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia, currUser, $location, $http, $rootScope,BASEURL) {
 
         $scope.isDisabled = true;
 		$scope.readonly = true;
@@ -72,12 +72,13 @@ angular.module('myApp.dashboard')
             $scope.pieChartData = [one,two,three,four,five ];
 
         });
+        
 
-        $scope.showFeedbackForm = function(ev){
-
+        $scope.showFeedbackForm = function(ev, someHistory){
+            $rootScope.selectedHistory = someHistory;
+            console.log(someHistory);
             var useFullScreen = ( $mdMedia('xs'));
             $mdDialog.show({
-                    controller: "CreateMovieCtrl",
                     templateUrl: 'components/feedback/feedback.html',
                     targetEvent: ev,
                     clickOutsideToClose:true,

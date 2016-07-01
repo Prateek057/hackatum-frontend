@@ -29,7 +29,7 @@
             <div flex-gt-sm="100" flex>
                     <md-list flex>
                         <md-list-item class="md-3-line" ng-repeat="item in historys" ng-click="null" style="background-color:#E6E6E6;padding: 20px;">
-                            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.username}}" />
+                            <img ng-src="{{imagePath}}?{{$index}}" class="md-avatar" alt="{{item.username}}" />
                             <div class="md-list-item-text" layout="column">
                                 <h3>{{ item.username }}</h3>
                                 <h4>{{ item.userStoryName }}</h4>
