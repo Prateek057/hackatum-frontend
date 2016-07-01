@@ -22,7 +22,7 @@ angular.module('myApp.dashboard')
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }])
-    .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia, currUser, $location) {
+    .controller('DashboardCtrl', function($scope, Dashboard, $mdToast, $mdDialog,$mdMedia, currUser, $location, $http, BASEURL) {
 
         $scope.isDisabled = true;
 		$scope.readonly = true;
@@ -104,8 +104,16 @@ angular.module('myApp.dashboard')
                 );
             }
 
-        }
+        };
+        $scope.latestPattern = null;
+        $http.get(BASEURL+'/api/latestPattern')
+            .then(function successCallback(response) {
+                $scope.latestPattern = response.data[0];
+                console.log($scope.latestPattern);
+            }, function errorCallback(response) {
 
+
+            });
         $scope.starRating0 = 0;
         $scope.starRating1 = 1;
         $scope.starRating2 = 2;
