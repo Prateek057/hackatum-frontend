@@ -1,4 +1,4 @@
-angular.module('myApp.landing', ['ngResource', 'ui.router','cycleGallery','ngMaterial','ngAnimate', 'ui.bootstrap'])
+angular.module('myApp.landing', ['ngResource', 'ui.router','ngMaterial','ngAnimate', 'ui.bootstrap'])
 
     .config(function ($stateProvider, $urlRouterProvider, landingState) {
         $stateProvider

@@ -3,10 +3,10 @@ angular.module('myApp.movies')
 
         $scope.movie = new Movie();
         $scope.ratings = [{
-                abbr: "G",
-                short_desc: "G – General Audiences",
-                long_desc: "All ages admitted. Nothing that would offend parents for viewing by children."
-            },
+            abbr: "G",
+            short_desc: "G – General Audiences",
+            long_desc: "All ages admitted. Nothing that would offend parents for viewing by children."
+        },
             {
                 abbr: "PG",
                 short_desc: "PG – Parental Guidance Suggested",
@@ -50,12 +50,12 @@ angular.module('myApp.movies')
                     $rootScope.$broadcast('movieCreated', $scope.movie);
                     $mdDialog.hide(true);
                 }).catch(function(){
-                    $mdDialog.hide(false);
-                });
+                $mdDialog.hide(false);
+            });
         };
 
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
 
-});
+    });

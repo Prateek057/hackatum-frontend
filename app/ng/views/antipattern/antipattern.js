@@ -38,11 +38,10 @@ angular.module('myApp.antipattern')
             }
         });
 
-        $scope.showresult = false;
+        $scope.alert="";
 
         var antipatternsPromise =  Antipattern.query(function(){
 
-            console.log(antipatternsPromise);
             var antipatterns = [];
 
             for(var ctr=0;ctr<antipatternsPromise.length;ctr++){
@@ -66,23 +65,30 @@ angular.module('myApp.antipattern')
 
         });
 
-        $scope.showantipattern = function(ev){
+        $scope.showantipattern = function(event){
             var useFullScreen = ( $mdMedia('xs'));
-            var elementWrapper = {};
-            elementWrapper.target = document.getElementById('antipatterndiv');
             $mdDialog.show({
-                templateUrl:'components/ap-result/ap-result.html'
+                clickOutsideToClose: false,
+                scope: $scope,
+                fullscreen: useFullScreen,
+                preserveScope: true,
+                templateUrl:'components/ap-result/ap-result.html',
+                openFrom:'#left',
+                controller: function DialogController($scope, $mdDialog) {
+                    $scope.closeDialog = function() {
+                        $mdDialog.hide();
+                    }
+                }
             });
-
-            console.log($scope.selected);
-            $scope.result = "Blob";
-            console.log("inside antipattern controller");
-            console.log($scope.result);
-            $scope.showresult = true;
-
-
-
         }
 
-
+        $scope.showAntipatterndiv = function(){
+            if($scope.usecasename && $scope.usecasedesc){
+                $scope.alert="";
+                $scope.showAntipatternList = true;
+            }
+            else {
+                $scope.alert="Please input the fields before proceeding..."
+            }
+        }
     });
