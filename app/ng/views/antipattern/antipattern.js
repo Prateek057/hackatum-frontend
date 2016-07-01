@@ -21,35 +21,34 @@ angular.module('myApp.antipattern')
             }
         }
     })
-    .config(['$httpProvider', function($httpProvider) {
+    .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     }])
-    .controller('AntipatternCtrl', function($scope, Antipattern, $mdToast, $mdDialog,$mdMedia,
-                                            currUser, $location) {
+    .controller('AntipatternCtrl', function ($scope, Antipattern, $mdToast, $mdDialog, $mdMedia,
+                                             currUser, $location, $http, BASEURL) {
 
         $scope.authed = false;
 
-        $scope.$watch(function(){
+        $scope.$watch(function () {
             return currUser.loggedIn();
-        }, function(loggedIn){
+        }, function (loggedIn) {
             $scope.authed = loggedIn;
-            if(!$scope.authed){
+            if (!$scope.authed) {
                 $location.path('/landing');
             }
         });
-
-        $scope.alert="";
-
-        var antipatternsPromise =  Antipattern.query(function(){
+        $scope.addYourUserStory = true;
+        var antipatternsPromise = Antipattern.query(function () {
 
             var antipatterns = [];
 
-            for(var ctr=0;ctr<antipatternsPromise.length;ctr++){
+            for (var ctr = 0; ctr < antipatternsPromise.length; ctr++) {
                 antipatterns.push(antipatternsPromise[ctr]);
             }
 
             $scope.antipatterns = antipatterns;
             $scope.selected = [];
+
             $scope.toggle = function (antipattern, list) {
                 var idx = list.indexOf(antipattern);
                 if (idx > -1) {
@@ -59,36 +58,61 @@ angular.module('myApp.antipattern')
                     list.push(antipattern);
                 }
             };
+
             $scope.exists = function (antipattern, list) {
                 return list.indexOf(antipattern) > -1;
             };
 
         });
 
-        $scope.showantipattern = function(event){
+        $scope.showantipattern = function (event) {
+
             var useFullScreen = ( $mdMedia('xs'));
+            var useCaseName = $scope.apUseCaseName;
+            var useCaseDesc = $scope.apUseCaseDesc;
+            var user = currUser.getUser().username;
+            console.log(user);
+            console.log($scope.apUseCaseName);
+            console.log($scope.apUseCaseName);
+            var analysisResult = [];
+            $scope.selected.forEach(function(selected){
+                analysisResult.push(selected.apname);
+            });
+            console.log(analysisResult);
+
+            postFeedback(user, useCaseDesc, useCaseName, analysisResult);
+
             $mdDialog.show({
                 clickOutsideToClose: false,
                 scope: $scope,
                 fullscreen: useFullScreen,
                 preserveScope: true,
-                templateUrl:'components/ap-result/ap-result.html',
-                openFrom:'#left',
+                templateUrl: 'components/ap-result/ap-result.html',
+                openFrom: '#left',
                 controller: function DialogController($scope, $mdDialog) {
-                    $scope.closeDialog = function() {
+                    $scope.closeDialog = function () {
                         $mdDialog.hide();
                     }
                 }
             });
-        }
+        };
 
         $scope.showAntipatterndiv = function(){
-            if($scope.usecasename && $scope.usecasedesc){
-                $scope.alert="";
-                $scope.showAntipatternList = true;
-            }
-            else {
-                $scope.alert="Please input the fields before proceeding..."
-            }
+            console.log($scope.apUseCaseDesc);
+            $scope.addYourUserStory = false;
+            $scope.showAntipatternList = true;
+            var ele = document.getElementById('antipatterndiv');
+            window.scrollTo(ele.offsetLeft,ele.offsetTop);
+        };
+
+        function postFeedback(user, userStoryDesc, userStoryName, analysisResult) {
+            console.log(user);
+            return $http.post(BASEURL + '/api/allHistory', {
+                username: user,
+                userStoryDesc: userStoryDesc,
+                userStoryName: userStoryName,
+                analysisResult: analysisResult,
+                analysisDate: new Date()
+            });
         }
     });
