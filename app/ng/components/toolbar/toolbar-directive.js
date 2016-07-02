@@ -7,7 +7,6 @@ angular.module('myApp')
 
                 $scope.user = null;
 
-
                 $scope.showLoginDialog = showLoginDialog;
                 $scope.showSignupDialog = showSignupDialog;
                 $scope.logout = logout;
