@@ -5,7 +5,7 @@
         <div class="md-toolbar-tools">
             <h2>Feedback</h2>
             <span flex></span>
-            <md-button class="md-icon-button" ng-click="cancel()">
+            <md-button ng-controller="FeedbackCtrl" class="md-icon-button" ng-click="cancel()">
                 <md-icon md-svg-icon="content:ic_clear_24px" aria-label="Close dialog"></md-icon>
             </md-button>
         </div>
@@ -13,7 +13,7 @@
     </md-toolbar>
 
     <md-dialog-content style="width:auto">
-
+        <form name="feedbackForm">
         <div class="md-dialog-content">
 
             <div star-rating id="rating" rating="starRating5" click="click3(param)"
@@ -21,15 +21,20 @@
 
             <md-input-container class="md-block" layout-padding>
                 <label layout-padding>Feedback comments</label>
-                    <textarea id="feed" ng-model="history.feedback" md-maxlength="500" rows="5"
-                              md-select-on-focus></textarea>
+                <textarea name="feed" id="feed" ng-model="feedback" md-maxlength="500" rows="5"
+                              md-select-on-focus required></textarea>
+                <div ng-messages="feedbackForm.feed.$error">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="md-maxlength">The name has to be less than 500 characters long.</div>
+                </div>
             </md-input-container>
 
         </div>
+        </form>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-        <md-button ng-click="closeDialog()">
+        <md-button ng-controller="FeedbackCtrl" ng-click="cancel()">
             Cancel
         </md-button>
         <span flex></span>
