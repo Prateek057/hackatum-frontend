@@ -2,7 +2,7 @@
  * Created by Akash on 6/4/2016.
  */
 angular.module('myApp.dashboard')
-    .directive('starRating', function () {
+    .directive('starRating', function ($rootScope) {
     return {
         scope: {
             rating: '=',
@@ -39,6 +39,8 @@ angular.module('myApp.dashboard')
 
                 $scope.rating = $scope._rating = param;
                 $scope.hoverValue = 0;
+                $rootScope.starRating = param;
+                console.log($rootScope.starRating);
                 $scope.click({
                     param: param
                 });
