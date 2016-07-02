@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 6/4/2016.
- */
 angular.module('myApp.dashboard')
     .controller('FeedbackCtrl', function($scope, Dashboard, $mdDialog, $rootScope, currUser,$http,BASEURL) {
 

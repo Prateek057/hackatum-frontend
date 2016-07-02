@@ -12,8 +12,11 @@ angular.module('myApp.dashboard')
         expDate = formatDate(expDate);
 
         var diffDays = Math.round(Math.abs((regDate.getTime() - expDate.getTime())/(oneDay)));
-
-        $scope.daysRem = diffDays;
+        if(isNaN(diffDays)){
+            $scope.daysRem = 1;
+        }else{
+            $scope.daysRem = diffDays;
+        }
         $scope.progressBarType = 'warning';
 
         function formatDate(date){

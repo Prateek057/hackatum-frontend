@@ -74,21 +74,37 @@ angular.module('myApp.dashboard')
         });
 
         $scope.submitNewPattern = function(){
+            var dateNow = new Date();
             var data = {
+                username:currUser.getUser().username,
                 suggestedType:$scope.type,
                 suggestName:$scope.newpatternname,
                 suggestedDescription:$scope.newpatterndesc,
                 suggestedURL:$scope.newpatternlink,
+                suggestedDate:dateNow,
             };
-            console.log(data);
             /*data["suggestedType"] = $scope.type;
             console.log($scope.type);
             console.log($scope.newpatterndesc);
             console.log($scope.newpatternname);
             console.log($scope.newpatterndesc);*/
 
-            $http.post(BASEURL+"/api/suggestPattern", data);
+            $http.post(BASEURL+"/api/suggestPattern", data)
+                .then(function successCallback(response) {
+                    showSimpleToast('Thank you for the feedback');
+                }, function errorCallback(response) {
+                    showSimpleToast('An Error occured!');
+                });
+            $mdDialog.cancel();
 
+            function showSimpleToast(txt){
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(txt)
+                        .position('bottom right')
+                        .hideDelay(3000)
+                );
+            }
         }
 
         $scope.showFeedbackForm = function(ev, someHistory){
