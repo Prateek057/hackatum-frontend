@@ -9,9 +9,10 @@ angular.module('myApp.dashboard')
         var expDate = new Date($scope.user.expDate);
 
         regDate = formatDate(regDate);
+        var currDate = formatDate(new Date());
         expDate = formatDate(expDate);
 
-        var diffDays = Math.round(Math.abs((regDate.getTime() - expDate.getTime())/(oneDay)));
+        var diffDays = Math.round(Math.abs((expDate.getTime()-currDate.getTime() )/(oneDay)));
         if(isNaN(diffDays)){
             $scope.daysRem = 1;
         }else{

@@ -69,7 +69,7 @@ angular.module('myApp')
                         clickOutsideToClose:true,
                         fullscreen: useFullScreen
                     });
-                };
+                }
                 function showSignupDialog(){
                     var useFullScreen = $mdMedia('xs');
                     $mdDialog.show({
@@ -78,7 +78,7 @@ angular.module('myApp')
                         clickOutsideToClose:true,
                         fullscreen: useFullScreen
                     });
-                };
+                }
 
                 function logout(){
                     currUser.logout();

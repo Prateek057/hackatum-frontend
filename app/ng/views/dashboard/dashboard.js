@@ -76,18 +76,11 @@ angular.module('myApp.dashboard')
         $scope.submitNewPattern = function(){
             var dateNow = new Date();
             var data = {
-                username:currUser.getUser().username,
                 suggestedType:$scope.type,
                 suggestName:$scope.newpatternname,
                 suggestedDescription:$scope.newpatterndesc,
-                suggestedURL:$scope.newpatternlink,
-                suggestedDate:dateNow,
+                suggestedURL:$scope.newpatternlink
             };
-            /*data["suggestedType"] = $scope.type;
-            console.log($scope.type);
-            console.log($scope.newpatterndesc);
-            console.log($scope.newpatternname);
-            console.log($scope.newpatterndesc);*/
 
             $http.post(BASEURL+"/api/suggestPattern", data)
                 .then(function successCallback(response) {
@@ -147,7 +140,7 @@ angular.module('myApp.dashboard')
                 fullscreen: useFullScreen,
                 preserveScope:true
             })
-        }
+        };
 
         $scope.latestPattern = null;
         $http.get(BASEURL+'/api/latestPattern')
