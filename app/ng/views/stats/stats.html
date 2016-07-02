@@ -25,16 +25,19 @@
         </md-list>
     </md-card>
 
-    <md-card >
-        <canvas id="bar" class="chart chart-bar"
-                chart-data="patterndata" chart-labels="patternlabels">
+    <md-content>
+        <canvas id="antipatternbar" class="chart chart-bar"
+                chart-data="antipatterndata" chart-labels="antipatternlabels" width="{{mainwidth_chart}}" height="{{height_chart}}">
         </canvas>
+        <canvas id="bar" class="chart chart-bar"
+                chart-data="patterndata" chart-labels="patternlabels" width="{{mainwidth_chart}}" height="{{height_chart}}">
+        </canvas>
+    </md-content>
+
     </md-card>
 
     <md-card flex="100">
-        <canvas id="antipatternbar" class="chart chart-bar"
-                chart-data="antipatterndata" chart-labels="antipatternlabels">
-        </canvas>
+
     </md-card>
 
     <!--<canvas id="radar" class="chart chart-radar"

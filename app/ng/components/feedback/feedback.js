@@ -25,6 +25,7 @@ angular.module('myApp.dashboard')
                     }, function errorCallback(response) {
                         console.log("Failure");
                     });
+                $mdDialog.cancel();
             }
         };
 
