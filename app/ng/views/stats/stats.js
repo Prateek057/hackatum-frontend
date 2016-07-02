@@ -120,10 +120,4 @@ angular.module('myApp.stats')
         $scope.mainwidth_chart = window.innerWidth * 0.75;
         $scope.subwidth_chart =  $scope.mainwidth_chart / 2 ;
 
-        /*$scope.labels =["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"];
-
-        $scope.data = [
-            [65, 59, 90, 81, 56, 55, 40],
-            [28, 48, 40, 19, 96, 27, 100]
-        ];*/
     });

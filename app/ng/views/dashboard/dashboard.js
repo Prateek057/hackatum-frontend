@@ -72,7 +72,24 @@ angular.module('myApp.dashboard')
             $scope.pieChartData = [one,two,three,four,five ];
 
         });
-        
+
+        $scope.submitNewPattern = function(){
+            var data = {
+                suggestedType:$scope.type,
+                suggestName:$scope.newpatternname,
+                suggestedDescription:$scope.newpatterndesc,
+                suggestedURL:$scope.newpatternlink,
+            };
+            console.log(data);
+            /*data["suggestedType"] = $scope.type;
+            console.log($scope.type);
+            console.log($scope.newpatterndesc);
+            console.log($scope.newpatternname);
+            console.log($scope.newpatterndesc);*/
+
+            $http.post(BASEURL+"/api/suggestPattern", data);
+
+        }
 
         $scope.showFeedbackForm = function(ev, someHistory){
             $rootScope.selectedHistory = someHistory;
@@ -101,11 +118,21 @@ angular.module('myApp.dashboard')
                         .textContent(txt)
                         .position('bottom right')
                         .hideDelay(3000)
-
                 );
             }
+        }
 
-        };
+        var useFullScreen = ( $mdMedia('xl'));
+        $scope.showSuggestPatternForm = function(event){
+            $mdDialog.show({
+                templateUrl: 'components/suggest-newpattern/suggest-newpattern.html',
+                targetEvent: event,
+                clickOutsideToClose:true,
+                fullscreen: useFullScreen,
+                preserveScope:true
+            })
+        }
+
         $scope.latestPattern = null;
         $http.get(BASEURL+'/api/latestPattern')
             .then(function successCallback(response) {
@@ -115,6 +142,9 @@ angular.module('myApp.dashboard')
 
 
             });
+
+        $scope.types = ['Pattern','Anti-pattern'];
+
         $scope.starRating0 = 0;
         $scope.starRating1 = 1;
         $scope.starRating2 = 2;
@@ -122,7 +152,7 @@ angular.module('myApp.dashboard')
         $scope.starRating4 = 4;
         $scope.starRating5 = 5;
 
-        /*//$scope.hoverRating1 = $scope.hoverRating2 = $scope.hoverRating3 = 0;
+        $scope.hoverRating1 = $scope.hoverRating2 = $scope.hoverRating3 = 0;
 
         $scope.click1 = function (param) {
             console.log('Click(' + param + ')');
@@ -161,5 +191,5 @@ angular.module('myApp.dashboard')
 
         $scope.mouseLeave3 = function (param) {
             $scope.hoverRating3 = param + '*';
-        };*/
+        };
     });

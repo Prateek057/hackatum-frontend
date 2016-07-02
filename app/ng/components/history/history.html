@@ -38,7 +38,9 @@
             <tr dir-paginate="data in dashboardTable | filter:search | itemsPerPage:10 | orderBy:-data.date" class="tableCell">
                 <td data-title="dateOfUse" class="tableCell">{{data.analysisDate| date : format : 'MMM d, y'}}</td>
                 <td data-title="shortDesc" class="tableCell">{{data.userStoryName}}</td>
-                <td data-title="result" class="tableCell">{{data.analysisResult}}</td>
+                <td data-title="result" class="tableCell">
+                    <span ng-repeat="res in data.analysisResult">{{res}}<br/></span>
+                    </td>
                 <td data-title="rating" class="tableCell">
                     <span ng-if="!data.resultRating">
                         <a href="javascript:void(0);" ng-click = "showFeedbackForm($event, data)">Click to rate</a>
