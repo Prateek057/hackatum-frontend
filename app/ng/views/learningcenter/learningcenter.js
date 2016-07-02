@@ -39,11 +39,15 @@ angular.module('myApp.learningcenter')
         });
 
         $scope.showResultDiv = false;
-
+        $scope.patternEnabled = false;
+        $scope.antipatternEnabled = false;
         $scope.loadMenu = function(option) {
             //$scope.result = "";
+
             $scope.showResultDiv = false;
             if(option==='pattern'){
+                $scope.patternEnabled = true;
+                $scope.antipatternEnabled = false;
                 $scope.resultType='pattern';
                 $http.get(BASEURL+'/api/patternnamelist')
                     .then(function successCallback(response) {
@@ -54,6 +58,8 @@ angular.module('myApp.learningcenter')
                     });
             }
             else if (option==='antipatterns'){
+                $scope.patternEnabled = false;
+                $scope.antipatternEnabled = true;
                 $scope.resultType='antipatterns';
                 $http.get(BASEURL+'/api/antipatternnamelist')
                     .then(function successCallback(response) {

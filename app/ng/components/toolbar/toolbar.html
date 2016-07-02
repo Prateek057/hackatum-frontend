@@ -1,25 +1,28 @@
 <div class="md-toolbar-tools">
     <!--<div ncy-breadcrumb class="ui-breadcrumbs md-title"></div>-->
     <div class="toolbar-menuitems">
-        <div layout="row" layout-align="start center" flex="30" ng-click="go('/landing')">
-            <img class="tumlogo" src="../../data/img/tum-logo.png"/>
-            <div flex="5"></div>
-            <h1 align="left" style="font-size: x-large;font-weight: bold;">Nostradamus</h1>
-        </div>
+        <img class="tumlogo" src="../../data/img/nostradamuslogo.png"
+             style="width:400px;height:50px;" ng-click="go('/landing')"/>
+        <div flex="15">
 
+        </div>
         <!-- not logged in -->
         <!--<md-menu ng-if="loggedIn">-->
         <div layout="row" layout-align="start center" flex="60">
-            <md-button ng-click="go('/dashboard')" ng-if="loggedIn" aria-label="dashboard-button">
+            <md-button ng-click="go('/dashboard','dashboard')" ng-class="{'custom-selected':dashboardEnabled}"
+                       ng-if="loggedIn" aria-label="dashboard-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Dashboard</span>
             </md-button>
-            <md-button ng-click="go('/pattern')" ng-if="loggedIn" aria-label="pattern-button">
+            <md-button ng-click="go('/pattern','pattern')" ng-class="{'custom-selected':patternEnabled}"
+                       ng-if="loggedIn" aria-label="pattern-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Identify Pattern</span>
             </md-button>
-            <md-button ng-click="go('/antipattern')" ng-if="loggedIn" aria-label="antipattern-button">
+            <md-button ng-click="go('/antipattern','antipattern')" ng-class="{'custom-selected':antipatternEnabled}"
+                       ng-if="loggedIn" aria-label="antipattern-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Identify AntiPattern</span>
             </md-button>
-            <md-button ng-click="go('/learningcenter')" ng-if="loggedIn" aria-label="lc-button">
+            <md-button ng-click="go('/learningcenter','lc')" ng-class="{'custom-selected':lcEnabled}"
+                       ng-if="loggedIn" aria-label="lc-button">
                 <span class="md-body-2" hide-xs ng-if="loggedIn">Learning Center</span>
             </md-button>
         </div>

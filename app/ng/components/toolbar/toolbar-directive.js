@@ -12,8 +12,41 @@ angular.module('myApp')
                 $scope.showSignupDialog = showSignupDialog;
                 $scope.logout = logout;
 
-                $scope.go = function ( path ) {
+                $scope.dashboardEnabled = false;
+                $scope.patternEnabled = false;
+                $scope.antipatternEnabled = false;
+                $scope.lcEnabled = false;
+
+                $scope.go = function ( path,selected ) {
+                    console.log(selected);
+
+                    if(selected=="dashboard"){
+                        $scope.dashboardEnabled = true;
+                        $scope.patternEnabled = false;
+                        $scope.antipatternEnabled = false;
+                        $scope.lcEnabled = false;
+                    }
+                    else if(selected=="pattern"){
+                        $scope.dashboardEnabled = false;
+                        $scope.patternEnabled = true;
+                        $scope.antipatternEnabled = false;
+                        $scope.lcEnabled = false;
+                    }
+                    else if(selected=="antipattern"){
+                        $scope.dashboardEnabled = false;
+                        $scope.patternEnabled = false;
+                        $scope.antipatternEnabled = true;
+                        $scope.lcEnabled = false;
+                    }
+                    else if(selected=="lc"){
+                        $scope.dashboardEnabled = false;
+                        $scope.patternEnabled = false;
+                        $scope.antipatternEnabled = false;
+                        $scope.lcEnabled = true;
+                    }
+
                     $location.path( path );
+
                 };
 
                 $scope.$watch(function(){
