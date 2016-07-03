@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 6/30/2016.
- */
 angular.module('myApp.learningcenter', ['ngResource', 'ui.router',
         'ngMaterial','ngResource', 'ngMessages'])
 

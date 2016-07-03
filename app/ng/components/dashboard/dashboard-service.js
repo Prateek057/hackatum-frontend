@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 6/2/2016.
- */
 'use strict';
 
 angular.module('myApp.dashboard')

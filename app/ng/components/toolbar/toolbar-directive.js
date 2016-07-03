@@ -14,6 +14,17 @@ angular.module('myApp')
                 var currMenu;
                 var oldMenu;
 
+                $scope.showTabDialog = function(ev) {
+                    $mdDialog.show({
+                        //controller: DialogController,
+                        templateUrl: 'components/toolbar/community.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true
+                    })
+
+                };
+
                 $scope.go = function (path, elemID) {
                     if(currMenu){
                         oldMenu = currMenu;

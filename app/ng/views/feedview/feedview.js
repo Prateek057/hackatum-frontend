@@ -13,8 +13,6 @@ angular.module('myApp.feedview')
                 }
             },
             ncyBreadcrumb: {
-                // a bit ugly (and not stable), but ncybreadcrumbs doesn't support direct access
-                // to a view controller yet if there are multiple views
                 label: "Feedbackss"
             }
         }

@@ -1,4 +1,4 @@
-<img style="padding-left: 50px;padding-right: 50px; padding-top: 30px" src="../../data/img/user_new.png" height="20px" width="20px"/>
+<div flex="column" layout-align="center center"><img class="team-card-img" src={{person.photo}} /></div>
 <md-card-title>
     <md-card-title-text>
         <span class="md-headline" style="text-align: center">{{person.name}}</span>
@@ -8,5 +8,5 @@
     </md-card-title-media>
 </md-card-title>
 <md-card-actions layout="row" layout-align="center center">
-    <md-button class="md-primary md-raised" ng-click="showTabDialog($event,person.name)">View Profile</md-button>
+    <md-button class="md-primary md-raised" style="background-color:#2c3e50" ng-click="showTabDialog($event,person.name)">View Profile</md-button>
 </md-card-actions>

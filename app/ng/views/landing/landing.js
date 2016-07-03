@@ -14,8 +14,6 @@ angular.module('myApp.landing')
                 }
             },
             ncyBreadcrumb: {
-                // a bit ugly (and not stable), but ncybreadcrumbs doesn't support direct access
-                // to a view controller yet if there are multiple views
                 label: "Landing"
             }
         }
@@ -23,7 +21,6 @@ angular.module('myApp.landing')
     .controller('LandingCtrl', function($scope,$location,$http,BASEURL, $mdDialog) {
 
         $scope.baseIndex = 1;
-
 
         $scope.gallery = [
             {image: '../data/img/3288.jpg', description: 'Image 00'},
@@ -60,7 +57,7 @@ angular.module('myApp.landing')
             {name: 'Akash Manjunath', role: 'Developer', photo: "../../data/img/team-pics/Akash.jpg"},
             {name: 'Gopala Krishna', role: 'Developer', photo: "../../data/img/team-pics/Krishna.jpg"},
             {name: 'Prateek Bagrecha', role: 'Developer', photo: "../../data/img/team-pics/Prateek.jpg"},
-            {name: 'Shankar Mohan', role: 'Developer', photo: "../../data/img/team-pics/Shankar.jpe"}
+            {name: 'Shankar Mohan Sathya', role: 'Developer', photo: "../../data/img/team-pics/Shankar.jpe"}
         ];
 
         $scope.showTabDialog = function(ev,personname) {

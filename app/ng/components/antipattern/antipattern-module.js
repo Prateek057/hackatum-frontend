@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 6/17/2016.
- */
 angular.module('myApp.antipattern',
     ['ngResource', 'ui.router','ngMaterial','ngResource','angularUtils.directives.dirPagination'])
 

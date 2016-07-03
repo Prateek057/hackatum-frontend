@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 6/4/2016.
- */
 angular.module('myApp.dashboard')
     .directive('starRating', function ($rootScope) {
     return {

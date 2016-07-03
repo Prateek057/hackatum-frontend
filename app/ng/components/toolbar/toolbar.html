@@ -30,6 +30,9 @@
                        ng-if="loggedIn" aria-label="lc-button">
                 <span id="lece" class="md-body-2" hide-xs ng-if="loggedIn">Learning Center</span>
             </md-button>
+            <md-button ng-click="showTabDialog($event)" aria-label="lc-button">
+                <span class="md-body-2" hide-xs>Community</span>
+            </md-button>
         </div>
 
         <span style="margin-top: 10px;font-size: small;width: 100px" class="md-body-2" hide-xs ng-if="!loggedIn">Not logged in</span>
