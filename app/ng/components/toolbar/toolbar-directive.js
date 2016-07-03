@@ -3,7 +3,7 @@ angular.module('myApp')
         return {
             restrict: "A",
             templateUrl: "components/toolbar/toolbar.html",
-            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast, $location, $window) {
+            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast, $location) {
 
                 $scope.user = null;
 

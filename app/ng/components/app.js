@@ -10,7 +10,7 @@ angular.module('myApp',
     .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider,
                       $httpProvider, $breadcrumbProvider) {
 
-        // For any unmatched url, redirect to /movies
+        // For any unmatched url, redirect to /landing
         $urlRouterProvider.otherwise("/landing");
 
         $stateProvider

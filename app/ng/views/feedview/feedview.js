@@ -1,7 +1,3 @@
-/**
- * Created by Gopala on 30-Jun-16.
- */
-
 'use strict';
 
 angular.module('myApp.feedview')

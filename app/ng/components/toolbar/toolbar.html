@@ -1,13 +1,14 @@
 <div class="md-toolbar-tools">
-    <!--<div ncy-breadcrumb class="ui-breadcrumbs md-title"></div>-->
     <div class="toolbar-menuitems">
-        <img class="tumlogo" src="../../data/img/nostradamuslogo.png"
-             style="width:300px;height:35px;" ng-click="go('/landing')"/>
+
+        <a role="button" href="#/landing">
+            <img class="tumlogo" src="../../data/img/nostradamuslogo.png"
+                 style="width:300px;height:35px;" /></a>
+
         <div flex="15">
 
         </div>
         <!-- not logged in -->
-        <!--<md-menu ng-if="loggedIn">-->
         <div layout="row" layout-align="start center" flex="60">
             <md-button ng-click="go('/stats','admin')" ng-class="{'custom-selected':dashboardEnabled}"
                        ng-if="loggedIn&&isAdmin" aria-label="dashboard-button">
@@ -30,16 +31,6 @@
                 <span id="lece" class="md-body-2" hide-xs ng-if="loggedIn">Learning Center</span>
             </md-button>
         </div>
-        <!--</md-menu>-->
-
-        <!-- not logged in -->
-        <!-- <span class="md-body-2" hide-xs ng-if="!loggedIn"></span> -->
-        <!--<md-menu md-position-mode="target-right target" ng-if="!loggedIn">-->
-
-            <!--md-button ng-click="showSignupDialog()"-->
-                <!--span class="md-body-2" hide-xs ng-if="!loggedIn">Login / Register</span>
-            <!../md-button>
-        <!--</md-menu>-->
 
         <span style="margin-top: 10px;font-size: small;width: 100px" class="md-body-2" hide-xs ng-if="!loggedIn">Not logged in</span>
         <md-menu md-position-mode="target-right target" ng-if="!loggedIn">
