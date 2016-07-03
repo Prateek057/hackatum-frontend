@@ -18,7 +18,11 @@ angular.module('myApp.stats')
         }
     })
     .controller('StatsCtrl', function($scope,$location, $http, BASEURL, $q) {
+        $scope.goOn = function ( path,selected ) {
+            console.log(selected);
+            $location.path( path );
 
+        };
 
         var patternurl = BASEURL + "/api/patternnamelist";
         var antipatternurl = BASEURL + "/api/antipatterns";
@@ -117,5 +121,6 @@ angular.module('myApp.stats')
         $scope.height_chart = window.innerHeight*0.5;
         $scope.mainwidth_chart = window.innerWidth * 0.75;
         $scope.subwidth_chart =  $scope.mainwidth_chart / 2 ;
+
 
     });

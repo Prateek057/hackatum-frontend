@@ -2,7 +2,7 @@
     <!--<div ncy-breadcrumb class="ui-breadcrumbs md-title"></div>-->
     <div class="toolbar-menuitems">
         <img class="tumlogo" src="../../data/img/nostradamuslogo.png"
-             style="width:400px;height:50px;" ng-click="go('/landing')"/>
+             style="width:300px;height:35px;" ng-click="go('/landing')"/>
         <div flex="15">
 
         </div>
@@ -10,8 +10,12 @@
         <!--<md-menu ng-if="loggedIn">-->
         <div layout="row" layout-align="start center" flex="60">
             <md-button ng-click="go('/dashboard','dashboard')" ng-class="{'custom-selected':dashboardEnabled}"
-                       ng-if="loggedIn" aria-label="dashboard-button">
-                <span class="md-body-2" hide-xs ng-if="loggedIn">Dashboard</span>
+                       ng-if="loggedIn&&!isAdmin" aria-label="dashboard-button">
+                <span class="md-body-2" hide-xs ng-if="loggedIn&&!isAdmin">Dashboard</span>
+            </md-button>
+            <md-button ng-click="go('/stats','stats')" ng-class="{'custom-selected':dashboardEnabled}"
+                       ng-if="loggedIn&&isAdmin" aria-label="dashboard-button">
+                <span class="md-body-2" hide-xs ng-if="loggedIn&&isAdmin">Dashboard</span>
             </md-button>
             <md-button ng-click="go('/pattern','pattern')" ng-class="{'custom-selected':patternEnabled}"
                        ng-if="loggedIn" aria-label="pattern-button">

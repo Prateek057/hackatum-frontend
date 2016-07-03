@@ -33,14 +33,34 @@ angular.module('myApp.result')
         }
     })
     .controller('ResultCtrl', function($rootScope, $scope, PatternByName) {
+        $scope.patternresults = [];
         $scope.result = null;
         $scope.showResultDiv = true;
-        if ($rootScope.patternResults === undefined){ $rootScope.patternResults = ["Adapter"];}
         $scope.resultType = "pattern";
-        var patternPromise =  PatternByName.query($rootScope.patternResults[0]).$promise;
-        patternPromise.then(function(data){
-            $scope.result = data;
-        });
+
+        if ($rootScope.patternResults === undefined){
+            $scope.sadmessagetrue = true;
+            $scope.sadMessage = "Sorry, looks like your requirement does not match any pattern, May be recheck your requirement for: Ambiguity ? Here are Some Sample Patterns" ;
+            $scope.learningcentermsg = "Go to the Learning Center for More";
+            $scope.patternTempresults = ["Adapter", "Composite"];
+            console.log($scope.patternresults);
+            $scope.patternTempresults.forEach(function(patternresult){
+                getPatternDetails(patternresult);
+            });
+            $scope.currentNavItem = $scope.patternresults[0];
+        }
+        else{
+            $rootScope.patternResults.forEach(function(patternresult){
+                getPatternDetails(patternresult);
+            });
+        }
+
+        function getPatternDetails(patternName){
+            var patternPromise =  PatternByName.query(patternName).$promise;
+            patternPromise.then(function(data){
+                $scope.patternresults.push(data);
+            });
+        }
     })
     ;
 

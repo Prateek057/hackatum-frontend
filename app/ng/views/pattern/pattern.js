@@ -200,7 +200,7 @@ angular.module('myApp.pattern')
         };
 
         function postFeedback(user, userStoryDesc, userStoryName, analysisResult) {
-            return $http.post(BASEURL + '/api/history', {
+            return $http.post(BASEURL + '/api/allHistory', {
                 username: user,
                 userStoryDesc: userStoryDesc,
                 userStoryName: userStoryName,

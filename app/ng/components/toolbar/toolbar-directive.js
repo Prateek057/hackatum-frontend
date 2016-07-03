@@ -7,7 +7,6 @@ angular.module('myApp')
 
                 $scope.user = null;
 
-
                 $scope.showLoginDialog = showLoginDialog;
                 $scope.showSignupDialog = showSignupDialog;
                 $scope.logout = logout;
@@ -69,7 +68,7 @@ angular.module('myApp')
                         clickOutsideToClose:true,
                         fullscreen: useFullScreen
                     });
-                };
+                }
                 function showSignupDialog(){
                     var useFullScreen = $mdMedia('xs');
                     $mdDialog.show({
@@ -78,7 +77,7 @@ angular.module('myApp')
                         clickOutsideToClose:true,
                         fullscreen: useFullScreen
                     });
-                };
+                }
 
                 function logout(){
                     currUser.logout();

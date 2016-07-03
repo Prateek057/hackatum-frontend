@@ -33,7 +33,6 @@
 
         function logout(){
             auth.deleteToken();
-            $scope.user = null;
             $location.path('/landing');
         }
 
@@ -41,6 +40,7 @@
             var token = auth.getToken();
             return token? auth.parseJwt(token).user : {};
         }
+        
     }
 
 })();

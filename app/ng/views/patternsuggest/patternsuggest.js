@@ -31,4 +31,11 @@ angular.module('myApp.patternsuggest')
             }, function errorCallback(response) {
                 console.log("Could not get suggestions");
             });
+
+        $scope.openSuggestion = function(someSuggestion){
+            var elem = document.getElementById("suggestionContent");
+            $scope.selsuggestion = someSuggestion;
+            //elem.innerHTML += '<h2 class="md-title"> From: ' + $scope.thisusername + "</h2>";
+            //elem.innerHTML += '<p>' + $scope.thiscontent + '</p>';
+        }
     });

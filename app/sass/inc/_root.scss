@@ -3,3 +3,11 @@
   //we cannot use layout-fill since this directive sets the height also to 100%
   width:100%;
 }
+$root_color: #2c3e50;
+
+.pattern-highlight{
+  font-size: 15px;
+  font-style: italic;
+  font-weight: bold;
+  color: $root_color;
+}

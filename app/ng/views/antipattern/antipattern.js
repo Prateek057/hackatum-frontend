@@ -106,7 +106,6 @@ angular.module('myApp.antipattern')
         };
 
         function postFeedback(user, userStoryDesc, userStoryName, analysisResult) {
-            console.log(user);
             return $http.post(BASEURL + '/api/allHistory', {
                 username: user,
                 userStoryDesc: userStoryDesc,

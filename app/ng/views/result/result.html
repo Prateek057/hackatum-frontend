@@ -1,2 +1,15 @@
-
-<mv-result-card flex="80" layout-padding ></mv-result-card>
+<md-content class="md-padding" layout="column" layout-align="center center">
+    <div ng-if="sadmessagetrue">
+        <p>{{sadMessage}}</p>
+        <a>{{learningcentermsg}}</a>
+    </div>
+    <br/>
+    <br/>
+    <md-tabs md-whiteframe="3" flex="100" md-dynamic-height="" md-border-bottom="" md-selected="selectedIndex" >
+        <md-tab  ng-repeat="result in patternresults" label="{{result.patternName}}" id="{{result.patternName}}">
+            <md-content class="md-padding">
+                <mv-result-card layout-padding ></mv-result-card>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</md-content>
