@@ -9,13 +9,13 @@
         <!-- not logged in -->
         <!--<md-menu ng-if="loggedIn">-->
         <div layout="row" layout-align="start center" flex="60">
-            <md-button ng-click="go('/dashboard','dashboard')" ng-class="{'custom-selected':dashboardEnabled}"
-                       ng-if="loggedIn&&!isAdmin" aria-label="dashboard-button">
-                <span class="md-body-2" hide-xs ng-if="loggedIn&&!isAdmin">Dashboard</span>
-            </md-button>
             <md-button ng-click="go('/stats','stats')" ng-class="{'custom-selected':dashboardEnabled}"
                        ng-if="loggedIn&&isAdmin" aria-label="dashboard-button">
-                <span class="md-body-2" hide-xs ng-if="loggedIn&&isAdmin">Dashboard</span>
+                <span class="md-body-2" hide-xs ng-if="loggedIn&&isAdmin">Admin</span>
+            </md-button>
+            <md-button ng-click="go('/dashboard','dashboard')" ng-class="{'custom-selected':dashboardEnabled}"
+                       ng-if="loggedIn" aria-label="dashboard-button">
+                <span class="md-body-2" hide-xs ng-if="loggedIn">Dashboard</span>
             </md-button>
             <md-button ng-click="go('/pattern','pattern')" ng-class="{'custom-selected':patternEnabled}"
                        ng-if="loggedIn" aria-label="pattern-button">

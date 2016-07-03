@@ -22,15 +22,18 @@
     </md-card>
     <md-content flex="80">
         <md-list flex>
-            <md-list-item class="md-3-line" ng-repeat="item in historys" ng-click="null">
+            <md-list-item class="md-3-line" ng-repeat="item in historys" ng-click="openHistory(item)">
                 <img style="margin-left: 40px;" ng-src="{{imagePath}}?{{$index}}" class="md-avatar" alt="{{item.username}}" />
-                <div class="md-list-item-text" layout="row">
+                <div class="md-list-item-text" layout="row" layout-align="center center">
                     <h4 flex=10">{{ item.username }}</h4>
-                    <div layout="column" flex="40">
+                    <div layout="column" flex="30">
                         <h3>{{ item.userStoryName }}</h3>
                         <p>{{ item.userFeedback }}</p>
                     </div>
-                    <h3 flex="50">{{item.analysisDate}}</h3>
+                    <div flex="30">
+                    <img ng-repeat="a in range(item.resultRating) track by $index" ng-src="{{starPath}}?{{$index}}" width="20px" height="20px" alt="{{item.username}}" />
+                    </div>
+                    <h3 flex="30">{{item.analysisDate.slice(11,16)}} {{item.analysisDate.slice(0,10)}}</h3>
                 </div>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
