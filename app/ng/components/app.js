@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp',
-    ['ui.router', 'ui.bootstrap', 'chart.js', 'myApp.landing', 'myApp.dashboard', 'myApp.pattern',
+    ['ui.router','ui.bootstrap', 'chart.js', 'myApp.landing', 'myApp.dashboard', 'myApp.pattern',
         'myApp.result', 'templates', 'myApp.antipattern','myApp.learningcenter','myApp.stats','myApp.feedview',
         'myApp.patternsuggest', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngResource', 'ngMessages',
         'ngMdIcons', 'md.data.table','highcharts-ng'])

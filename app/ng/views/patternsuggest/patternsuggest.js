@@ -22,6 +22,12 @@ angular.module('myApp.patternsuggest')
         }
     })
     .controller('SuggestCtrl', function($scope,$location, $http, BASEURL, $q) {
+        $scope.goOn = function ( path,selected ) {
+            console.log(selected);
+            $location.path( path );
+
+        };
+        
         $scope.imagePath = '../data/img/user.png';
         $scope.suggestions = null;
         $http.get(BASEURL+'/api/suggestPattern')

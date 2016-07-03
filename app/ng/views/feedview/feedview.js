@@ -33,7 +33,12 @@ angular.module('myApp.feedview')
 
 
             });
+        $scope.goOn = function ( path,selected ) {
+            console.log(selected);
+            $location.path( path );
 
+        };
+        
         $scope.range = function(n) {
             return new Array(n);
         };
@@ -54,7 +59,7 @@ angular.module('myApp.feedview')
         };
 
         $scope.starPath = '../data/img/star.png';
-        $scope.imagePath = '../data/img/email-filled-closed-envelope.png';
+        $rootScope.imagePath = '../data/img/email-filled-closed-envelope.png';
         //$scope.historys = [
         //    {
         //        face : imagePath,

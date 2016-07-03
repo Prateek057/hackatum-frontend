@@ -76,6 +76,7 @@ angular.module('myApp.dashboard')
         $scope.submitNewPattern = function(){
             var dateNow = new Date();
             var data = {
+                username:currUser.getUser().username,
                 suggestedType:$scope.type,
                 suggestName:$scope.newpatternname,
                 suggestedDescription:$scope.newpatterndesc,
@@ -112,7 +113,6 @@ angular.module('myApp.dashboard')
                     preserveScope:true
                 })
                 .then(function(answer) {
-
                     if (answer) {
                         showSimpleToast('Thank you for the feedback');
                     } else {

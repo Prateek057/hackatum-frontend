@@ -11,39 +11,18 @@ angular.module('myApp')
                 $scope.showSignupDialog = showSignupDialog;
                 $scope.logout = logout;
 
-                $scope.dashboardEnabled = false;
-                $scope.patternEnabled = false;
-                $scope.antipatternEnabled = false;
-                $scope.lcEnabled = false;
+                var currMenu;
+                var oldMenu;
 
-                $scope.go = function ( path,selected ) {
-                    console.log(selected);
-
-                    if(selected=="dashboard"){
-                        $scope.dashboardEnabled = true;
-                        $scope.patternEnabled = false;
-                        $scope.antipatternEnabled = false;
-                        $scope.lcEnabled = false;
+                $scope.go = function (path, elemID) {
+                    if(currMenu){
+                        oldMenu = currMenu;
+                        oldMenu.style.fontStyle = "normal";
+                        oldMenu.style.textDecoration = "";
                     }
-                    else if(selected=="pattern"){
-                        $scope.dashboardEnabled = false;
-                        $scope.patternEnabled = true;
-                        $scope.antipatternEnabled = false;
-                        $scope.lcEnabled = false;
-                    }
-                    else if(selected=="antipattern"){
-                        $scope.dashboardEnabled = false;
-                        $scope.patternEnabled = false;
-                        $scope.antipatternEnabled = true;
-                        $scope.lcEnabled = false;
-                    }
-                    else if(selected=="lc"){
-                        $scope.dashboardEnabled = false;
-                        $scope.patternEnabled = false;
-                        $scope.antipatternEnabled = false;
-                        $scope.lcEnabled = true;
-                    }
-
+                    currMenu = document.getElementById(elemID);
+                    currMenu.style.fontStyle = "italic";
+                    currMenu.style.textDecoration = "underline";
                     $location.path( path );
 
                 };
