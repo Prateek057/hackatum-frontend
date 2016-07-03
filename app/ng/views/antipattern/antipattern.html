@@ -34,7 +34,7 @@
         <div layout="column">
 
             <div layout="row" layout-wrap>
-                <md-card mv-movie-card class="mv-card"  ng-repeat="antipattern in antipatterns" layout-padding>
+                <md-card class="mv-card"  ng-repeat="antipattern in antipatterns" layout-padding>
                     <md-checkbox ng-checked="exists(antipattern, selected)" ng-click="toggle(antipattern, selected)"
                                  ng-disabled="checkboxEnable">
                         <h5>{{ antipattern.apstatement }}</h5>

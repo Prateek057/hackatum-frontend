@@ -35,7 +35,8 @@
             </tr>
             </thead>
             <tbody >
-            <tr dir-paginate="data in dashboardTable | filter:search | itemsPerPage:10 | orderBy:-data.date" class="tableCell">
+            <tr dir-paginate="data in dashboardTable | filter:search | itemsPerPage:10 | orderBy:'-data.analysisDate'"
+                class="tableCell">
                 <td data-title="dateOfUse" class="tableCell">{{data.analysisDate| date : format : 'MMM d, y'}}</td>
                 <td data-title="shortDesc" class="tableCell">{{data.userStoryName}}</td>
                 <td data-title="result" class="tableCell">
