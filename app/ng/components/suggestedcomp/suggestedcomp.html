@@ -1,0 +1,43 @@
+<md-list flex>
+    <md-list-item class="md-3-line" style="background-color:#E6E6E6;" flex>
+        <div class="md-list-item-text" layout="column" flex>
+            <div layout="row" layout-align="left center" flex>
+                <img ng-src="../data/img/user.png" class="md-avatar" alt="{{suggestion.username}}" />
+                <p flex="60">{{selsuggestion.username}}</p>
+                <div layout="column">
+                    <h4 flex="50">{{selsuggestion.suggestedDate.slice(0,10)}}</h4>
+                    <p flex="50">{{selsuggestion.suggestedDate.slice(12,16)}}</p>
+                </div>
+            </div>
+        </div>
+        <md-divider flex></md-divider>
+     </md-list-item>
+    <md-list-item class="md-3-line" flex>
+        <div class="md-list-item-text" layout="column" flex>
+            <div layout="row" layout-align="center center" flex>
+                <h2 style="text-align: center;" flex>{{selsuggestion.suggestName}}</h2>
+            </div>
+        </div>
+        <md-divider flex></md-divider>
+    </md-list-item>
+    <md-list-item class="md-3-line" flex>
+        <div class="md-list-item-text" layout="column" flex>
+            <div layout="row" layout-align="left center" flex>
+                <h4 flex="25">Suggestion Type</h4>
+                <md-chips>
+                    <md-chip>{{selsuggestion.suggestedType}}</md-chip>
+                </md-chips>
+            </div>
+        </div>
+        <md-divider flex></md-divider>
+    </md-list-item>
+    <md-list-item class="md-3-line" flex>
+        <div class="md-list-item-text" layout="column" flex>
+            <div layout="row" layout-align="left center" flex>
+                <h4 flex="25">User Comments</h4>
+                <h3 style="padding: 10px;">{{selsuggestion.suggestedDescription}}</h3>
+            </div>
+        </div>
+        <md-divider flex></md-divider>
+    </md-list-item>
+</md-list>
