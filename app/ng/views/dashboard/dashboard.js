@@ -112,23 +112,6 @@ angular.module('myApp.dashboard')
                     fullscreen: useFullScreen,
                     preserveScope:true
                 })
-                .then(function(answer) {
-                    if (answer) {
-                        showSimpleToast('Thank you for the feedback');
-                    } else {
-                        showSimpleToast('An Error occured!');
-                    }
-                }, function() {
-                    showSimpleToast('Feedback not submitted');
-                });
-            function showSimpleToast(txt){
-                $mdToast.show(
-                    $mdToast.simple()
-                        .textContent(txt)
-                        .position('bottom right')
-                        .hideDelay(3000)
-                );
-            }
         }
 
         var useFullScreen = ( $mdMedia('xl'));

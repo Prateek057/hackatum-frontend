@@ -1,5 +1,5 @@
 angular.module('myApp.dashboard')
-    .controller('FeedbackCtrl', function($scope, Dashboard, $mdDialog, $rootScope, currUser,$http,BASEURL) {
+    .controller('FeedbackCtrl', function($scope, Dashboard, $mdDialog, $rootScope, currUser,$http,BASEURL,$mdToast) {
 
         $scope.number = 5;
         $scope.getNumber = function(num) {
@@ -12,6 +12,7 @@ angular.module('myApp.dashboard')
             $rootScope.selectedHistory.userFeedback = document.getElementById('feed').value;
             if(!$rootScope.starRating){
                 console.log("Not defined");
+                showSimpleToast('Feedback was not submitted');
                 $mdDialog.cancel();
             }
             else{
@@ -19,13 +20,23 @@ angular.module('myApp.dashboard')
                 $http.put(BASEURL+'/api/submitFeedback/', $rootScope.selectedHistory)
                     .then(function successCallback(response) {
                         console.log("Success");
+                        showSimpleToast('Thank you for the feedback');
                     }, function errorCallback(response) {
-                        console.log("Failure");
+                        showSimpleToast('An Error occured!');
                     });
                 $mdDialog.cancel();
             }
         };
 
+        function showSimpleToast(txt){
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(txt)
+                    .position('bottom right')
+                    .hideDelay(3000)
+            );
+        }
+        
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
