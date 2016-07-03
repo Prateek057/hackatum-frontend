@@ -23,7 +23,7 @@ angular.module('myApp.feedview')
             }
         }
     })
-    .controller('FeedbckCtrl', function($scope,$location,$http,BASEURL) {
+    .controller('FeedbckCtrl', function($scope,$location,$http,BASEURL,$mdDialog,$rootScope,$mdMedia) {
         $scope.historys = null;
         $http.get(BASEURL+'/api/validFeedbacks')
             .then(function successCallback(response) {
@@ -34,6 +34,26 @@ angular.module('myApp.feedview')
 
             });
 
+        $scope.range = function(n) {
+            return new Array(n);
+        };
+
+        var useFullScreen = ( $mdMedia('xl'));
+        $rootScope.selhistory = null;
+        $scope.openHistory= function(someHistory){
+            $rootScope.selhistory = someHistory;
+            $mdDialog.show({
+                //template: '<div mv-user-feed selhistory=""></div>',
+                templateUrl: 'components/userfeedback/userfeedback.html',
+                controller: 'CurrCntrl',
+                targetEvent: event,
+                clickOutsideToClose:true,
+                fullscreen: useFullScreen,
+                preserveScope:true
+            });
+        };
+
+        $scope.starPath = '../data/img/star.png';
         $scope.imagePath = '../data/img/email-filled-closed-envelope.png';
         //$scope.historys = [
         //    {
