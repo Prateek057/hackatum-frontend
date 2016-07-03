@@ -114,13 +114,97 @@ angular.module('myApp.stats')
             $scope.antipatternlabels = antipatternlabels;
 
 
+            $scope.highchartsNGAntiPattern = {
+                options: {
+                    chart: {
+                        type: 'bar'
+                    }
+                },
+                title: {
+                    text: 'Anti-pattern Statistics'
+                },
+                subtitle: {
+                    text: 'Source: TUM Nostradamus'
+                },
+                xAxis: {
+                    categories: $scope.antipatternlabels,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    max: 5,
+                    title: {
+                        text: 'Average Rating'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 1,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Anti-Pattern performance',
+                    data: $scope.antipatternvalues
+                }]
+            };
+
+            $scope.highchartsNGPattern = {
+                options: {
+                    chart: {
+                        type: 'bar'
+                    }
+                },
+                title: {
+                    text: 'Pattern Statistics'
+                },
+                subtitle: {
+                    text: 'Source: TUM Nostradamus'
+                },
+                xAxis: {
+                    categories: $scope.patternlabels,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    max: 5,
+                    title: {
+                        text: 'Average Rating'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Pattern performance',
+                    data: $scope.patternvalues
+                }]
+            }
+
+
         });
 
-        $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
-
-        $scope.height_chart = window.innerHeight*0.5;
-        $scope.mainwidth_chart = window.innerWidth * 0.75;
-        $scope.subwidth_chart =  $scope.mainwidth_chart / 2 ;
+        $scope.height_chart = 600;
+        $scope.mainwidth_chart = 1000;
 
 
     });
