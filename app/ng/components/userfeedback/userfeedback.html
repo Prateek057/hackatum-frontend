@@ -34,9 +34,11 @@
             <div class="md-list-item-text" layout="column" flex>
                 <div layout="row" layout-align="left center" flex>
                     <h4 flex="35">Result</h4>
-                    <md-chips>
-                        <md-chip ng-repeat="res in selsuggestion.analysisResult">{{res}}</md-chip>
-                    </md-chips>
+                    <span ng-repeat="res in selhistory.analysisResult" style="background-color:#E6E6E6;padding: 10px;">
+                            {{res}}
+                    </span>
+
+
                 </div>
             </div>
             <md-divider flex></md-divider>
