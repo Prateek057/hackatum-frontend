@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 5/31/2016.
- */
 'use strict';
 
 angular.module('myApp.learningcenter')
@@ -77,7 +74,7 @@ angular.module('myApp.learningcenter')
             var url = BASEURL+'/api/'+$scope.resultType+'/byName/'+pattern;
             $http.get(url)
                 .then(function successCallback(response) {
-                    $scope.result = response.data[0];
+                    $scope.result = response.data;
                 }, function errorCallback(response) {
                     console.log("error")
                 });

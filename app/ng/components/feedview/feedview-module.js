@@ -1,7 +1,3 @@
-/**
- * Created by Gopala on 30-Jun-16.
- */
-
 angular.module('myApp.feedview', ['ngResource', 'ui.router'])
 
     .config(function ($stateProvider, $urlRouterProvider, feedbackVState) {

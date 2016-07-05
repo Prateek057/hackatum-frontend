@@ -14,16 +14,13 @@ angular.module('myApp.landing')
                 }
             },
             ncyBreadcrumb: {
-                // a bit ugly (and not stable), but ncybreadcrumbs doesn't support direct access
-                // to a view controller yet if there are multiple views
                 label: "Landing"
             }
         }
     })
-    .controller('LandingCtrl', function($scope,$location) {
+    .controller('LandingCtrl', function($scope,$location,$http,BASEURL, $mdDialog) {
 
-        $scope.baseIndex = 1
-
+        $scope.baseIndex = 1;
 
         $scope.gallery = [
             {image: '../data/img/3288.jpg', description: 'Image 00'},
@@ -57,19 +54,31 @@ angular.module('myApp.landing')
         $scope.mainwidth_img = window.innerWidth;
 
         $scope.persons = [
-            {name: 'Akash Manjunath', role: 'Developer'},
-            {name: 'Gopala Krishna', role: 'Developer'},
-            {name: 'Prateek Bagrecha', role: 'Developer'},
-            {name: 'Shankar Mohan', role: 'Developer'}
+            {name: 'Akash Manjunath', role: 'Developer', photo: "../../data/img/team-pics/Akash.jpg"},
+            {name: 'Gopala Krishna', role: 'Developer', photo: "../../data/img/team-pics/Krishna.jpg"},
+            {name: 'Prateek Bagrecha', role: 'Developer', photo: "../../data/img/team-pics/Prateek.jpg"},
+            {name: 'Shankar Mohan Sathya', role: 'Developer', photo: "../../data/img/team-pics/Shankar.jpe"}
         ];
 
-        $scope.feedbacks = [
-            {text: 'I found the website very useful!!', author: 'Krishna'},
-            {text: 'Awesome work!', author: 'Akash'},
-            {text: 'I found the website very useful!!', author: 'Prateek'},
-            {text: 'Awesome work!', author: 'Shankar'},
-            {text: 'Awesome work!', author: 'Shankar'}
-        ];
+        $scope.showTabDialog = function(ev,personname) {
+            $mdDialog.show({
+                //controller: DialogController,
+                templateUrl: 'views/landing/'+personname+'.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+
+        };
+
+        $http.get(BASEURL+'/api/validFeedbacks')
+            .then(function successCallback(response) {
+                $scope.feedbacks = response.data;
+                console.log($scope.feedbacks);
+            }, function errorCallback(response) {
+
+            });
+
     })
     .animation('.slide-left-animation', function ($window) {
         return {
@@ -81,4 +90,3 @@ angular.module('myApp.landing')
             }
         };
     });
-

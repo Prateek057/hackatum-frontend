@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 5/31/2016.
- */
 'use strict';
 
 angular.module('myApp.dashboard')
@@ -103,7 +100,6 @@ angular.module('myApp.dashboard')
 
         $scope.showFeedbackForm = function(ev, someHistory){
             $rootScope.selectedHistory = someHistory;
-            console.log(someHistory);
             var useFullScreen = ( $mdMedia('xs'));
             $mdDialog.show({
                     templateUrl: 'components/feedback/feedback.html',
@@ -129,7 +125,6 @@ angular.module('myApp.dashboard')
         $http.get(BASEURL+'/api/latestPattern')
             .then(function successCallback(response) {
                 $scope.latestPattern = response.data[0];
-                console.log($scope.latestPattern);
             }, function errorCallback(response) {
 
 
@@ -147,8 +142,6 @@ angular.module('myApp.dashboard')
         $scope.hoverRating1 = $scope.hoverRating2 = $scope.hoverRating3 = 0;
 
         $scope.click1 = function (param) {
-            console.log('Click(' + param + ')');
-            console.log(param);
         };
 
         $scope.mouseHover1 = function (param) {
@@ -160,8 +153,7 @@ angular.module('myApp.dashboard')
         };
 
         $scope.click2 = function (param) {
-            console.log('Click');
-            console.log(param);
+
         };
 
         $scope.mouseHover2 = function (param) {
@@ -173,8 +165,7 @@ angular.module('myApp.dashboard')
         };
 
         $scope.click3 = function (param) {
-            console.log('Click');
-            console.log(param);
+
         };
 
         $scope.mouseHover3 = function (param) {

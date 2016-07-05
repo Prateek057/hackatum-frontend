@@ -1,6 +1,3 @@
-/**
- * Created by Akash on 5/31/2016.
- */
 'use strict';
 
 angular.module('myApp.pattern')
@@ -9,25 +6,13 @@ angular.module('myApp.pattern')
         name: 'pattern.detail',
         options: {
 
-            // Using an empty url means that this child state will become active
-            // when its parent's url is navigated to. Urls of child states are
-            // automatically appended to the urls of their parent. So this state's
-            // url is '/movies' (because '/movies' + '').
             url: '',
 
-            // IMPORTANT: Now we have a state that is not a top level state. Its
-            // template will be inserted into the ui-view within this state's
-            // parent's template; so the ui-view within contacts.html. This is the
-            // most important thing to remember about templates.
             views: {
                 'content@root': {
                     templateUrl: 'views/pattern/pattern.html',
                     controller: 'PatternListCtrl'
                 }
-                /*,'outside@root': {
-                 templateUrl: 'views/list/movie-list-buttons.html',
-                 controller: 'movieListButtonCtrl'
-                 }*/
             },
 
             ncyBreadcrumb: {
@@ -142,6 +127,7 @@ angular.module('myApp.pattern')
             $scope.isShowResultsTrue = $scope.getNextQuestions($scope.phasePatternType);
             console.log($scope.isShowResultsTrue);
             if ($scope.isShowResultsTrue) {
+                $scope.phaseProgress = 100;
                 $scope.getResults();
             }
             else {
@@ -161,7 +147,7 @@ angular.module('myApp.pattern')
         $scope.getResults = function () {
             $rootScope.patternResults = $scope.prevPhaseResults;
             var user = currUser.getUser();
-            var analysisResult = $rootScope.patternResults[0];
+            var analysisResult = $rootScope.patternResults;
             var userStoryName = $scope.useCaseName;
             var userStoryDesc = $scope.useCaseDesc;
             postFeedback(user.username, userStoryDesc, userStoryName, analysisResult);

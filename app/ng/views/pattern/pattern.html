@@ -2,7 +2,7 @@
     <md-content style="margin: 16px; padding:16px">
         <md-progress-linear md-mode="determinate" value={{phaseProgress}}></md-progress-linear>
         <div layout="row" layout-align="space-between start">
-            <div ng-if="selectedIndex == 0"><h2>Add Use Case </h2></div>
+            <div ng-if="selectedIndex == 0"><h2>Add User Story </h2></div>
             <div ng-if="selectedIndex != 0"><h2>Phase {{phaseNumber}} : Determine {{phasePatternType}} </h2></div>
         </div>
     </md-content>
@@ -13,12 +13,12 @@
             <md-content layout="row" flex="100" class="md-neu-content md-padding">
                 <form name="AddYourUserStory" layout="column" layout-align=" stretch" class="md-neu-form">
                     <p><i>Add a
-                        UseCase Name
+                        User Story Name
                         and
-                        UseCase Description that is relevant to you requirement e.g. requirement id, requirement
+                        User Story Description that is relevant to you requirement e.g. requirement id, requirement
                         description</i></p>
                     <md-input-container>
-                        <label>UseCase Name</label>
+                        <label>User Story Name</label>
                         <input type="text" name="useCaseName" ng-model="useCaseName" required md-maxlength="20">
                         <div ng-messages="AddYourUserStory.useCaseName.$error">
                             <div ng-message="required">This is required.</div>
@@ -26,7 +26,7 @@
                         </div>
                     </md-input-container>
                     <md-input-container>
-                        <label>UseCase Description</label>
+                        <label>User Stroy Description</label>
                         <input required  type="text" name="useCaseDesc" ng-model="useCaseDesc">
                         <div ng-messages="AddYourUserStory.useCaseDesc.$error">
                             <div ng-message="required">This is required.</div>

@@ -1,7 +1,3 @@
-/**
- * Created by Gopala on 30-Jun-16.
- */
-
 'use strict';
 
 angular.module('myApp.feedview')
@@ -17,8 +13,6 @@ angular.module('myApp.feedview')
                 }
             },
             ncyBreadcrumb: {
-                // a bit ugly (and not stable), but ncybreadcrumbs doesn't support direct access
-                // to a view controller yet if there are multiple views
                 label: "Feedbackss"
             }
         }

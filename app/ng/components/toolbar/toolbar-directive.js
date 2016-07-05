@@ -3,7 +3,7 @@ angular.module('myApp')
         return {
             restrict: "A",
             templateUrl: "components/toolbar/toolbar.html",
-            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast, $location, $window) {
+            controller: function($scope, currUser, $mdDialog, $mdMedia, $mdToast, $location) {
 
                 $scope.user = null;
 
@@ -13,6 +13,17 @@ angular.module('myApp')
 
                 var currMenu;
                 var oldMenu;
+
+                $scope.showTabDialog = function(ev) {
+                    $mdDialog.show({
+                        //controller: DialogController,
+                        templateUrl: 'components/toolbar/community.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true
+                    })
+
+                };
 
                 $scope.go = function (path, elemID) {
                     if(currMenu){
