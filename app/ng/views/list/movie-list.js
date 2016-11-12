@@ -21,29 +21,29 @@ angular.module('myApp.movies')
                     templateUrl: 'views/list/movie-list.html',
                     controller: 'MovieListCtrl',
                 },
-                'outside@root': {
-                    templateUrl: 'views/list/movie-list-buttons.html',
-                    controller: 'movieListButtonCtrl'
-                }
+                // 'outside@root': {
+                //     templateUrl: 'views/list/movie-list-buttons.html',
+                //     controller: 'movieListButtonCtrl'
+                // }
             },
 
             ncyBreadcrumb: {
-                label: "Movies"
+                label: "maaKiAakh"
             }
 
         }
 
     })
 
-    .controller('MovieListCtrl', function($scope, Movie) {
-        $scope.movies = Movie.query();
+    .controller('MovieListCtrl', function($scope, $location) {
+       
+        $scope.go = function (path) {
+                    
+                    $location.path( path );
 
-        $scope.$on('movieCreated', function(ev, movie){
-            $scope.movies.push(movie);
-        });
-
-
+                };
     })
+
 
     .controller('movieListButtonCtrl', function($scope, $mdMedia, $mdDialog, $mdToast, currUser){
 

@@ -1,4 +1,19 @@
-<div layout="row" layout-wrap>
-    <md-card mv-movie-card class="mv-card" movie="movie" ng-repeat="movie in movies"></md-card>
-</div>
+<div layout="column" layout-wrap>
 
+
+<md-button class="md-raised md-primary" aria-label="Search">
+    Services
+            <md-icon ></md-icon>
+</md-button>
+
+<md-button class="md-raised md-primary" aria-label="See">
+    See
+            <md-icon md-font-icon="fa-magic"></md-icon>
+</md-button>
+
+<md-button ng-click="go('/search')" class="md-raised md-primary" aria-label="Ad">
+    Add
+            <md-icon ></md-icon>
+</md-button>
+
+</div>

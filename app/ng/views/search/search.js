@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('myApp.services')
+angular.module('myApp.search')
 
-    .constant('servicesListState', {
-        name: 'services.list',
+    .constant('search', {
+        name: 'search.list',
         options: {
 
             // Using an empty url means that this child state will become active
@@ -18,24 +18,24 @@ angular.module('myApp.services')
             // most important thing to remember about templates.
             views: {
                 'content@root': {
-                    templateUrl: 'views/services/services-list.html',
-                    controller: 'ServicesListCtrl'
-                }/*,
-                'outside@root': {
-                    templateUrl: 'views/list/movie-list-buttons.html',
-                    controller: 'movieListButtonCtrl'
-                }*/
+                    templateUrl: 'views/search/search.html',
+                    controller: 'SearchListCtrl',
+                },
+                // 'outside@root': {
+                //     templateUrl: 'views/list/movie-list-buttons.html',
+                //     controller: 'movieListButtonCtrl'
+                // }
             },
 
             ncyBreadcrumb: {
-                label: "Services List"
+                label: "maaKiAakh Search"
             }
 
         }
 
     })
 
-    .controller('ServicesListCtrl', function() {
-        console.log('Services List View');
-        
-    });
+    .controller('SearchListCtrl', function() {
+        console.log("i am here again");
+
+    })
