@@ -1,9 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ui.router', 'myApp.movies', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
+angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.search', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
 
-    .config(["$stateProvider", "$urlRouterProvider", "$mdIconProvider", "$resourceProvider", "$httpProvider", "$breadcrumbProvider", function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $httpProvider, $breadcrumbProvider) {
+    .config(["$stateProvider", "$urlRouterProvider", "$mdIconProvider", "$resourceProvider", "$breadcrumbProvider", function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider) {
 
         // For any unmatched url, redirect to /movies
         $urlRouterProvider.otherwise("/movies");
@@ -31,12 +31,12 @@ angular.module('myApp', ['ui.router', 'myApp.movies', 'templates', 'ncy-angular-
 
         });
 
-        $httpProvider.interceptors.push('reqErrInterceptor');
-        //auth interceptor
-        $httpProvider.interceptors.push('authInterceptor');
+        // $httpProvider.interceptors.push('reqErrInterceptor');
+        // //auth interceptor
+        // $httpProvider.interceptors.push('authInterceptor');
 
         $breadcrumbProvider.setOptions({
-            templateUrl:"components/breadcrumbs/breadcrumbs.html",
+            templateUrl:"components/breadcrumbs/breadcrumbs.html"
         });
 
     }]);
@@ -487,6 +487,80 @@ angular.module('myApp')
     }
 
 })();
+angular.module('myApp.search', ['ngResource', 'ui.router'])
+
+.config(["$stateProvider", "$urlRouterProvider", "search", function ($stateProvider,   $urlRouterProvider,search) {
+    $stateProvider
+
+        .state('search', {
+
+            // With abstract set to true, that means this state can not be explicitly activated.
+            // It can only be implicitly activated by activating one of its children.
+            abstract: true,
+            parent: 'root',
+
+            // This abstract state will prepend '/movies' onto the urls of all its children.
+            url: '/search',
+
+
+        })
+
+
+        // Using a '.' within a state name declares a child within a parent.
+        // So you have a new state 'list' within the parent 'movies' state.
+        .state(search.name, search.options)
+
+}]);
+
+
+
+
+
+
+angular.module('myApp.services', ['ngResource', 'ui.router'])
+
+.config(["$stateProvider", "$urlRouterProvider", "servicesListState", function ($stateProvider,   $urlRouterProvider, servicesListState) {
+    $stateProvider
+
+        .state('services', {
+
+            // With abstract set to true, that means this state can not be explicitly activated.
+            // It can only be implicitly activated by activating one of its children.
+            abstract: true,
+            parent: 'root',
+
+            // This abstract state will prepend '/movies' onto the urls of all its children.
+            url: '/services'
+
+            // since we have views we do not need to define a template here
+            //template: '<div ui-view></div>',
+
+            // Use `resolve` to resolve any asynchronous controller dependencies
+            // *before* the controller is instantiated. In this case, since contacts
+            // returns a promise, the controller will wait until contacts.all() is
+            // resolved before instantiation. Non-promise return values are considered
+            // to be resolved immediately.
+            //resolve: {
+            //    movies: ['contacts',
+            //        function( contacts){
+            //            return contacts.all();
+            //        }]
+            //},
+
+        })
+
+
+        // Using a '.' within a state name declares a child within a parent.
+        // So you have a new state 'list' within the parent 'movies' state.
+        .state(servicesListState.name, servicesListState.options)
+
+}]);
+
+
+
+
+
+
 angular.module('myApp')
     .directive('mvToolbar', function() {
         return {
@@ -687,29 +761,29 @@ angular.module('myApp.movies')
                     templateUrl: 'views/list/movie-list.html',
                     controller: 'MovieListCtrl',
                 },
-                'outside@root': {
-                    templateUrl: 'views/list/movie-list-buttons.html',
-                    controller: 'movieListButtonCtrl'
-                }
+                // 'outside@root': {
+                //     templateUrl: 'views/list/movie-list-buttons.html',
+                //     controller: 'movieListButtonCtrl'
+                // }
             },
 
             ncyBreadcrumb: {
-                label: "Movies"
+                label: "maaKiAakh"
             }
 
         }
 
     })
 
-    .controller('MovieListCtrl', ["$scope", "Movie", function($scope, Movie) {
-        $scope.movies = Movie.query();
+    .controller('MovieListCtrl', ["$scope", "$location", function($scope, $location) {
+       
+        $scope.go = function (path) {
+                    
+                    $location.path( path );
 
-        $scope.$on('movieCreated', function(ev, movie){
-            $scope.movies.push(movie);
-        });
-
-
+                };
     }])
+
 
     .controller('movieListButtonCtrl', ["$scope", "$mdMedia", "$mdDialog", "$mdToast", "currUser", function($scope, $mdMedia, $mdDialog, $mdToast, currUser){
 
@@ -757,3 +831,86 @@ angular.module('myApp.movies')
             );
         }
     }]);
+'use strict';
+
+angular.module('myApp.search')
+
+    .constant('search', {
+        name: 'search.list',
+        options: {
+
+            // Using an empty url means that this child state will become active
+            // when its parent's url is navigated to. Urls of child states are
+            // automatically appended to the urls of their parent. So this state's
+            // url is '/movies' (because '/movies' + '').
+            url: '',
+
+            // IMPORTANT: Now we have a state that is not a top level state. Its
+            // template will be inserted into the ui-view within this state's
+            // parent's template; so the ui-view within contacts.html. This is the
+            // most important thing to remember about templates.
+            views: {
+                'content@root': {
+                    templateUrl: 'views/search/search.html',
+                    controller: 'SearchListCtrl',
+                },
+                // 'outside@root': {
+                //     templateUrl: 'views/list/movie-list-buttons.html',
+                //     controller: 'movieListButtonCtrl'
+                // }
+            },
+
+            ncyBreadcrumb: {
+                label: "maaKiAakh Search"
+            }
+
+        }
+
+    })
+
+    .controller('SearchListCtrl', function() {
+        console.log("i am here again");
+
+    })
+
+'use strict';
+
+angular.module('myApp.services')
+
+    .constant('servicesListState', {
+        name: 'services.list',
+        options: {
+
+            // Using an empty url means that this child state will become active
+            // when its parent's url is navigated to. Urls of child states are
+            // automatically appended to the urls of their parent. So this state's
+            // url is '/movies' (because '/movies' + '').
+            url: '',
+
+            // IMPORTANT: Now we have a state that is not a top level state. Its
+            // template will be inserted into the ui-view within this state's
+            // parent's template; so the ui-view within contacts.html. This is the
+            // most important thing to remember about templates.
+            views: {
+                'content@root': {
+                    templateUrl: 'views/services/services-list.html',
+                    controller: 'ServicesListCtrl'
+                }/*,
+                'outside@root': {
+                    templateUrl: 'views/list/movie-list-buttons.html',
+                    controller: 'movieListButtonCtrl'
+                }*/
+            },
+
+            ncyBreadcrumb: {
+                label: "Services List"
+            }
+
+        }
+
+    })
+
+    .controller('ServicesListCtrl', function() {
+        console.log('Services List View');
+        
+    });
