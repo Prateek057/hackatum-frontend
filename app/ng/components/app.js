@@ -1,9 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.search', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
+angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.search', 'myApp.see', 'myApp.add', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
 
-    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider, $mdThemingProvider) {
 
         // For any unmatched url, redirect to /movies
         $urlRouterProvider.otherwise("/movies");

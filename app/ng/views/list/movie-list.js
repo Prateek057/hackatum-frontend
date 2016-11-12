@@ -19,12 +19,12 @@ angular.module('myApp.movies')
             views: {
                 'content@root': {
                     templateUrl: 'views/list/movie-list.html',
-                    controller: 'MovieListCtrl',
-                },
-                // 'outside@root': {
-                //     templateUrl: 'views/list/movie-list-buttons.html',
-                //     controller: 'movieListButtonCtrl'
-                // }
+                    controller: 'MovieListCtrl'
+                }
+/*                'outside@root': {
+                    templateUrl: 'views/list/movie-list-buttons.html',
+                    controller: 'backButtonCtrl'
+                }*/
             },
 
             ncyBreadcrumb: {
@@ -41,53 +41,6 @@ angular.module('myApp.movies')
                     
                     $location.path( path );
 
-                };
-    })
-
-
-    .controller('movieListButtonCtrl', function($scope, $mdMedia, $mdDialog, $mdToast, currUser){
-
-        $scope.createMovieDialog = createMovieDialog;
-        $scope.authed = false;
-
-        $scope.$watch(function(){
-            return currUser.loggedIn();
-        }, function(loggedIn){
-            $scope.authed = loggedIn;
-        });
-
-        ////////////////////////////////////
-
-        function createMovieDialog(ev) {
-            var useFullScreen = ( $mdMedia('xs'));
-            $mdDialog.show({
-                    controller: "CreateMovieCtrl",
-                    templateUrl: 'components/create-movie/create-movie.html',
-                    targetEvent: ev,
-                    clickOutsideToClose:true,
-                    fullscreen: useFullScreen,
-                    preserveScope:true
-                })
-                .then(function(answer) {
-
-                    if (answer) {
-                        showSimpleToast('Movie saved successfully');
-                    } else {
-                        showSimpleToast('An Error occured!');
-                    }
-                }, function() {
-                    showSimpleToast('Movie creation cancelled');
-                });
-
-        }
-
-        function showSimpleToast(txt){
-            $mdToast.show(
-                $mdToast.simple()
-                    .textContent(txt)
-                    .position('bottom right')
-                    .hideDelay(3000)
-
-            );
-        }
+        };
     });
+

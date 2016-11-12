@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('myApp.search')
+angular.module('myApp.add')
 
-    .constant('search', {
-        name: 'search.list',
+    .constant('add', {
+        name: 'add.list',
         options: {
 
             // Using an empty url means that this child state will become active
@@ -18,8 +18,8 @@ angular.module('myApp.search')
             // most important thing to remember about templates.
             views: {
                 'content@root': {
-                    templateUrl: 'views/search/search.html',
-                    controller: 'SearchListCtrl'
+                    templateUrl: 'views/add/add.html',
+                    controller: 'addListCtrl'
                 },
                 'outside@root': {
                     templateUrl: 'views/common/backButton.html',
@@ -28,14 +28,14 @@ angular.module('myApp.search')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh Search"
+                label: "maaKiAakh ka Add"
             }
 
         }
 
     })
 
-    .controller('SearchListCtrl', function() {
+    .controller('addListCtrl', function() {
         console.log("i am here again");
     })
 

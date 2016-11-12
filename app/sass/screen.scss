@@ -11,7 +11,15 @@
 //material-design lib
 @import '../../bower_components/angular-material/angular-material.scss';
 
+.md-icon svg{
+  fill: white !important;
+}
 
+.square-button {
+  height: 15em;
+  width: 15em;
+  align-items: center;
+}
 
 
 

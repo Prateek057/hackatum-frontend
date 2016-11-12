@@ -1,9 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.search', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
+angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.search', 'myApp.see', 'myApp.add', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
 
-    .config(["$stateProvider", "$urlRouterProvider", "$mdIconProvider", "$resourceProvider", "$breadcrumbProvider", function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider) {
+    .config(["$stateProvider", "$urlRouterProvider", "$mdIconProvider", "$resourceProvider", "$breadcrumbProvider", "$mdThemingProvider", function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider, $mdThemingProvider) {
 
         // For any unmatched url, redirect to /movies
         $urlRouterProvider.otherwise("/movies");
@@ -79,6 +79,36 @@ angular.module('myApp.movies', ['ngResource', 'ui.router'])
         .state(movieListState.name, movieListState.options)
 
         .state(movieDetailsState.name, movieDetailsState.options);
+
+}]);
+
+
+
+
+
+
+angular.module('myApp.add', ['ngResource', 'ui.router'])
+
+.config(["$stateProvider", "$urlRouterProvider", "add", function ($stateProvider,  $urlRouterProvider, add) {
+    $stateProvider
+
+        .state('add', {
+
+            // With abstract set to true, that means this state can not be explicitly activated.
+            // It can only be implicitly activated by activating one of its children.
+            abstract: true,
+            parent: 'root',
+
+            // This abstract state will prepend '/movies' onto the urls of all its children.
+            url: '/add',
+
+
+        })
+
+
+        // Using a '.' within a state name declares a child within a parent.
+        // So you have a new state 'list' within the parent 'movies' state.
+        .state(add.name, add.options)
 
 }]);
 
@@ -517,6 +547,36 @@ angular.module('myApp.search', ['ngResource', 'ui.router'])
 
 
 
+angular.module('myApp.see', ['ngResource', 'ui.router'])
+
+.config(["$stateProvider", "$urlRouterProvider", "see", function ($stateProvider,  $urlRouterProvider, see) {
+    $stateProvider
+
+        .state('see', {
+
+            // With abstract set to true, that means this state can not be explicitly activated.
+            // It can only be implicitly activated by activating one of its children.
+            abstract: true,
+            parent: 'root',
+
+            // This abstract state will prepend '/movies' onto the urls of all its children.
+            url: '/see',
+
+
+        })
+
+
+        // Using a '.' within a state name declares a child within a parent.
+        // So you have a new state 'list' within the parent 'movies' state.
+        .state(see.name, see.options)
+
+}]);
+
+
+
+
+
+
 angular.module('myApp.services', ['ngResource', 'ui.router'])
 
 .config(["$stateProvider", "$urlRouterProvider", "servicesListState", function ($stateProvider,   $urlRouterProvider, servicesListState) {
@@ -623,6 +683,53 @@ angular.module('myApp')
             }]
         }
     });
+'use strict';
+
+angular.module('myApp.add')
+
+    .constant('add', {
+        name: 'add.list',
+        options: {
+
+            // Using an empty url means that this child state will become active
+            // when its parent's url is navigated to. Urls of child states are
+            // automatically appended to the urls of their parent. So this state's
+            // url is '/movies' (because '/movies' + '').
+            url: '',
+
+            // IMPORTANT: Now we have a state that is not a top level state. Its
+            // template will be inserted into the ui-view within this state's
+            // parent's template; so the ui-view within contacts.html. This is the
+            // most important thing to remember about templates.
+            views: {
+                'content@root': {
+                    templateUrl: 'views/add/add.html',
+                    controller: 'addListCtrl'
+                },
+                'outside@root': {
+                    templateUrl: 'views/common/backButton.html',
+                    controller: 'backButtonCtrl'
+                }
+            },
+
+            ncyBreadcrumb: {
+                label: "maaKiAakh ka Add"
+            }
+
+        }
+
+    })
+
+    .controller('addListCtrl', function() {
+        console.log("i am here again");
+    })
+
+    .controller('backButtonCtrl', ["$scope", "$location", function($scope, $location){
+        $scope.go = function (path) {
+            $location.path( path );
+        };
+    }]);
+
 'use strict';
 
 angular.module('myApp.movies')
@@ -759,12 +866,12 @@ angular.module('myApp.movies')
             views: {
                 'content@root': {
                     templateUrl: 'views/list/movie-list.html',
-                    controller: 'MovieListCtrl',
-                },
-                // 'outside@root': {
-                //     templateUrl: 'views/list/movie-list-buttons.html',
-                //     controller: 'movieListButtonCtrl'
-                // }
+                    controller: 'MovieListCtrl'
+                }
+/*                'outside@root': {
+                    templateUrl: 'views/list/movie-list-buttons.html',
+                    controller: 'backButtonCtrl'
+                }*/
             },
 
             ncyBreadcrumb: {
@@ -781,56 +888,10 @@ angular.module('myApp.movies')
                     
                     $location.path( path );
 
-                };
-    }])
-
-
-    .controller('movieListButtonCtrl', ["$scope", "$mdMedia", "$mdDialog", "$mdToast", "currUser", function($scope, $mdMedia, $mdDialog, $mdToast, currUser){
-
-        $scope.createMovieDialog = createMovieDialog;
-        $scope.authed = false;
-
-        $scope.$watch(function(){
-            return currUser.loggedIn();
-        }, function(loggedIn){
-            $scope.authed = loggedIn;
-        });
-
-        ////////////////////////////////////
-
-        function createMovieDialog(ev) {
-            var useFullScreen = ( $mdMedia('xs'));
-            $mdDialog.show({
-                    controller: "CreateMovieCtrl",
-                    templateUrl: 'components/create-movie/create-movie.html',
-                    targetEvent: ev,
-                    clickOutsideToClose:true,
-                    fullscreen: useFullScreen,
-                    preserveScope:true
-                })
-                .then(function(answer) {
-
-                    if (answer) {
-                        showSimpleToast('Movie saved successfully');
-                    } else {
-                        showSimpleToast('An Error occured!');
-                    }
-                }, function() {
-                    showSimpleToast('Movie creation cancelled');
-                });
-
-        }
-
-        function showSimpleToast(txt){
-            $mdToast.show(
-                $mdToast.simple()
-                    .textContent(txt)
-                    .position('bottom right')
-                    .hideDelay(3000)
-
-            );
-        }
+        };
     }]);
+
+
 'use strict';
 
 angular.module('myApp.search')
@@ -852,12 +913,12 @@ angular.module('myApp.search')
             views: {
                 'content@root': {
                     templateUrl: 'views/search/search.html',
-                    controller: 'SearchListCtrl',
+                    controller: 'SearchListCtrl'
                 },
-                // 'outside@root': {
-                //     templateUrl: 'views/list/movie-list-buttons.html',
-                //     controller: 'movieListButtonCtrl'
-                // }
+                'outside@root': {
+                    templateUrl: 'views/common/backButton.html',
+                    controller: 'backButtonCtrl'
+                }
             },
 
             ncyBreadcrumb: {
@@ -870,8 +931,60 @@ angular.module('myApp.search')
 
     .controller('SearchListCtrl', function() {
         console.log("i am here again");
+    })
+
+    .controller('backButtonCtrl', ["$scope", "$location", function($scope, $location){
+        $scope.go = function (path) {
+            $location.path( path );
+        };
+    }]);
+
+'use strict';
+
+angular.module('myApp.see')
+
+    .constant('see', {
+        name: 'see.list',
+        options: {
+
+            // Using an empty url means that this child state will become active
+            // when its parent's url is navigated to. Urls of child states are
+            // automatically appended to the urls of their parent. So this state's
+            // url is '/movies' (because '/movies' + '').
+            url: '',
+
+            // IMPORTANT: Now we have a state that is not a top level state. Its
+            // template will be inserted into the ui-view within this state's
+            // parent's template; so the ui-view within contacts.html. This is the
+            // most important thing to remember about templates.
+            views: {
+                'content@root': {
+                    templateUrl: 'views/see/see.html',
+                    controller: 'SeeListCtrl'
+                },
+                'outside@root': {
+                    templateUrl: 'views/common/backButton.html',
+                    controller: 'backButtonCtrl'
+                }
+            },
+
+            ncyBreadcrumb: {
+                label: "maaKiAakh See"
+            }
+
+        }
 
     })
+
+    .controller('SeeListCtrl', function() {
+        console.log("i am here again");
+    })
+
+    .controller('backButtonCtrl', ["$scope", "$location", function($scope, $location){
+        $scope.go = function (path) {
+            $location.path( path );
+        };
+    }]);
 
 'use strict';
 
