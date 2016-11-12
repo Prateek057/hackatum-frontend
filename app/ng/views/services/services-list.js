@@ -10,7 +10,7 @@ angular.module('myApp.services')
             // when its parent's url is navigated to. Urls of child states are
             // automatically appended to the urls of their parent. So this state's
             // url is '/movies' (because '/movies' + '').
-            url: '/services',
+            url: '',
 
             // IMPORTANT: Now we have a state that is not a top level state. Its
             // template will be inserted into the ui-view within this state's
