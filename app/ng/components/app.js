@@ -1,9 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ui.router', 'myApp.services', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
+angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
 
-    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $httpProvider, $breadcrumbProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider) {
 
         // For any unmatched url, redirect to /movies
         $urlRouterProvider.otherwise("/services");
@@ -31,9 +31,9 @@ angular.module('myApp', ['ui.router', 'myApp.services', 'templates', 'ncy-angula
 
         });
 
-        $httpProvider.interceptors.push('reqErrInterceptor');
-        //auth interceptor
-        $httpProvider.interceptors.push('authInterceptor');
+        // $httpProvider.interceptors.push('reqErrInterceptor');
+        // //auth interceptor
+        // $httpProvider.interceptors.push('authInterceptor');
 
         $breadcrumbProvider.setOptions({
             templateUrl:"components/breadcrumbs/breadcrumbs.html"

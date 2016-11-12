@@ -18,7 +18,7 @@ angular.module('myApp.services')
             // most important thing to remember about templates.
             views: {
                 'content@root': {
-                    templateUrl: 'views/list/services-list.html',
+                    templateUrl: 'views/services/services-list.html',
                     controller: 'ServicesListCtrl'
                 }/*,
                 'outside@root': {
