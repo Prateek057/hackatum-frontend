@@ -36,15 +36,15 @@ var s_filter_i, js_filter, js_filter_i;
 
 })();
 
-gulp.task('webserver', function() {
-  gulp.src('app')
-    .pipe(server({
-	  defaultFile: 'public/index.html',
-      livereload: true,
-	  port:8080,
-      directoryListing: false,
-      open: true
-    }));
+gulp.task('webserver',['watch'], function() {
+    gulp.src('public')
+        .pipe(server({
+            defaultFile: 'index.html',
+            livereload: true,
+            port:8080,
+            directoryListing: false,
+            open: true
+        }));
 });
 
 gulp.task('sass', function () {
@@ -62,6 +62,18 @@ gulp.task('sass', function () {
         }).on('error', sass.logError))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/css'));
+});
+
+var files = {
+    data_src : [
+        './files.json',
+        'data/**/*.*'
+    ]
+};
+
+gulp.task('copy-data', function() {
+    gulp.src(files.data_src, { base: './' })
+        .pipe(gulp.dest('public'));
 });
 
 gulp.task('frontend-libs-copy', function() {
@@ -96,7 +108,7 @@ gulp.task('app-js', function () {
     return gulp.src(['app/ng/**/app.js', 'app/ng/components/movies/movies-module.js', 'app/ng/**/*.js'])
         .pipe(plumber())
         /*
-        suspend minification, since angular cannot handle sourcemaps in errors https://github.com/angular/angular.js/issues/5217#issuecomment-50993513
+         suspend minification, since angular cannot handle sourcemaps in errors https://github.com/angular/angular.js/issues/5217#issuecomment-50993513
          */
         //.pipe(sourcemaps.init())
         .pipe(concat('app.js'))
@@ -104,7 +116,7 @@ gulp.task('app-js', function () {
         //.pipe(uglify())
         //.pipe(sourcemaps.write())
         .pipe(gulp.dest('./public/js'))
-})
+});
 
 gulp.task('app-templates', function () {
     return gulp.src('app/ng/**/*.html')
@@ -116,27 +128,24 @@ gulp.task('app-templates', function () {
         .pipe(gulp.dest('./public/js'));
 });
 
-var MAIN_TASKS = ['app-js', 'app-templates', 'frontend-libs-copy', 'sass'];
+var MAIN_TASKS = ['app-js', 'app-templates', 'frontend-libs-copy', 'sass','copy-data'];
 
 gulp.task('watch', MAIN_TASKS, function () {
     gulp.watch('app/ng/**/*.js', ['app-js']);
     gulp.watch('app/ng/**/*.html', [ 'app-templates']);
     gulp.watch('bower.json', [ 'frontend-libs-copy']);
     gulp.watch(['app/sass/**/*.scss', 'bower.json'], ['sass']);
-})
+    gulp.watch('data/**/*.*', ['copy-data']);
+});
 
 gulp.task('install', MAIN_TASKS);
 
 gulp.task('clean', function () {
     return gulp.src([
-                        'public/js/app.js',
-                        'public/js/templates.js',
-                        'public/css',
-                        'public/libs'], {read: false})
+        'public/js/app.js',
+        'public/js/templates.js',
+        'public/css',
+        'public/libs',
+        'public/data'], {read: false})
         .pipe(clean());
 });
-
-
-
-
-
