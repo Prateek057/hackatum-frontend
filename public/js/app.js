@@ -264,7 +264,7 @@ angular.module('myApp')
  * One can implmenet a config service if configuration more complex than constants is required
  */
 angular.module('myApp')
-    .constant("BASEURL", "http://localhost:3000");
+    .constant("BASEURL", "http://localhost:3000/api");
 angular.module('myApp.movies')
     .controller('CreateMovieCtrl', ["$scope", "Movie", "$mdDialog", "$rootScope", "currUser", function($scope, Movie, $mdDialog, $rootScope, currUser) {
 
@@ -577,6 +577,13 @@ angular.module('myApp.see', ['ngResource', 'ui.router'])
 
 
 
+'use strict';
+
+angular.module('myApp.see')
+
+    .factory('See', ["$resource", "BASEURL", function( $resource, BASEURL) {
+        return $resource(BASEURL + '/line');
+    }]);
 angular.module('myApp.services', ['ngResource', 'ui.router'])
 
 .config(["$stateProvider", "$urlRouterProvider", "servicesListState", function ($stateProvider,   $urlRouterProvider, servicesListState) {
@@ -976,9 +983,23 @@ angular.module('myApp.see')
 
     })
 
-    .controller('SeeListCtrl', function() {
-        console.log("i am here again");
-    })
+    .controller('SeeListCtrl', ["$scope", "See", function($scope, See) {
+
+
+        var seePromise = See.query(function () {
+
+            var sees = [];
+
+            for (var ctr = 0; ctr < seePromise.length; ctr++) {
+                sees.push(seePromise[ctr]);
+            }
+
+            $scope.sees = sees;
+            console.log($scope.sees);
+        });
+
+        console.log($scope.selectgrp);
+    }])
 
     .controller('backButtonCtrl', ["$scope", "$location", function($scope, $location){
         $scope.go = function (path) {

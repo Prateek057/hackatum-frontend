@@ -1,1 +1,16 @@
-<strong>  I am here!!</strong>
+<div layout="row" layout-align="center center">
+    <md-card flex="50" layout-wrap>
+        <md-toolbar layout="row" layout-align="center center" layout-wrap>See Services</md-toolbar>
+        <div layout-padding>
+            <p>Here you can see services available in U Bahn</p>
+            <md-input-container flex="100">
+                <label>Select Line</label>
+                <md-select flex="100" ng-model="selectgrp">
+                    <md-option ng-repeat="see in sees" ng-value="see">
+                        {{see}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </md-card>
+</div>

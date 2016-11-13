@@ -35,8 +35,22 @@ angular.module('myApp.see')
 
     })
 
-    .controller('SeeListCtrl', function() {
-        console.log("i am here again");
+    .controller('SeeListCtrl', function($scope, See) {
+
+
+        var seePromise = See.query(function () {
+
+            var sees = [];
+
+            for (var ctr = 0; ctr < seePromise.length; ctr++) {
+                sees.push(seePromise[ctr]);
+            }
+
+            $scope.sees = sees;
+            console.log($scope.sees);
+        });
+
+        console.log($scope.selectgrp);
     })
 
     .controller('backButtonCtrl', function($scope, $location){
