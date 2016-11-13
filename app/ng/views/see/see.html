@@ -53,8 +53,7 @@
         <ui-gmap-google-map ng-if="showNext" center='map.center' zoom='map.zoom'></ui-gmap-google-map>
     </md-card>
     <md-card flex="50" ng-if="showMap" layout-wrap>
-        <md-card-title>
-            {{nextStationName}}
+        <md-card-title layout="row" layout="center center">{{nextStationName}}
         </md-card-title>
         <md-list>
             <md-list-item class="md-3-line" ng-repeat="nextService in nextStationServices">
@@ -110,7 +109,8 @@
     </md-card>
     <md-card flex="50" ng-if="showLive" layout-wrap>
         <md-card-title>
-            Live Schedule
+            <md-icon flex="20"
+                     md-svg-icon="action:ic_swap_horiz_24px"></md-icon> Live Schedule
         </md-card-title>
         <md-list>
             <md-list-item class="md-3-line" ng-repeat="schedule in schedules">

@@ -18,7 +18,7 @@ angular.module('myApp.add')
             // most important thing to remember about templates.
             views: {
                 'content@root': {
-                    templateUrl: 'views//see.html',
+                    templateUrl: 'views/add/add.html',
                     controller: 'AddListCtrl'
                 },
                 'outside@root': {
@@ -35,8 +35,36 @@ angular.module('myApp.add')
 
     })
 
-    .controller('AddListCtrl', function() {
-        console.log("i am here again");
+    .controller('AddListCtrl', function($scope, See, Station) {
+        var seePromise = See.query(function () {
+
+            var sees = [];
+
+            for (var ctr = 0; ctr < seePromise.length; ctr++) {
+                sees.push(seePromise[ctr]);
+            }
+
+            $scope.sees = sees;
+            console.log($scope.sees);
+        });
+
+        $scope.$watch(
+            function () {
+                return $scope.selectedLine;
+            }, function (selectedLine) {
+                if (selectedLine !== undefined) {
+                    var stationPromise = Station.query(selectedLine).$promise;
+
+                    stationPromise.then(function (data) {
+                        if (data.length != 0) {
+                            $scope.stations = data;
+                        } else {
+                            console.log("No Data");
+                        }
+                    });
+                }
+            }
+        );
     })
 
     .controller('backButtonCtrl', function($scope, $location){
