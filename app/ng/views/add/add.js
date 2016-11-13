@@ -18,8 +18,8 @@ angular.module('myApp.add')
             // most important thing to remember about templates.
             views: {
                 'content@root': {
-                    templateUrl: 'views/add/add.html',
-                    controller: 'addListCtrl'
+                    templateUrl: 'views//see.html',
+                    controller: 'SeeListCtrl'
                 },
                 'outside@root': {
                     templateUrl: 'views/common/backButton.html',
@@ -28,14 +28,14 @@ angular.module('myApp.add')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh ka Add"
+                label: "Connected Services -> Add"
             }
 
         }
 
     })
 
-    .controller('addListCtrl', function() {
+    .controller('SeeListCtrl', function() {
         console.log("i am here again");
     })
 

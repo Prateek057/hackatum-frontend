@@ -28,7 +28,7 @@ angular.module('myApp.services')
             },
 
             ncyBreadcrumb: {
-                label: "Services List"
+                label: "Connected Services -> Services List"
             }
 
         }

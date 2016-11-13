@@ -28,7 +28,7 @@ angular.module('myApp.search')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh Search"
+                label: "Connected Services -> Search"
             }
 
         }

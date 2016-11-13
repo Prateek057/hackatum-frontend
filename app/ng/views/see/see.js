@@ -28,7 +28,7 @@ angular.module('myApp.see')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh See"
+                label: "Connected Services -> See"
             }
 
         }
