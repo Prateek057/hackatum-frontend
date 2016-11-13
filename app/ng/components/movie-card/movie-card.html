@@ -1,8 +1,8 @@
-<md-card-title>
+<!--<md-card-title>
 
     <md-card-title-text>
         <span class="md-headline">{{movie.title}}</span>
-        <!--<span class="md-subhead"></span>-->
+        &lt;!&ndash;<span class="md-subhead"></span>&ndash;&gt;
     </md-card-title-text>
     <md-card-title-media>
         <img class="mv-card-pic" ng-src="{{movie.posters.thumbnail}}" />
@@ -16,8 +16,12 @@
     <md-button class="md-ink-ripple md-accent" ui-sref="movies.detail({movieId: movie._id })">
         Details
     </md-button>
-</md-card-actions>
+</md-card-actions>-->
 
         <!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect" href="#/movies/{{movie._id}}">-->
 
 
+<md-icon ng-if="service.category==='Super Market'" md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>
+<md-icon ng-if="service.category==='WC'" md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>
+<md-icon ng-if="service.category==='Dispenser'" md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>
+<md-icon ng-if="service.category==='HealthCare'" md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>

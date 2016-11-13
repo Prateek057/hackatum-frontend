@@ -29,5 +29,18 @@ angular.module('myApp.see')
             }
         }
     })
+    .factory('Livestatus', function ($resource, BASEURL) {
+        return {
+            query: function (location) {
+                return $resource(BASEURL + '/live/' + location, {}, {
+                    query: {
+                        method: 'GET' /*,
+                         isArray: true*/
+                    }
+                }).query();
+            }
+        }
+
+    })
 
 ;

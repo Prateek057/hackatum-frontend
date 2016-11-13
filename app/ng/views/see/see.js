@@ -35,10 +35,14 @@ angular.module('myApp.see')
 
     })
 
-    .controller('SeeListCtrl', function ($scope, See, Station, $filter, Location) {
+    .controller('SeeListCtrl', function ($scope, See, Station, $filter, Location, Livestatus) {
 
 
         $scope.showMap = false;
+        $scope.showLive = false;
+        $scope.stationLat = 0;
+        $scope.stationLng = 0;
+        $scope.map = {center: {latitude: $scope.stationLat, longitude: $scope.stationLng}, zoom: 15};
 
         var seePromise = See.query(function () {
 
@@ -55,6 +59,19 @@ angular.module('myApp.see')
         $scope.$watch(function () {
             return $scope.selectedStation;
         }, function (selectedStation) {
+
+            var livePromise = Livestatus.query($scope.stationName).$promise;
+
+            livePromise.then(function (data) {
+                if (data.length !== undefined)
+                    if (data.length !== 0) {
+                        console.log(data.length);
+                        $scope.results = data.result_sorted;
+                        $scope.showLive = true;
+                    } else {
+                        console.log("No Data");
+                    }
+            });
 
             $scope.single_object = $filter('filter')($scope.stations, function (d) {
                 return d.id === selectedStation;
@@ -75,9 +92,6 @@ angular.module('myApp.see')
                 return d.id === prevStationId;
             });
 
-
-            console.log($scope.stations);
-            console.log($scope.next_object);
             if ($scope.single_object !== undefined) {
                 $scope.stationServices = $scope.single_object[0].services;
                 $scope.stationName = $scope.single_object[0].name;
@@ -88,8 +102,6 @@ angular.module('myApp.see')
                     if (data.length != 0) {
                         $scope.stationLat = data.results[0].geometry.location.lat;
                         $scope.stationLng = data.results[0].geometry.location.lng;
-                        console.log($scope.stationLat);
-                        console.log($scope.stationLng);
                         $scope.map = {center: {latitude: $scope.stationLat, longitude: $scope.stationLng}, zoom: 15};
                         $scope.showMap = true;
                     } else {
@@ -100,11 +112,13 @@ angular.module('myApp.see')
             if ($scope.next_object !== undefined) {
                 $scope.nextStationServices = $scope.next_object[0].services;
                 $scope.nextStationName = $scope.next_object[0].name;
+                $scope.showNext = true;
             }
 
             if ($scope.prev_object !== undefined) {
                 $scope.prevStationServices = $scope.prev_object[0].services;
                 $scope.prevStationName = $scope.prev_object[0].name;
+                $scope.showPrev = true;
             }
 
         });

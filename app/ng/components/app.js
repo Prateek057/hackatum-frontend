@@ -26,7 +26,10 @@ angular.module('myApp', ['ui.router', 'uiGmapgoogle-maps', 'myApp.movies', 'myAp
             .iconSet('content', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-content.svg')
             .iconSet('action', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg')
             .iconSet('editor', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-editor.svg')
-            .iconSet('navigation', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-navigation.svg');
+            .iconSet('navigation', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-navigation.svg')
+            .iconSet('maps', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-maps.svg')
+            .iconSet('notification', 'libs/material-design-icons/sprites/svg-sprite/svg-sprite-notification.svg')
+        ;
 
         //this overrides the defaults actiosn for all $resources
         angular.extend($resourceProvider.defaults.actions, {

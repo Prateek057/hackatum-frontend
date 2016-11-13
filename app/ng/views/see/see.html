@@ -1,7 +1,7 @@
 <div layout="row" flex="100" layout-align="start start">
-    <md-card flex="50" layout-wrap>
+    <md-card layout-wrap>
         <div flex="100" layout-padding>
-            <p>Here you can see services available in U Bahn</p>
+            <p>Here you can see services available in Stations and Stands</p>
             <div layout="row" layout-align="center center" layout-wrap flex="100">
                 <md-input-container flex="100">
                     <label>Select Line</label>
@@ -27,7 +27,20 @@
                 <md-list-item class="md-3-line" ng-repeat="service in stationServices">
                     <md-divider flex="100"></md-divider>
                     <div class="md-list-item-text">
-                        <h3>{{service.name}}</h3>
+                        <div layout="row">
+                            <md-icon flex="20" ng-if="service.category==='Super Market'"
+                                     md-svg-icon="action:ic_store_24px"></md-icon>
+                            <md-icon flex="20" ng-if="service.category==='WC'"
+                                     md-svg-icon="notification:ic_wc_24px"></md-icon>
+                            <md-icon flex="20" ng-if="service.category==='Dispenser'"
+                                     md-svg-icon="maps:ic_local_drink_24px"></md-icon>
+                            <md-icon flex="20" ng-if="service.category==='HealthCare'"
+                                     md-svg-icon="maps:ic_local_hospital_24px"></md-icon>
+                            <md-icon flex="20" ng-if="service.category==='Restaurant'"
+                                     md-svg-icon="maps:ic_restaurant_menu_24px"></md-icon>
+
+                            <h3 flex="80">{{service.name}}</h3>
+                        </div>
                         <h4>{{service.description}}</h4>
                     </div>
                     <md-divider md-inset ng-if="!$last" flex="100"></md-divider>
@@ -37,9 +50,9 @@
         </div>
     </md-card>
     <md-card flex="50" layout-wrap>
-        <ui-gmap-google-map ng-if="showMap" center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-    </md-card >
-    <md-card flex="50" ng-if="showMap"  layout-wrap>
+        <ui-gmap-google-map ng-if="showNext" center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+    </md-card>
+    <md-card flex="50" ng-if="showMap" layout-wrap>
         <md-card-title>
             {{nextStationName}}
         </md-card-title>
@@ -47,14 +60,27 @@
             <md-list-item class="md-3-line" ng-repeat="nextService in nextStationServices">
                 <md-divider flex="100"></md-divider>
                 <div class="md-list-item-text">
-                    <h3>{{nextService.name}}</h3>
+                    <div layout="row">
+                        <md-icon flex="20" ng-if="nextService.category==='Super Market'"
+                                 md-svg-icon="action:ic_store_24px"></md-icon>
+                        <md-icon flex="20" ng-if="nextService.category==='WC'"
+                                 md-svg-icon="notification:ic_wc_24px"></md-icon>
+                        <md-icon flex="20" ng-if="nextService.category==='Dispenser'"
+                                 md-svg-icon="maps:ic_local_drink_24px"></md-icon>
+                        <md-icon flex="20" ng-if="nextService.category==='HealthCare'"
+                                 md-svg-icon="maps:ic_local_hospital_24px"></md-icon>
+                        <md-icon flex="20" ng-if="nextService.category==='Restaurant'"
+                                 md-svg-icon="maps:ic_restaurant_menu_24px"></md-icon>
+
+                        <h3 flex="80">{{nextService.name}}</h3>
+                    </div>
                     <h4>{{nextService.description}}</h4>
                 </div>
                 <md-divider md-inset ng-if="!$last" flex="100"></md-divider>
             </md-list-item>
         </md-list>
     </md-card>
-    <md-card flex="50" ng-if="showMap" layout-wrap>
+    <md-card flex="50" ng-if="showPrev" layout-wrap>
         <md-card-title>
             {{prevStationName}}
         </md-card-title>
@@ -62,8 +88,37 @@
             <md-list-item class="md-3-line" ng-repeat="prevService in prevStationServices">
                 <md-divider flex="100"></md-divider>
                 <div class="md-list-item-text">
-                    <h3>{{prevService.name}}</h3>
+                    <div layout="row">
+                        <md-icon flex="20" ng-if="prevService.category==='Super Market'"
+                                 md-svg-icon="action:ic_store_24px"></md-icon>
+                        <md-icon flex="20" ng-if="prevService.category==='WC'"
+                                 md-svg-icon="notification:ic_wc_24px"></md-icon>
+                        <md-icon flex="20" ng-if="prevService.category==='Dispenser'"
+                                 md-svg-icon="maps:ic_local_drink_24px"></md-icon>
+                        <md-icon flex="20" ng-if="prevService.category==='HealthCare'"
+                                 md-svg-icon="maps:ic_local_hospital_24px"></md-icon>
+                        <md-icon flex="20" ng-if="prevService.category==='Restaurant'"
+                                 md-svg-icon="maps:ic_restaurant_menu_24px"></md-icon>
+
+                        <h3 flex="80">{{prevService.name}}</h3>
+                    </div>
                     <h4>{{prevService.description}}</h4>
+                </div>
+                <md-divider md-inset ng-if="!$last" flex="100"></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card flex="50" ng-if="showLive" layout-wrap>
+        <md-card-title>
+            Live Schedule
+        </md-card-title>
+        <md-list>
+            <md-list-item class="md-3-line" ng-repeat="schedule in schedules">
+                <md-divider flex="100"></md-divider>
+                <div layout="row" class="md-list-item-text">
+                        <h3 flex="30">{{schedule.line}}</h3>
+                        <h3 flex="40">{{schedule.destination}}</h3>
+                        <h3 flex="30">{{schedule.minutes}}</h3>
                 </div>
                 <md-divider md-inset ng-if="!$last" flex="100"></md-divider>
             </md-list-item>
