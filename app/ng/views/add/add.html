@@ -1,1 +1,25 @@
-<strong>  I am here!!</strong>
+ 
+ <!-- 
+      places of interest -title
+       select line
+       select station
+       text field - name 
+       text field - description
+       text field - category
+       
+   -->
+   
+    <md-card flex="50" layout-wrap>
+           <md-toolbar layout="row" layout-align="center center" layout-wrap>Add Services</md-toolbar>
+           <div layout-padding>
+               <p>Add points of Interest</p>
+               <md-input-container flex="100">
+                   <label>Select Line</label>
+                   <md-select flex="100" ng-model="selectgrp">
+                       <md-option ng-repeat="see in sees" ng-value="see">
+                           {{see}}
+                       </md-option>
+                   </md-select>
+               </md-input-container>
+           </div>
+       </md-card>
