@@ -1,13 +1,19 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.search', 'myApp.see', 'myApp.add', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
+angular.module('myApp', ['ui.router', 'uiGmapgoogle-maps', 'myApp.movies', 'myApp.search', 'myApp.see', 'myApp.add', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
 
-    .config(["$stateProvider", "$urlRouterProvider", "$mdIconProvider", "$resourceProvider", "$breadcrumbProvider", "$mdThemingProvider", function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider, $mdThemingProvider) {
+    .config(["$stateProvider", "$urlRouterProvider", "$mdIconProvider", "$resourceProvider", "$breadcrumbProvider", "uiGmapGoogleMapApiProvider", "APIKEY", function ($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider, uiGmapGoogleMapApiProvider, APIKEY) {
 
         // For any unmatched url, redirect to /movies
         $urlRouterProvider.otherwise("/movies");
 
+
+        uiGmapGoogleMapApiProvider.configure({
+            key: APIKEY,
+            v: '3.20', //defaults to latest 3.X anyhow
+            libraries: 'weather,geometry,visualization,places'
+        });
 
         $stateProvider
             .state('root', {
@@ -36,7 +42,7 @@ angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.sea
         // $httpProvider.interceptors.push('authInterceptor');
 
         $breadcrumbProvider.setOptions({
-            templateUrl:"components/breadcrumbs/breadcrumbs.html"
+            templateUrl: "components/breadcrumbs/breadcrumbs.html"
         });
 
     }]);
@@ -264,7 +270,11 @@ angular.module('myApp')
  * One can implmenet a config service if configuration more complex than constants is required
  */
 angular.module('myApp')
-    .constant("BASEURL", "http://localhost:3000/api");
+    .constant("BASEURL", "http://localhost:3000/api")
+    .constant("GOOBASEURL","https://maps.googleapis.com/maps/api/geocode/json?address=" )
+    .constant("APIKEY", 'AIzaSyBkrZUQy7BfiQiAf8q7PKrV9MnX3_WJsBU');
+
+
 angular.module('myApp.movies')
     .controller('CreateMovieCtrl', ["$scope", "Movie", "$mdDialog", "$rootScope", "currUser", function($scope, Movie, $mdDialog, $rootScope, currUser) {
 
@@ -583,7 +593,33 @@ angular.module('myApp.see')
 
     .factory('See', ["$resource", "BASEURL", function( $resource, BASEURL) {
         return $resource(BASEURL + '/line');
-    }]);
+    }])
+    .factory('Station', ["$resource", "BASEURL", function ($resource, BASEURL) {
+        return {
+            query: function (line) {
+                return $resource(BASEURL + '/station/byLine/' + line, {}, {
+                    query: {
+                        method: 'GET',
+                        isArray: true
+                    }
+                }).query();
+            }
+        }
+    }])
+    .factory('Location', ["$resource", "GOOBASEURL", "APIKEY", function ($resource, GOOBASEURL, APIKEY) {
+        return {
+            query: function (location) {
+                return $resource(GOOBASEURL + location + ',Munich&key='+APIKEY, {}, {
+                    query: {
+                        method: 'GET' /*,
+                        isArray: true*/
+                    }
+                }).query();
+            }
+        }
+    }])
+
+;
 angular.module('myApp.services', ['ngResource', 'ui.router'])
 
 .config(["$stateProvider", "$urlRouterProvider", "servicesListState", function ($stateProvider,   $urlRouterProvider, servicesListState) {
@@ -983,8 +1019,10 @@ angular.module('myApp.see')
 
     })
 
-    .controller('SeeListCtrl', ["$scope", "See", function($scope, See) {
+    .controller('SeeListCtrl', ["$scope", "See", "Station", "$filter", "Location", function ($scope, See, Station, $filter, Location) {
 
+
+        $scope.showMap = false;
 
         var seePromise = See.query(function () {
 
@@ -995,15 +1033,89 @@ angular.module('myApp.see')
             }
 
             $scope.sees = sees;
-            console.log($scope.sees);
         });
 
-        console.log($scope.selectgrp);
+
+        $scope.$watch(function () {
+            return $scope.selectedStation;
+        }, function (selectedStation) {
+
+            $scope.single_object = $filter('filter')($scope.stations, function (d) {
+                return d.id === selectedStation;
+            });
+
+
+            var nextStationId = parseInt(selectedStation) + 1;
+            nextStationId = nextStationId.toString();
+
+            $scope.next_object = $filter('filter')($scope.stations, function (d) {
+                return d.id === nextStationId;
+            });
+
+            var prevStationId = parseInt(selectedStation) - 1;
+            prevStationId = prevStationId.toString();
+
+            $scope.prev_object = $filter('filter')($scope.stations, function (d) {
+                return d.id === prevStationId;
+            });
+
+
+            console.log($scope.stations);
+            console.log($scope.next_object);
+            if ($scope.single_object !== undefined) {
+                $scope.stationServices = $scope.single_object[0].services;
+                $scope.stationName = $scope.single_object[0].name;
+
+                var mapPromise = Location.query($scope.stationName).$promise;
+
+                mapPromise.then(function (data) {
+                    if (data.length != 0) {
+                        $scope.stationLat = data.results[0].geometry.location.lat;
+                        $scope.stationLng = data.results[0].geometry.location.lng;
+                        console.log($scope.stationLat);
+                        console.log($scope.stationLng);
+                        $scope.map = {center: {latitude: $scope.stationLat, longitude: $scope.stationLng}, zoom: 15};
+                        $scope.showMap = true;
+                    } else {
+                        console.log("No Data");
+                    }
+                });
+            }
+            if ($scope.next_object !== undefined) {
+                $scope.nextStationServices = $scope.next_object[0].services;
+                $scope.nextStationName = $scope.next_object[0].name;
+            }
+
+            if ($scope.prev_object !== undefined) {
+                $scope.prevStationServices = $scope.prev_object[0].services;
+                $scope.prevStationName = $scope.prev_object[0].name;
+            }
+
+        });
+
+        $scope.$watch(
+            function () {
+                return $scope.selectedLine;
+            }, function (selectedLine) {
+                if (selectedLine !== undefined) {
+                    var stationPromise = Station.query(selectedLine).$promise;
+
+                    stationPromise.then(function (data) {
+                        if (data.length != 0) {
+                            $scope.stations = data;
+                        } else {
+                            console.log("No Data");
+                        }
+                    });
+                }
+            }
+        );
+
     }])
 
-    .controller('backButtonCtrl', ["$scope", "$location", function($scope, $location){
+    .controller('backButtonCtrl', ["$scope", "$location", function ($scope, $location) {
         $scope.go = function (path) {
-            $location.path( path );
+            $location.path(path);
         };
     }]);
 

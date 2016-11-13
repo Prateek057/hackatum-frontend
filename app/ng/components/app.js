@@ -1,13 +1,19 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.search', 'myApp.see', 'myApp.add', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
+angular.module('myApp', ['ui.router', 'uiGmapgoogle-maps', 'myApp.movies', 'myApp.search', 'myApp.see', 'myApp.add', 'templates', 'ncy-angular-breadcrumb', 'ngMaterial', 'ngMessages'])
 
-    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider, $mdThemingProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $resourceProvider, $breadcrumbProvider, uiGmapGoogleMapApiProvider, APIKEY) {
 
         // For any unmatched url, redirect to /movies
         $urlRouterProvider.otherwise("/movies");
 
+
+        uiGmapGoogleMapApiProvider.configure({
+            key: APIKEY,
+            v: '3.20', //defaults to latest 3.X anyhow
+            libraries: 'weather,geometry,visualization,places'
+        });
 
         $stateProvider
             .state('root', {
@@ -36,7 +42,7 @@ angular.module('myApp', ['ui.router', 'myApp.services','myApp.movies','myApp.sea
         // $httpProvider.interceptors.push('authInterceptor');
 
         $breadcrumbProvider.setOptions({
-            templateUrl:"components/breadcrumbs/breadcrumbs.html"
+            templateUrl: "components/breadcrumbs/breadcrumbs.html"
         });
 
     });
