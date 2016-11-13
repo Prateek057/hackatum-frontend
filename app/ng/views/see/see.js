@@ -56,10 +56,9 @@ angular.module('myApp.see')
             console.log($scope.sees);
         });
 
-
         $scope.$watch(function () {
-            return $scope.selectedStation;
-        }, function (selectedStation) {
+            return $scope.stationName;
+        }, function(){
 
             var livePromise = Livestatus.query($scope.stationName).$promise;
 
@@ -73,6 +72,13 @@ angular.module('myApp.see')
                         console.log("No Data");
                     }
             });
+        });
+
+        $scope.$watch(function () {
+            return $scope.selectedStation;
+        }, function (selectedStation) {
+
+
 
             $scope.single_object = $filter('filter')($scope.stations, function (d) {
                 return d.id === selectedStation;
