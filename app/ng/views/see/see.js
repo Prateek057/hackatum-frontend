@@ -28,7 +28,7 @@ angular.module('myApp.see')
             },
 
             ncyBreadcrumb: {
-                label: "Connected Services -> See"
+                label: "Connected Services : See"
             }
 
         }
@@ -53,6 +53,7 @@ angular.module('myApp.see')
             }
 
             $scope.sees = sees;
+            console.log($scope.sees);
         });
 
 

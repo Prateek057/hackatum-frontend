@@ -19,7 +19,7 @@ angular.module('myApp.add')
             views: {
                 'content@root': {
                     templateUrl: 'views//see.html',
-                    controller: 'SeeListCtrl'
+                    controller: 'AddListCtrl'
                 },
                 'outside@root': {
                     templateUrl: 'views/common/backButton.html',
@@ -28,14 +28,14 @@ angular.module('myApp.add')
             },
 
             ncyBreadcrumb: {
-                label: "Connected Services -> Add"
+                label: "Connected Services : Add"
             }
 
         }
 
     })
 
-    .controller('SeeListCtrl', function() {
+    .controller('AddListCtrl', function() {
         console.log("i am here again");
     })
 

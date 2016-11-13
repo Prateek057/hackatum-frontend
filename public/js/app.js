@@ -247,15 +247,6 @@ angular.module('myApp.add', ['ngResource', 'ui.router'])
 
 })();
 
-/**
- * One can implmenet a config service if configuration more complex than constants is required
- */
-angular.module('myApp')
-    .constant("BASEURL", "http://localhost:3000/api")
-    .constant("GOOBASEURL","https://maps.googleapis.com/maps/api/geocode/json?address=" )
-    .constant("APIKEY", 'AIzaSyBkrZUQy7BfiQiAf8q7PKrV9MnX3_WJsBU');
-
-
 //taken from http://stackoverflow.com/a/31671397/3200478
 
 angular.module('myApp')
@@ -277,6 +268,15 @@ angular.module('myApp')
             }
         };
     });
+
+/**
+ * One can implmenet a config service if configuration more complex than constants is required
+ */
+angular.module('myApp')
+    .constant("BASEURL", "http://localhost:3000/api")
+    .constant("GOOBASEURL","https://maps.googleapis.com/maps/api/geocode/json?address=" )
+    .constant("APIKEY", 'AIzaSyBkrZUQy7BfiQiAf8q7PKrV9MnX3_WJsBU');
+
 
 angular.module('myApp.movies')
     .controller('CreateMovieCtrl', ["$scope", "Movie", "$mdDialog", "$rootScope", "currUser", function($scope, Movie, $mdDialog, $rootScope, currUser) {
@@ -762,8 +762,8 @@ angular.module('myApp.add')
             // most important thing to remember about templates.
             views: {
                 'content@root': {
-                    templateUrl: 'views/add/add.html',
-                    controller: 'addListCtrl'
+                    templateUrl: 'views//see.html',
+                    controller: 'AddListCtrl'
                 },
                 'outside@root': {
                     templateUrl: 'views/common/backButton.html',
@@ -772,14 +772,14 @@ angular.module('myApp.add')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh ka Add"
+                label: "Connected Services : Add"
             }
 
         }
 
     })
 
-    .controller('addListCtrl', function() {
+    .controller('AddListCtrl', function() {
         console.log("i am here again");
     })
 
@@ -934,7 +934,7 @@ angular.module('myApp.movies')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh"
+                label: "Connected Services"
             }
 
         }
@@ -981,7 +981,7 @@ angular.module('myApp.search')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh Search"
+                label: "Connected Services -> Search"
             }
 
         }
@@ -1028,7 +1028,7 @@ angular.module('myApp.see')
             },
 
             ncyBreadcrumb: {
-                label: "maaKiAakh See"
+                label: "Connected Services : See"
             }
 
         }
@@ -1053,6 +1053,7 @@ angular.module('myApp.see')
             }
 
             $scope.sees = sees;
+            console.log($scope.sees);
         });
 
 
@@ -1179,7 +1180,7 @@ angular.module('myApp.services')
             },
 
             ncyBreadcrumb: {
-                label: "Services List"
+                label: "Connected Services -> Services List"
             }
 
         }
